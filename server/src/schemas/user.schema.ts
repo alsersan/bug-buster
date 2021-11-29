@@ -11,6 +11,9 @@ export class User {
   name: string;
 
   @Prop({ required: true })
+  surname: string;
+
+  @Prop({ required: true })
   avatarUrl: string;
 
   @Prop({ required: true })
