@@ -42,3 +42,5 @@ export class Project {
 }
 
 export const ProjectSchema = SchemaFactory.createForClass(Project);
+
+export const ProjectModelName = 'Project';
