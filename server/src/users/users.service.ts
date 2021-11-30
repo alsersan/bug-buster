@@ -9,25 +9,25 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto) {
     return new this.userModel(createUserDto).save();
   }
 
-  findAll() {
+  async findAll() {
     return this.userModel.find();
   }
 
-  findOne(id: string) {
-    return this.userModel.findOne({ _id: id });
+  async findOne(id: string) {
+    return this.userModel.findById(id);
   }
 
-  update(id: string, updateUserDto: UpdateUserDto) {
+  async update(id: string, updateUserDto: UpdateUserDto) {
     return this.userModel.findByIdAndUpdate(id, updateUserDto, {
       new: true,
     });
   }
 
-  remove(id: string) {
+  async remove(id: string) {
     return this.userModel.findByIdAndDelete(id);
   }
 }
