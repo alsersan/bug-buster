@@ -9,25 +9,23 @@ import { User, UserDocument } from './schemas/user.schema';
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  async create(createUserDto: CreateUserDto) {
-    return new this.userModel(createUserDto).save();
+  async createUser(createUserDto: CreateUserDto) {
+    return this.userModel.create(createUserDto);
   }
 
-  async findAll() {
+  async getAllUsers() {
     return this.userModel.find();
   }
 
-  async findOne(id: string) {
-    return this.userModel.findById(id);
+  async getUserById(userId: string) {
+    return this.userModel.findById(userId);
   }
 
-  async update(id: string, updateUserDto: UpdateUserDto) {
-    return this.userModel.findByIdAndUpdate(id, updateUserDto, {
-      new: true,
-    });
+  async updateUser(userId: string, updateUserDto: UpdateUserDto) {
+    return this.userModel.findByIdAndUpdate(userId, updateUserDto);
   }
 
-  async remove(id: string) {
-    return this.userModel.findByIdAndDelete(id);
+  async deleteUser(userId: string) {
+    return this.userModel.findByIdAndDelete(userId);
   }
 }

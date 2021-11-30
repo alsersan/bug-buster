@@ -15,13 +15,12 @@ const mockUser = {
   password: '1234',
 };
 
-describe('UsersService', () => {
+describe('Given the UsersService', () => {
   let service: UsersService;
   let model: Model<User>;
 
   const usersArray = [
     {
-      id: '1',
       name: 'John',
       surname: 'Doe',
       avatarUrl: 'imageUrl',
@@ -31,7 +30,6 @@ describe('UsersService', () => {
       password: '1234',
     },
     {
-      id: '2',
       name: 'Jane',
       surname: 'Doe',
       avatarUrl: 'imageUrl',
@@ -62,20 +60,33 @@ describe('UsersService', () => {
     service = module.get<UsersService>(UsersService);
     model = module.get<Model<User>>(getModelToken('User'));
   });
-
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+  describe('when it is instantiated', () => {
+    it('should be defined', () => {
+      expect(service).toBeDefined();
+    });
   });
 
-  it('should return all users', async () => {
-    jest.spyOn(model, 'find').mockResolvedValueOnce(usersArray as any);
-    const users = await service.findAll();
-    expect(users).toEqual(usersArray);
+  describe('when getAllUsers is called', () => {
+    it('should return all users', async () => {
+      jest.spyOn(model, 'find').mockResolvedValueOnce(usersArray as any);
+      const users = await service.getAllUsers();
+      expect(users).toEqual(usersArray);
+    });
   });
 
-  it('should return one user', async () => {
-    jest.spyOn(model, 'findById').mockResolvedValueOnce(usersArray[0] as any);
-    const user = await service.findOne('1');
-    expect(user).toEqual(usersArray[0]);
+  describe('When getUserById is called', () => {
+    it('should return one user', async () => {
+      jest.spyOn(model, 'findById').mockResolvedValueOnce(usersArray[0] as any);
+      const user = await service.getUserById('1');
+      expect(user).toEqual(usersArray[0]);
+    });
   });
+
+  /* describe('When createUser is called', () => {
+    it('should create one user', async () => {
+      jest.spyOn(model, 'create').mockResolvedValueOnce(usersArray[0] as any);
+      const user = await service.getUserById('1');
+      expect(user).toEqual(usersArray[0]);
+    });
+  }); */
 });

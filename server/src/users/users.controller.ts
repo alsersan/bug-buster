@@ -17,26 +17,26 @@ export class UsersController {
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
-    return await this.usersService.create(createUserDto);
+    return await this.usersService.createUser(createUserDto);
   }
 
   @Get()
   async findAll() {
-    return await this.usersService.findAll();
+    return await this.usersService.getAllUsers();
   }
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    return await this.usersService.findOne(id);
+    return await this.usersService.getUserById(id);
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return await this.usersService.update(id, updateUserDto);
+    return await this.usersService.updateUser(id, updateUserDto);
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string) {
-    return await this.usersService.remove(id);
+  async delete(@Param('id') id: string) {
+    return await this.usersService.deleteUser(id);
   }
 }
