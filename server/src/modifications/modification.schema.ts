@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
-import { User } from './user.schema';
+import { User } from 'src/users/schemas/user.schema';
 
 export type ModificationDocument = Modification & Document;
 

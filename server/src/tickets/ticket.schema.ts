@@ -1,9 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
-import { User } from './user.schema';
-import { Project } from './project.schema';
-import { Modification } from './modification.schema';
+import { Project } from 'src/projects/schemas/project.schema';
+import { User } from 'src/users/schemas/user.schema';
+import { Modification } from 'src/modifications/modification.schema';
 
 export type TicketDocument = Ticket & Document;
 
