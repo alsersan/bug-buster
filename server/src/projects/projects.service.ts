@@ -20,7 +20,7 @@ export class ProjectsService {
   }
 
   findOne(id: string) {
-    return this.projectModel.findOne({ _id: id });
+    return this.projectModel.findById(id);
   }
 
   update(id: string, updateProjectDto: UpdateProjectDto) {
