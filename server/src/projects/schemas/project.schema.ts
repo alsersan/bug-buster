@@ -17,10 +17,10 @@ export class Project {
   status: string;
 
   @Prop()
-  dateStarted: Date;
+  dateStarted: string;
 
   @Prop({ default: null })
-  dateEnded: Date;
+  dateEnded: string | null;
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ticket' }] })
   Tickets: Ticket[];
