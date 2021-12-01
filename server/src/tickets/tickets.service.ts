@@ -1,26 +1,51 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
+import { Ticket, TicketDocument } from './schemas/ticket.schema';
 
 @Injectable()
 export class TicketsService {
-  create(createTicketDto: CreateTicketDto) {
-    return 'This action adds a new ticket';
+  constructor(
+    @InjectModel(Ticket.name) private ticketModel: Model<TicketDocument>,
+  ) {}
+
+  async createTicket(createTicketDto: CreateTicketDto): Promise<Ticket> {
+    const newTicket = await this.ticketModel.create(createTicketDto);
+    const queryResult = this.ticketModel.findById(newTicket._id);
+    return this.processQuery(queryResult);
   }
 
-  findAll() {
-    return `This action returns all tickets`;
+  async getAllTickets(): Promise<Ticket[]> {
+    const queryResult = this.ticketModel.find();
+    return this.processQuery(queryResult);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} ticket`;
+  async getTicketById(ticketId: string): Promise<Ticket> {
+    const queryResult = this.ticketModel.findById(ticketId);
+    return this.processQuery(queryResult);
   }
 
-  update(id: number, updateTicketDto: UpdateTicketDto) {
-    return `This action updates a #${id} ticket`;
+  async updateTicket(
+    ticketId: string,
+    updateTicketDto: UpdateTicketDto,
+  ): Promise<Ticket> {
+    const queryResult = this.ticketModel.findByIdAndUpdate(
+      ticketId,
+      updateTicketDto,
+      {
+        new: true,
+      },
+    );
+    return this.processQuery(queryResult);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} ticket`;
+  async deleteTicket(ticketId: string) {
+    return this.ticketModel.findByIdAndDelete(ticketId);
+  }
+
+  processQuery(queryResult) {
+    return queryResult.select('-__v');
   }
 }
