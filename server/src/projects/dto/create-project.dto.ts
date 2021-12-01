@@ -13,11 +13,7 @@ export class CreateProjectDto {
 
   @IsNotEmpty()
   @IsString()
-  status: string;
-
-  @IsNotEmpty()
-  @IsString()
-  dateStarted: string;
+  dateCreated: string;
 
   @Type(() => Members)
   @IsOptional()

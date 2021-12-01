@@ -28,7 +28,7 @@ export class UpdateProjectDto extends PartialType(CreateProjectDto) {
   @IsOptional()
   @IsNotEmpty()
   @IsString()
-  dateStarted: string;
+  dateCreated: string;
 
   @IsOptional()
   @IsNotEmpty()
