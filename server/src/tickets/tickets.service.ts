@@ -46,6 +46,9 @@ export class TicketsService {
   }
 
   processQuery(queryResult) {
-    return queryResult.select('-__v');
+    return queryResult
+      .select('-__v')
+      .populate('project', '-__v -tickets -members._id')
+      .populate('author', '-__v -password -tickets -projects');
   }
 }

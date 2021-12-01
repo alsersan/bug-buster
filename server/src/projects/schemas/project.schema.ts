@@ -23,7 +23,7 @@ export class Project {
   dateClosed: string | null;
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ticket' }] })
-  Tickets: Ticket[];
+  tickets: Ticket[];
 
   @Prop({ type: MembersSchema })
   members: Members;
