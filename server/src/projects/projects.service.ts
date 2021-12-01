@@ -11,29 +11,32 @@ export class ProjectsService {
     @InjectModel(Project.name) private projectModel: Model<ProjectDocument>,
   ) {}
 
-  async create(createProjectDto: CreateProjectDto) {
-    const newProject = await new this.projectModel(createProjectDto).save();
-    const query = this.projectModel.findById(newProject._id.toString());
+  async createProject(createProjectDto: CreateProjectDto): Promise<Project> {
+    const newProject = await this.projectModel.create(createProjectDto);
+    const query = this.projectModel.findById(newProject._id);
     return this.processQuery(query);
   }
 
-  findAll() {
+  async getAllProjects(): Promise<Project[]> {
     const query = this.projectModel.find();
     return this.processQuery(query);
   }
 
-  findOne(id: string) {
+  async getProjectById(id: string): Promise<Project> {
     const query = this.projectModel.findById(id);
     return this.processQuery(query);
   }
 
-  update(id: string, updateProjectDto: UpdateProjectDto) {
+  async updateProject(
+    id: string,
+    updateProjectDto: UpdateProjectDto,
+  ): Promise<Project> {
     return this.projectModel.findByIdAndUpdate(id, updateProjectDto, {
       new: true,
     });
   }
 
-  remove(id: string) {
+  async deleteProject(id: string) {
     return this.projectModel.findByIdAndDelete(id);
   }
 
