@@ -3,7 +3,6 @@ import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
 import { Ticket } from 'src/tickets/ticket.schema';
 import { Members, MembersSchema } from './members.schema';
-import { User } from 'src/users/schemas/user.schema';
 
 export type ProjectDocument = Project & Document;
 @Schema()
