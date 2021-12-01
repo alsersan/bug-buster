@@ -28,12 +28,6 @@ export class Project {
 
   @Prop({ type: MembersSchema })
   members: Members;
-
-  /* members: {
-
-  }
-  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }] })
-  members: User; */
 }
 
 export const ProjectSchema = SchemaFactory.createForClass(Project);

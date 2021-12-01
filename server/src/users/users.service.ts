@@ -10,15 +10,19 @@ export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
   async createUser(createUserDto: CreateUserDto) {
-    return this.userModel.create(createUserDto);
+    const newUser = await this.userModel.create(createUserDto);
+    const queryResult = this.userModel.findById(newUser._id);
+    return this.processQuery(queryResult);
   }
 
   async getAllUsers() {
-    return this.userModel.find();
+    const queryResult = this.userModel.find();
+    return this.processQuery(queryResult);
   }
 
   async getUserById(userId: string) {
-    return this.userModel.findById(userId);
+    const queryResult = this.userModel.findById(userId);
+    return this.processQuery(queryResult);
   }
 
   async updateUser(userId: string, updateUserDto: UpdateUserDto) {
@@ -27,5 +31,11 @@ export class UsersService {
 
   async deleteUser(userId: string) {
     return this.userModel.findByIdAndDelete(userId);
+  }
+
+  processQuery(queryResult) {
+    return queryResult
+      .select('-__v -password')
+      .populate('projects', '-__v -members._id');
   }
 }

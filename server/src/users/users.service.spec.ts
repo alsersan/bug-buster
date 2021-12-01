@@ -85,6 +85,7 @@ describe('Given the UsersService', () => {
   /* describe('When createUser is called', () => {
     it('should create one user', async () => {
       jest.spyOn(model, 'create').mockResolvedValueOnce(usersArray[0] as any);
+      
       const user = await service.getUserById('1');
       expect(user).toEqual(usersArray[0]);
     });
