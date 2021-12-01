@@ -42,12 +42,25 @@ export class ProjectsService {
       const previousState = await this.projectModel.findById(projectId);
       const previousMembers = previousState.members;
       const newMembers = updateProjectDto.members;
-      if (previousMembers.projectManager !== newMembers.projectManager) {
-        await this.removeProjectFromUser(
-          previousMembers.projectManager,
-          projectId,
-        );
-        await this.addProjectToUser(newMembers.projectManager, projectId);
+
+      const previousArray = [
+        previousMembers.projectManager,
+        ...previousMembers.developers,
+        ...previousMembers.qualityAssurance,
+      ];
+      const newArray = [
+        newMembers.projectManager,
+        ...newMembers.developers,
+        ...newMembers.qualityAssurance,
+      ];
+      const { removed, added } = this.changedItems(previousArray, newArray);
+
+      for (let i = 0; i < removed.length; i++) {
+        await this.removeProjectFromUser(removed[i], projectId);
+      }
+
+      for (let i = 0; i < added.length; i++) {
+        await this.addProjectToUser(added[i], projectId);
       }
     }
     const queryResult = this.projectModel.findByIdAndUpdate(
@@ -83,9 +96,22 @@ export class ProjectsService {
   async removeProjectFromUser(userId, removedProjectId) {
     const user = await this.userModel.findById(userId);
     user.projects = user.projects.filter((el) => {
-      console.log('removedProjectId', removedProjectId);
       return el.toString() !== removedProjectId;
     });
     user.save();
+  }
+
+  changedItems(previousArr, newArr) {
+    // Transforming to string is necessary, as one of the parameter is an ObjectId and the other a string
+    const isSameValue = (a, b) => a.toString() === b.toString();
+    const compareArrays = (arr1, arr2, compareFunction) =>
+      arr1.filter(
+        (arr1Value) =>
+          !arr2.some((arr2Value) => compareFunction(arr1Value, arr2Value)),
+      );
+
+    const removed = compareArrays(previousArr, newArr, isSameValue);
+    const added = compareArrays(newArr, previousArr, isSameValue);
+    return { removed, added };
   }
 }
