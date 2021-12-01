@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { ProjectsModule } from './projects/projects.module';
 import { LogsMiddleware } from './utils/logs.middleware';
+import { TicketsModule } from './tickets/tickets.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { LogsMiddleware } from './utils/logs.middleware';
     }),
     UsersModule,
     ProjectsModule,
+    TicketsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
