@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
 import { Project } from 'src/projects/schemas/project.schema';
 import { User } from 'src/users/schemas/user.schema';
-import { Modification } from 'src/modifications/modification.schema';
+import { Modification } from 'src/modifications/schemas/modification.schema';
 
 export type TicketDocument = Ticket & Document;
 
@@ -25,7 +25,10 @@ export class Ticket {
   type: string;
 
   @Prop({ required: true })
-  dateCreated: Date;
+  dateCreated: string;
+
+  @Prop({ default: null })
+  dateClosed: string | null;
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Project' }] })
   project: Project;

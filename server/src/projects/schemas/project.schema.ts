@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
-import { Ticket } from 'src/tickets/ticket.schema';
+import { Ticket } from 'src/tickets/schemas/ticket.schema';
 import { Members, MembersSchema } from './members.schema';
 
 export type ProjectDocument = Project & Document;
@@ -20,7 +20,7 @@ export class Project {
   dateCreated: string;
 
   @Prop({ default: null })
-  dateEnded: string | null;
+  dateClosed: string | null;
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ticket' }] })
   Tickets: Ticket[];
