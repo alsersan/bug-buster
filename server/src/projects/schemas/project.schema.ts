@@ -17,7 +17,7 @@ export class Project {
   status: string;
 
   @Prop()
-  dateStarted: string;
+  dateCreated: string;
 
   @Prop({ default: null })
   dateEnded: string | null;
