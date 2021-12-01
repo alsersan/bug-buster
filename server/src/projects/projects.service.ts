@@ -11,16 +11,20 @@ export class ProjectsService {
     @InjectModel(Project.name) private projectModel: Model<ProjectDocument>,
   ) {}
 
-  create(createProjectDto: CreateProjectDto) {
-    return new this.projectModel(createProjectDto).save();
+  async create(createProjectDto: CreateProjectDto) {
+    const newProject = await new this.projectModel(createProjectDto).save();
+    const query = this.projectModel.findById(newProject._id.toString());
+    return this.processQuery(query);
   }
 
   findAll() {
-    return this.projectModel.find();
+    const query = this.projectModel.find();
+    return this.processQuery(query);
   }
 
   findOne(id: string) {
-    return this.projectModel.findById(id);
+    const query = this.projectModel.findById(id);
+    return this.processQuery(query);
   }
 
   update(id: string, updateProjectDto: UpdateProjectDto) {
@@ -31,5 +35,15 @@ export class ProjectsService {
 
   remove(id: string) {
     return this.projectModel.findByIdAndDelete(id);
+  }
+
+  processQuery(queryResult) {
+    return queryResult.select('-__v -members._id').populate({
+      path: 'members',
+      populate: {
+        path: 'projectManager developers qualityAssurance',
+        select: '-__v -password -tickets -projects',
+      },
+    });
   }
 }

@@ -3,6 +3,7 @@ import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
 import { Ticket } from 'src/tickets/ticket.schema';
 import { Members, MembersSchema } from './members.schema';
+import { User } from 'src/users/schemas/user.schema';
 
 export type ProjectDocument = Project & Document;
 @Schema()
@@ -16,7 +17,7 @@ export class Project {
   @Prop({ default: 'active' })
   status: string;
 
-  @Prop({ required: true })
+  @Prop()
   dateStarted: Date;
 
   @Prop({ default: null })
@@ -27,6 +28,12 @@ export class Project {
 
   @Prop({ type: MembersSchema })
   members: Members;
+
+  /* members: {
+
+  }
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }] })
+  members: User; */
 }
 
 export const ProjectSchema = SchemaFactory.createForClass(Project);
