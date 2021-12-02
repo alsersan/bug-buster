@@ -14,7 +14,7 @@ export class ProjectsService {
 
   async createProject(createProjectDto: CreateProjectDto): Promise<Project> {
     const newProject = await this.projectModel.create(createProjectDto);
-    if (newProject.members.projectManager) {
+    if (newProject.members?.projectManager) {
       await this.addProjectToUser(
         newProject.members.projectManager,
         newProject._id,
@@ -78,13 +78,16 @@ export class ProjectsService {
   }
 
   processQuery(queryResult) {
-    return queryResult.select('-__v -members._id').populate({
-      path: 'members',
-      populate: {
-        path: 'projectManager developers qualityAssurance',
-        select: '-__v -password -tickets -projects -role',
-      },
-    });
+    return queryResult
+      .select('-__v -members._id')
+      .populate('tickets', '-__v -modifications -assignedTo -author')
+      .populate({
+        path: 'members',
+        populate: {
+          path: 'projectManager developers qualityAssurance',
+          select: '-__v -password -tickets -projects -role',
+        },
+      });
   }
 
   async addProjectToUser(userId, newProjectId) {

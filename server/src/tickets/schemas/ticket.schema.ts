@@ -30,10 +30,10 @@ export class Ticket {
   @Prop({ default: null })
   dateClosed: string | null;
 
-  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Project' }] })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Project' })
   project: Project;
 
-  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }] })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   author: User;
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }] })

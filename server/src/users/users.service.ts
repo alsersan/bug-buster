@@ -30,12 +30,15 @@ export class UsersService {
   }
 
   async deleteUser(userId: string) {
-    return this.userModel.findByIdAndDelete(userId);
+    const deletion = await this.userModel.findByIdAndDelete(userId);
+    console.log(deletion);
+    return deletion;
   }
 
   processQuery(queryResult) {
     return queryResult
       .select('-__v -password')
-      .populate('projects', '-__v -members._id');
+      .populate('projects', '-__v -members._id')
+      .populate('tickets', '-__v -modifications -assignedTo -author');
   }
 }
