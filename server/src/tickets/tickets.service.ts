@@ -7,6 +7,7 @@ import { Ticket, TicketDocument } from './schemas/ticket.schema';
 import { Project, ProjectDocument } from 'src/projects/schemas/project.schema';
 import { User, UserDocument } from 'src/users/schemas/user.schema';
 import { addItemToList, deleteItemFromList } from 'src/utils/add-delete-items';
+import { getChangedItems } from 'src/utils/compareArrays';
 
 @Injectable()
 export class TicketsService {
@@ -48,6 +49,28 @@ export class TicketsService {
     ticketId: string,
     updateTicketDto: UpdateTicketDto,
   ): Promise<Ticket> {
+    if (updateTicketDto.hasOwnProperty('assignedTo')) {
+      console.log('holi');
+      const previousState = await this.ticketModel.findById(ticketId);
+      const newState = updateTicketDto.assignedTo;
+      const { removed, added } = getChangedItems(
+        previousState.assignedTo,
+        newState,
+      );
+      console.log('added', added);
+      console.log('removed', removed);
+      for (let i = 0; i < removed.length; i++) {
+        await deleteItemFromList(
+          removed[i],
+          'tickets',
+          ticketId,
+          this.userModel,
+        );
+      }
+      for (let i = 0; i < added.length; i++) {
+        await addItemToList(added[i], 'tickets', ticketId, this.userModel);
+      }
+    }
     const queryResult = this.ticketModel.findByIdAndUpdate(
       ticketId,
       updateTicketDto,
