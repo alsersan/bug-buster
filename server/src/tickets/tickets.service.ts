@@ -20,12 +20,6 @@ export class TicketsService {
   async createTicket(createTicketDto: CreateTicketDto): Promise<Ticket> {
     const newTicket = await this.ticketModel.create(createTicketDto);
     await addItemToList(
-      newTicket.author,
-      'tickets',
-      newTicket._id,
-      this.userModel,
-    );
-    await addItemToList(
       newTicket.project,
       'tickets',
       newTicket._id,
