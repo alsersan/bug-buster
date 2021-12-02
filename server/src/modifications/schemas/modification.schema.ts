@@ -17,6 +17,9 @@ export class Modification {
   @Prop({ required: true })
   newValue: string;
 
+  @Prop({ required: true })
+  dateCreated: string;
+
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   author: User;
 

@@ -16,6 +16,10 @@ export class CreateModificationDto {
   @IsString()
   newValue: string;
 
+  @IsNotEmpty()
+  @IsString()
+  dateCreated: string;
+
   @Type(() => User)
   @IsNotEmpty()
   author: User;
