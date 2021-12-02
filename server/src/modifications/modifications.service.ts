@@ -7,6 +7,7 @@ import {
   Modification,
   ModificationDocument,
 } from './schemas/modification.schema';
+import { addItemToList } from 'src/utils/add-delete-items';
 
 @Injectable()
 export class ModificationsService {
@@ -19,6 +20,12 @@ export class ModificationsService {
   async createModification(createModificationDto: CreateModificationDto) {
     const newModification = await this.modificationModel.create(
       createModificationDto,
+    );
+    await addItemToList(
+      newModification.ticket,
+      'modifications',
+      newModification._id,
+      this.ticketModel,
     );
     const queryResult = this.modificationModel.findById(newModification._id);
     return this.processQuery(queryResult);

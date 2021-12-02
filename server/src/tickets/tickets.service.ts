@@ -104,6 +104,7 @@ export class TicketsService {
     return queryResult
       .select('-__v')
       .populate('project', 'name description')
-      .populate('author', '-__v -password -tickets -projects -role');
+      .populate('author assignedTo', '-__v -password -tickets -projects -role')
+      .populate('modifications', '-__v -ticket');
   }
 }
