@@ -1,5 +1,5 @@
 // Compares two arrays of ids and returns the ids that have been added and deleted in the new array
-export function changedItems(previousArr, newArr) {
+export function compareArrays(previousArr, newArr) {
   // Both ids are transformed to strings to assure that none of them is an ObjectId
   const isSameValue = (a, b) => a.toString() === b.toString();
   const compareArrays = (arr1, arr2, compareFunction) =>
