@@ -1,26 +1,30 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { CreateModificationDto } from './dto/create-modification.dto';
-import { UpdateModificationDto } from './dto/update-modification.dto';
+import { Ticket, TicketDocument } from 'src/tickets/schemas/ticket.schema';
+import {
+  Modification,
+  ModificationDocument,
+} from './schemas/modification.schema';
 
 @Injectable()
 export class ModificationsService {
-  create(createModificationDto: CreateModificationDto) {
-    return 'This action adds a new modification';
+  constructor(
+    @InjectModel(Modification.name)
+    private modificationModel: Model<ModificationDocument>,
+    @InjectModel(Ticket.name) private ticketModel: Model<TicketDocument>,
+  ) {}
+
+  async createModification(createModificationDto: CreateModificationDto) {
+    const newModification = await this.modificationModel.create(
+      createModificationDto,
+    );
+    const queryResult = this.modificationModel.findById(newModification._id);
+    return this.processQuery(queryResult);
   }
 
-  findAll() {
-    return `This action returns all modifications`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} modification`;
-  }
-
-  update(id: number, updateModificationDto: UpdateModificationDto) {
-    return `This action updates a #${id} modification`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} modification`;
+  processQuery(queryResult) {
+    return queryResult.select('-__v');
   }
 }

@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
 import { User } from 'src/users/schemas/user.schema';
+import { Ticket } from 'src/tickets/schemas/ticket.schema';
 
 export type ModificationDocument = Modification & Document;
 
@@ -16,8 +17,11 @@ export class Modification {
   @Prop({ required: true })
   newValue: string;
 
-  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }] })
-  author: User[];
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
+  author: User;
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Ticket' })
+  ticket: Ticket;
 }
 
 export const ModificationSchema = SchemaFactory.createForClass(Modification);
