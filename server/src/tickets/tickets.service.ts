@@ -49,6 +49,6 @@ export class TicketsService {
     return queryResult
       .select('-__v')
       .populate('project', '-__v -tickets -members._id')
-      .populate('author', '-__v -password -tickets -projects');
+      .populate('author', '-__v -password -tickets -projects -role');
   }
 }

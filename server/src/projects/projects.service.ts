@@ -82,7 +82,7 @@ export class ProjectsService {
       path: 'members',
       populate: {
         path: 'projectManager developers qualityAssurance',
-        select: '-__v -password -tickets -projects',
+        select: '-__v -password -tickets -projects -role',
       },
     });
   }
