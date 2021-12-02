@@ -5,6 +5,7 @@ import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { Project, ProjectDocument } from './schemas/project.schema';
 import { User, UserDocument } from 'src/users/schemas/user.schema';
+import { addItemToList, deleteItemFromList } from 'src/utils/add-delete-items';
 @Injectable()
 export class ProjectsService {
   constructor(
@@ -15,9 +16,11 @@ export class ProjectsService {
   async createProject(createProjectDto: CreateProjectDto): Promise<Project> {
     const newProject = await this.projectModel.create(createProjectDto);
     if (newProject.members?.projectManager) {
-      await this.addProjectToUser(
+      await addItemToList(
         newProject.members.projectManager,
+        'projects',
         newProject._id,
+        this.userModel,
       );
     }
     const queryResult = this.projectModel.findById(newProject._id);
@@ -56,11 +59,16 @@ export class ProjectsService {
       const { removed, added } = this.changedItems(previousArray, newArray);
 
       for (let i = 0; i < removed.length; i++) {
-        await this.removeProjectFromUser(removed[i], projectId);
+        await deleteItemFromList(
+          removed[i],
+          'projects',
+          projectId,
+          this.userModel,
+        );
       }
 
       for (let i = 0; i < added.length; i++) {
-        await this.addProjectToUser(added[i], projectId);
+        await addItemToList(added[i], 'projects', projectId, this.userModel);
       }
     }
     const queryResult = this.projectModel.findByIdAndUpdate(
@@ -88,20 +96,6 @@ export class ProjectsService {
           select: '-__v -password -tickets -projects -role',
         },
       });
-  }
-
-  async addProjectToUser(userId, newProjectId) {
-    const user = await this.userModel.findById(userId);
-    user.projects = [...user.projects, newProjectId];
-    user.save();
-  }
-
-  async removeProjectFromUser(userId, removedProjectId) {
-    const user = await this.userModel.findById(userId);
-    user.projects = user.projects.filter((el) => {
-      return el.toString() !== removedProjectId;
-    });
-    user.save();
   }
 
   changedItems(previousArr, newArr) {
