@@ -7,6 +7,7 @@ import { UsersModule } from './users/users.module';
 import { ProjectsModule } from './projects/projects.module';
 import { LogsMiddleware } from './utils/logs.middleware';
 import { TicketsModule } from './tickets/tickets.module';
+import { ModificationsModule } from './modifications/modifications.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { TicketsModule } from './tickets/tickets.module';
     UsersModule,
     ProjectsModule,
     TicketsModule,
+    ModificationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
