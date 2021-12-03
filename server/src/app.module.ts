@@ -8,6 +8,7 @@ import { ProjectsModule } from './projects/projects.module';
 import { LogsMiddleware } from './utils/logs.middleware';
 import { TicketsModule } from './tickets/tickets.module';
 import { ModificationsModule } from './modifications/modifications.module';
+import { LoginModule } from './login/login.module';
 
 const ENV = process.env.NODE_ENV;
 @Module({
@@ -20,6 +21,7 @@ const ENV = process.env.NODE_ENV;
     ProjectsModule,
     TicketsModule,
     ModificationsModule,
+    LoginModule,
   ],
   controllers: [AppController],
   providers: [AppService],
