@@ -7,13 +7,15 @@ import {
 import { JwtTokenPayload } from 'src/interfaces/jwt-payload.interface';
 
 @Injectable()
-export class AdminAuthorizationGuard implements CanActivate {
+export class AuthorizationGuard implements CanActivate {
+  constructor(private allowedRole: string) {}
   canActivate(context: ExecutionContext): boolean {
     const host = context.switchToHttp();
     const request = host.getRequest();
 
+    request.params.id;
     const user: JwtTokenPayload = request['user'];
-    const isAllowed = user.role === 'admin';
+    const isAllowed = this.allowedRole === user.role;
 
     if (!isAllowed) {
       throw new ForbiddenException(
