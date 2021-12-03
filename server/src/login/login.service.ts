@@ -22,7 +22,7 @@ export class LoginService {
     }
     const jwtToken = jwt.sign(
       {
-        user: user._id,
+        userId: user._id,
         role: user.role,
       },
       process.env.JWT_SECRET,
