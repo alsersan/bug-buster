@@ -27,7 +27,7 @@ export class LoginService {
       },
       process.env.JWT_SECRET,
       {
-        expiresIn: '12h',
+        expiresIn: '1s',
       },
     );
     return { jwtToken };
