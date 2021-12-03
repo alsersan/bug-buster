@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { NextFunction, Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
+import { JwtTokenPayload } from 'src/interfaces/jwt-payload.interface';
 
 @Injectable()
 export class verifyJwtToken implements NestMiddleware {
@@ -14,29 +15,24 @@ export class verifyJwtToken implements NestMiddleware {
       throw new UnauthorizedException('Please log in to view this content');
     }
 
-    interface jwtTokenPayload {
-      userId: string;
-      role: string;
-      iat: number;
-      exp: number;
-    }
-
     try {
       const user = jwt.verify(
         jwtToken,
         process.env.JWT_SECRET,
-      ) as jwtTokenPayload;
-      console.log(user);
-      if (user.userId) {
+      ) as JwtTokenPayload;
+      if (user.userId && user.role) {
         req['user'] = user;
-        console.log('Found jwt', req['user']);
+      } else {
+        throw new UnauthorizedException(
+          'This content is only available to authenticated users',
+        );
       }
     } catch (e) {
       if (e.name === 'TokenExpiredError') {
         throw new UnauthorizedException('Please log in to view this content');
       }
       throw new UnauthorizedException(
-        'You are not authorized to view this content',
+        'This content is only available to authenticated users',
       );
     }
     next();
