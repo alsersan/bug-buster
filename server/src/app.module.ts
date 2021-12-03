@@ -14,6 +14,8 @@ import { ProjectsController } from './projects/projects.controller';
 import { UsersController } from './users/users.controller';
 import { TicketsController } from './tickets/tickets.controller';
 import { ModificationsController } from './modifications/modifications.controller';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthorizationGuard } from './guards/authorization.guard';
 
 const ENV = process.env.NODE_ENV;
 @Module({
@@ -29,7 +31,13 @@ const ENV = process.env.NODE_ENV;
     LoginModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: AuthorizationGuard,
+    },
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

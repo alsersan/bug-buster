@@ -4,18 +4,25 @@ import {
   ForbiddenException,
   Injectable,
 } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
 import { JwtTokenPayload } from 'src/interfaces/jwt-payload.interface';
 
 @Injectable()
 export class AuthorizationGuard implements CanActivate {
-  constructor(private allowedRole: string) {}
+  constructor(private reflector: Reflector) {}
   canActivate(context: ExecutionContext): boolean {
-    const host = context.switchToHttp();
-    const request = host.getRequest();
+    const allowedRoles = this.reflector.get<string[]>(
+      'roles',
+      context.getHandler(),
+    );
+    if (!allowedRoles || allowedRoles.length === 0) {
+      return true;
+    }
 
-    request.params.id;
+    const request = context.switchToHttp().getRequest();
+
     const user: JwtTokenPayload = request['user'];
-    const isAllowed = this.allowedRole === user.role;
+    const isAllowed = allowedRoles.includes(user.role);
 
     if (!isAllowed) {
       throw new ForbiddenException(

@@ -12,7 +12,7 @@ export class verifyJwtToken implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     const jwtToken = req.headers.authorization;
     if (!jwtToken) {
-      throw new UnauthorizedException('Please log in to view this content');
+      throw new UnauthorizedException('Please log in');
     }
 
     try {
@@ -29,7 +29,7 @@ export class verifyJwtToken implements NestMiddleware {
       }
     } catch (e) {
       if (e.name === 'TokenExpiredError') {
-        throw new UnauthorizedException('Please log in to view this content');
+        throw new UnauthorizedException('Please log in');
       }
       throw new UnauthorizedException(
         'This content is only available to authenticated users',

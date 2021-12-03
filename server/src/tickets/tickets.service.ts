@@ -44,15 +44,12 @@ export class TicketsService {
     updateTicketDto: UpdateTicketDto,
   ): Promise<Ticket> {
     if (updateTicketDto.hasOwnProperty('assignedTo')) {
-      console.log('holi');
       const previousState = await this.ticketModel.findById(ticketId);
       const newState = updateTicketDto.assignedTo;
       const { removed, added } = getChangedItems(
         previousState.assignedTo,
         newState,
       );
-      console.log('added', added);
-      console.log('removed', removed);
       for (let i = 0; i < removed.length; i++) {
         await deleteItemFromList(
           removed[i],
