@@ -80,7 +80,7 @@ describe('Given the TicketsController', () => {
       await controller.findOne(mockTicket._id);
       expect(service.getTicketById).toHaveBeenCalledWith(mockTicket._id);
     });
-    test('then it should return one tickets', async () => {
+    test('then it should return one ticket', async () => {
       const ticket = await controller.findOne(mockTicket._id);
       expect(ticket).toEqual(mockTicket);
     });
