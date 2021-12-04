@@ -7,7 +7,7 @@ import { Ticket, TicketDocument } from './schemas/ticket.schema';
 import { Project, ProjectDocument } from 'src/projects/schemas/project.schema';
 import { User, UserDocument } from 'src/users/schemas/user.schema';
 import { addItemToList, deleteItemFromList } from 'src/utils/add-delete-items';
-import { getChangedItems } from 'src/utils/compareArrays';
+import { getChangedItems } from 'src/utils/get-changed-items';
 
 @Injectable()
 export class TicketsService {
