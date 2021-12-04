@@ -3,7 +3,7 @@ import { CreateModificationDto } from './dto/create-modification.dto';
 import { ModificationsController } from './modifications.controller';
 import { ModificationsService } from './modifications.service';
 
-describe('ModificationsController', () => {
+describe('Given the ModificationsController', () => {
   let controller: ModificationsController;
   let service: ModificationsService;
 

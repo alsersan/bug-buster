@@ -4,7 +4,7 @@ import { UpdateProjectDto } from './dto/update-project.dto';
 import { ProjectsController } from './projects.controller';
 import { ProjectsService } from './projects.service';
 
-describe('ProjectsController', () => {
+describe('Given the ProjectsController', () => {
   let controller: ProjectsController;
   let service: ProjectsService;
 
