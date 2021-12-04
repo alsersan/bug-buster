@@ -8,7 +8,7 @@ import * as jwt from 'jsonwebtoken';
 import { JwtTokenPayload } from 'src/interfaces/jwt-payload.interface';
 
 @Injectable()
-export class verifyJwtToken implements NestMiddleware {
+export class VerifyJwtToken implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     const jwtToken = req.headers.authorization;
     if (!jwtToken) {

@@ -9,7 +9,7 @@ import { LogsMiddleware } from './middlewares/logs.middleware';
 import { TicketsModule } from './tickets/tickets.module';
 import { ModificationsModule } from './modifications/modifications.module';
 import { LoginModule } from './login/login.module';
-import { verifyJwtToken } from './middlewares/verify-token.middleware';
+import { VerifyJwtToken } from './middlewares/verify-token.middleware';
 import { ProjectsController } from './projects/projects.controller';
 import { UsersController } from './users/users.controller';
 import { TicketsController } from './tickets/tickets.controller';
@@ -43,7 +43,7 @@ export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(LogsMiddleware).forRoutes('*');
     consumer
-      .apply(verifyJwtToken)
+      .apply(VerifyJwtToken)
       .forRoutes(
         UsersController,
         ProjectsController,
