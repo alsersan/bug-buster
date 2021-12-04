@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { LoginController } from './login.controller';
-import { LoginService } from './login.service';
+import { LoginController } from '../login.controller';
+import { LoginService } from '../login.service';
 
 describe('Given the LoginController', () => {
   let controller: LoginController;

@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CreateModificationDto } from './dto/create-modification.dto';
-import { ModificationsController } from './modifications.controller';
-import { ModificationsService } from './modifications.service';
+import { CreateModificationDto } from '../dto/create-modification.dto';
+import { ModificationsController } from '../modifications.controller';
+import { ModificationsService } from '../modifications.service';
 
 describe('Given the ModificationsController', () => {
   let controller: ModificationsController;
