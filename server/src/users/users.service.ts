@@ -29,12 +29,13 @@ export class UsersService {
   }
 
   async updateUser(userId: string, updateUserDto: UpdateUserDto) {
-    return this.userModel.findByIdAndUpdate(userId, updateUserDto);
+    const queryResult = this.userModel.findByIdAndUpdate(userId, updateUserDto);
+    return this.processQuery(queryResult);
   }
 
   async deleteUser(userId: string) {
-    const deletion = await this.userModel.findByIdAndDelete(userId);
-    return deletion;
+    const deletedUser = await this.userModel.findByIdAndDelete(userId);
+    return { deletedUserId: deletedUser._id };
   }
 
   processQuery(queryResult) {
