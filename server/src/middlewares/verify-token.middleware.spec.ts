@@ -8,7 +8,7 @@ describe('Given the VerifyToken middleware', () => {
     headers: {},
   };
   const res = {};
-  const next = jest.fn() as NextFunction;
+  const next = jest.fn();
 
   const ENV = process.env.NODE_ENV;
 
@@ -56,7 +56,6 @@ describe('Given the VerifyToken middleware', () => {
   describe('When the user provides an expired token', () => {
     test('then it should throw an error', () => {
       req.headers = { authorization: process.env.EXPIRED_TOKEN };
-
       expect(() =>
         verify.use(
           req as unknown as Request,
@@ -70,7 +69,6 @@ describe('Given the VerifyToken middleware', () => {
   describe('When the user provides a valid token with the wrong payload', () => {
     test('then it should throw an error', () => {
       req.headers = { authorization: process.env.NOUSER_TOKEN };
-
       expect(() =>
         verify.use(
           req as unknown as Request,
@@ -82,7 +80,7 @@ describe('Given the VerifyToken middleware', () => {
   });
 
   describe('When the user provides a valid token with the right payload', () => {
-    test('then it should throw an error', () => {
+    test('then next function should be called', () => {
       req.headers = { authorization: process.env.VALID_TOKEN };
       verify.use(
         req as unknown as Request,
