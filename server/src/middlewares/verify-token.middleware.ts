@@ -23,9 +23,7 @@ export class VerifyJwtToken implements NestMiddleware {
       if (user.userId && user.role) {
         req['user'] = user;
       } else {
-        throw new UnauthorizedException(
-          'This content is only available to authenticated users',
-        );
+        throw new UnauthorizedException();
       }
     } catch (e) {
       if (e.name === 'TokenExpiredError') {
