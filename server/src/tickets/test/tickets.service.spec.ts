@@ -35,7 +35,6 @@ describe('Given the TicketsService', () => {
           provide: getModelToken('Ticket'),
           useValue: {
             create: jest.fn().mockResolvedValue(mockTicket),
-            find: jest.fn().mockResolvedValue([mockTicket]),
             findById: jest.fn().mockResolvedValue(mockTicket),
             findByIdAndUpdate: jest.fn().mockResolvedValue(mockTicket),
             findByIdAndDelete: jest.fn().mockResolvedValue(mockTicket),
