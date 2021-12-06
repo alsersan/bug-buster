@@ -5,7 +5,7 @@ import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { Project, ProjectDocument } from './schemas/project.schema';
 import { User, UserDocument } from 'src/users/schemas/user.schema';
-import { addItemToList, deleteItemFromList } from 'src/utils/add-delete-items';
+import { addItemToList, removeItemFromList } from 'src/utils/add-remove-items';
 @Injectable()
 export class ProjectsService {
   constructor(
@@ -59,7 +59,7 @@ export class ProjectsService {
       const { removed, added } = this.changedItems(previousArray, newArray);
 
       for (let i = 0; i < removed.length; i++) {
-        await deleteItemFromList(
+        await removeItemFromList(
           removed[i],
           'projects',
           projectId,

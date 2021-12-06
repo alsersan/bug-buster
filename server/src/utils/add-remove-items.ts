@@ -11,7 +11,7 @@ export async function addItemToList(
   container.save();
 }
 
-export async function deleteItemFromList(
+export async function removeItemFromList(
   containerId: any,
   listName: string,
   deletedItemId: any,
