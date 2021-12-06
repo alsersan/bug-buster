@@ -29,7 +29,11 @@ export class UsersService {
   }
 
   async updateUser(userId: string, updateUserDto: UpdateUserDto) {
-    const queryResult = this.userModel.findByIdAndUpdate(userId, updateUserDto);
+    const queryResult = this.userModel.findByIdAndUpdate(
+      userId,
+      updateUserDto,
+      { new: true },
+    );
     return this.processQuery(queryResult);
   }
 

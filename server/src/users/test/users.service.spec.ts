@@ -123,6 +123,7 @@ describe('Given the UsersService', () => {
       expect(model.findByIdAndUpdate).toHaveBeenCalledWith(
         mockUser._id,
         new UpdateUserDto(),
+        { new: true },
       );
     });
     test('then it should return the updated user', () => {
