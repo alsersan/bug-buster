@@ -70,12 +70,6 @@ export class TicketsService {
   async deleteTicket(ticketId: string) {
     const deletedTicket = await this.ticketModel.findByIdAndDelete(ticketId);
     await removeItemFromList(
-      deletedTicket.author,
-      'tickets',
-      deletedTicket._id,
-      this.userModel,
-    );
-    await removeItemFromList(
       deletedTicket.project,
       'tickets',
       deletedTicket._id,
@@ -89,7 +83,7 @@ export class TicketsService {
         this.projectModel,
       );
     }
-    return deletedTicket;
+    return { deletedTicketId: deletedTicket._id };
   }
 
   processQuery(queryResult) {
