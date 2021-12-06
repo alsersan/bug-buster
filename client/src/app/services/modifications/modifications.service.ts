@@ -15,10 +15,10 @@ export class ModificationsService {
 
   constructor(private http: HttpClient) {}
 
-  createModification(hero: Modification): Observable<Modification> {
+  createModification(modification: Modification): Observable<Modification> {
     return this.http.post<Modification>(
       this.modificationsUrl,
-      hero,
+      modification,
       this.httpOptions
     );
   }

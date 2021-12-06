@@ -15,8 +15,8 @@ export class ProjectsService {
 
   constructor(private http: HttpClient) {}
 
-  createProject(hero: Project): Observable<Project> {
-    return this.http.post<Project>(this.projectsUrl, hero, this.httpOptions);
+  createProject(project: Project): Observable<Project> {
+    return this.http.post<Project>(this.projectsUrl, project, this.httpOptions);
   }
 
   getProjects(): Observable<Project[]> {
