@@ -1,9 +1,16 @@
 :host {
   display: block;
   height: 100%;
+  min-height: 100%;
 }
 
 .content-container {
   display: flex;
-  height: 100%;
+  height: calc(100vh - 5rem);
+  width: 100%;
+}
+
+main {
+  flex-grow: 1;
+  overflow-y: auto;
 }

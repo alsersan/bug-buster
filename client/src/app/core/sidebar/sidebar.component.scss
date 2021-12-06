@@ -1,9 +1,13 @@
 :host {
-  height: 100%;
+  min-height: 100%;
+  display: block;
+  position: relative;
+  z-index: 1;
 }
 
 .sidebar {
   width: 20rem;
   height: 100%;
-  background-color: lightsalmon;
+  background-color: transparent;
+  box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1);
 }
