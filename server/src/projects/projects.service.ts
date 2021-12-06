@@ -6,6 +6,7 @@ import { UpdateProjectDto } from './dto/update-project.dto';
 import { Project, ProjectDocument } from './schemas/project.schema';
 import { User, UserDocument } from 'src/users/schemas/user.schema';
 import { addItemToList, removeItemFromList } from 'src/utils/add-remove-items';
+import { getChangedItems } from 'src/utils/get-changed-items';
 @Injectable()
 export class ProjectsService {
   constructor(
@@ -56,7 +57,7 @@ export class ProjectsService {
         ...newMembers.developers,
         ...newMembers.qualityAssurance,
       ];
-      const { removed, added } = this.changedItems(previousArray, newArray);
+      const { removed, added } = getChangedItems(previousArray, newArray);
 
       for (let i = 0; i < removed.length; i++) {
         await removeItemFromList(
@@ -96,19 +97,5 @@ export class ProjectsService {
           select: '-__v -password -tickets -projects -role',
         },
       });
-  }
-
-  changedItems(previousArr, newArr) {
-    // Transforming to string is necessary, as one of the parameter is an ObjectId and the other a string
-    const isSameValue = (a, b) => a.toString() === b.toString();
-    const compareArrays = (arr1, arr2, compareFunction) =>
-      arr1.filter(
-        (arr1Value) =>
-          !arr2.some((arr2Value) => compareFunction(arr1Value, arr2Value)),
-      );
-
-    const removed = compareArrays(previousArr, newArr, isSameValue);
-    const added = compareArrays(newArr, previousArr, isSameValue);
-    return { removed, added };
   }
 }
