@@ -6,7 +6,7 @@ import { UpdateTicketDto } from './dto/update-ticket.dto';
 import { Ticket, TicketDocument } from './schemas/ticket.schema';
 import { Project, ProjectDocument } from 'src/projects/schemas/project.schema';
 import { User, UserDocument } from 'src/users/schemas/user.schema';
-import { addItemToList, deleteItemFromList } from 'src/utils/add-delete-items';
+import { addItemToList, removeItemFromList } from 'src/utils/add-remove-items';
 import { getChangedItems } from 'src/utils/get-changed-items';
 
 @Injectable()
@@ -29,11 +29,6 @@ export class TicketsService {
     return this.processQuery(queryResult);
   }
 
-  async getAllTickets(): Promise<Ticket[]> {
-    const queryResult = this.ticketModel.find();
-    return this.processQuery(queryResult);
-  }
-
   async getTicketById(ticketId: string): Promise<Ticket> {
     const queryResult = this.ticketModel.findById(ticketId);
     return this.processQuery(queryResult);
@@ -51,7 +46,7 @@ export class TicketsService {
         newState,
       );
       for (let i = 0; i < removed.length; i++) {
-        await deleteItemFromList(
+        await removeItemFromList(
           removed[i],
           'tickets',
           ticketId,
@@ -74,20 +69,20 @@ export class TicketsService {
 
   async deleteTicket(ticketId: string) {
     const deletedTicket = await this.ticketModel.findByIdAndDelete(ticketId);
-    await deleteItemFromList(
+    await removeItemFromList(
       deletedTicket.author,
       'tickets',
       deletedTicket._id,
       this.userModel,
     );
-    await deleteItemFromList(
+    await removeItemFromList(
       deletedTicket.project,
       'tickets',
       deletedTicket._id,
       this.projectModel,
     );
     for (let i = 0; i < deletedTicket.assignedTo.length; i++) {
-      await deleteItemFromList(
+      await removeItemFromList(
         deletedTicket.assignedTo[i],
         'tickets',
         deletedTicket._id,

@@ -20,11 +20,6 @@ export class TicketsController {
     return this.ticketsService.createTicket(createTicketDto);
   }
 
-  @Get()
-  findAll() {
-    return this.ticketsService.getAllTickets();
-  }
-
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.ticketsService.getTicketById(id);
