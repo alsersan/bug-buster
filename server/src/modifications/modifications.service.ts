@@ -7,7 +7,7 @@ import {
   Modification,
   ModificationDocument,
 } from './schemas/modification.schema';
-import { addItemToList } from 'src/utils/add-delete-items';
+import { addItemToList } from 'src/utils/add-remove-items';
 
 @Injectable()
 export class ModificationsService {

@@ -64,17 +64,6 @@ describe('Given the TicketsController', () => {
     });
   });
 
-  describe('when findAll is called', () => {
-    test('then TicketsService.getAllTickets should be called', async () => {
-      await controller.findAll();
-      expect(service.getAllTickets).toHaveBeenCalled();
-    });
-    test('then it should return all tickets', async () => {
-      const tickets = await controller.findAll();
-      expect(tickets[0]).toEqual(mockTicket);
-    });
-  });
-
   describe('when findOne is called', () => {
     test('then TicketsService.getTicketById should be called with a ticket id', async () => {
       await controller.findOne(mockTicket._id);
