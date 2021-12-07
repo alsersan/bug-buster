@@ -1,3 +1,5 @@
+@import "src/styles/abstracts/variables";
+
 :host {
   min-height: 100%;
   display: block;
@@ -10,4 +12,25 @@
   height: 100%;
   background-color: transparent;
   box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1);
+  padding: 2rem 0.5rem;
+}
+
+.sections {
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  margin: 1.5rem 0;
+  height: 4rem;
+  border-radius: $border-radius;
+  cursor: pointer;
+  font-weight: bold;
+
+  &:hover {
+    background-color: $primary-color;
+  }
+}
+
+.logo {
+  margin-right: 1rem;
+  width: 2.5rem;
 }
