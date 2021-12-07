@@ -1,8 +1,12 @@
 @import "src/styles/abstracts/variables";
 
-.projects {
+.projects-container {
   background-color: $main-background;
   padding: 1rem;
   width: 100%;
   min-height: 100%;
+}
+
+.project-list {
+  list-style: none;
 }

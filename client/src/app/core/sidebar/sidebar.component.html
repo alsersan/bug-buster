@@ -1,40 +1,13 @@
 <div class="sidebar">
-  <ul>
-    <li class="section">
-      <a class="link" routerLink="dashboard" routerLinkActive="is-active"
+  <ul class="section-list">
+    <li class="section" *ngFor="let section of sections">
+      <a class="link" routerLink="{{ section }}" routerLinkActive="is-active"
         ><img
           class="logo"
-          src="/assets/icons/dashboard.svg"
-          alt="Dashboard icon"
+          src="/assets/icons/{{ section }}.svg"
+          alt="{{ section | titlecase }} icon"
         />
-        Dashboard</a
-      >
-    </li>
-    <li class="section">
-      <a class="link" routerLink="projects" routerLinkActive="is-active">
-        <img
-          class="logo"
-          src="/assets/icons/projects.svg"
-          alt="Projects icon"
-        />Projects
-      </a>
-    </li>
-    <li class="section">
-      <a class="link" routerLink="users" routerLinkActive="is-active">
-        <img
-          class="logo"
-          src="/assets/icons/users.svg"
-          alt="Users icon"
-        />Users</a
-      >
-    </li>
-    <li class="section">
-      <a class="link" routerLink="profile" routerLinkActive="is-active">
-        <img
-          class="logo"
-          src="/assets/icons/profile.svg"
-          alt="Profile icon"
-        />Profile</a
+        {{ section | titlecase }}</a
       >
     </li>
   </ul>
