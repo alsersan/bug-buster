@@ -1,0 +1,48 @@
+@import "src/styles/abstracts/variables";
+
+:host {
+  min-height: 100%;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar {
+  width: 20rem;
+  height: 100%;
+  background-color: transparent;
+  box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1);
+  padding: 2rem 0.5rem;
+}
+
+.section {
+  display: flex;
+  margin: 0.5rem 0;
+  height: 5rem;
+  font-weight: bold;
+}
+
+.link {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  padding: 0 1rem;
+  border-radius: $border-radius;
+
+  &:hover {
+    background-color: #f4f4f4;
+  }
+}
+
+.logo {
+  margin-right: 1rem;
+  width: 2.5rem;
+}
+
+.is-active {
+  background-color: $primary-color;
+  &:hover {
+    background-color: $primary-color;
+  }
+}
