@@ -1,8 +1,8 @@
 <section class="projects-container">
   <p>projects works!</p>
   <ul class="project-list">
-    <li *ngFor="let project of projects">
-      {{ project }}
+    <li *ngFor="let project of projects$ | async">
+      {{ project | json }}
     </li>
   </ul>
 </section>
