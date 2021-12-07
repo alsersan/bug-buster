@@ -1,0 +1,8 @@
+@import "src/styles/abstracts/variables";
+
+.dashboard {
+  background-color: $main-background;
+  padding: 1rem;
+  width: 100%;
+  min-height: 100%;
+}
