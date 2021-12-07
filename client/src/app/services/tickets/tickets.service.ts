@@ -19,21 +19,21 @@ export class TicketsService {
     return this.http.post<Ticket>(this.ticketsUrl, ticket, this.httpOptions);
   }
 
-  getTicketById(id: string): Observable<Ticket> {
-    return this.http.get<Ticket>(`${this.ticketsUrl}/${id}`);
+  getTicketById(ticketId: string): Observable<Ticket> {
+    return this.http.get<Ticket>(`${this.ticketsUrl}/${ticketId}`);
   }
 
-  updateTicket(id: string, update: Partial<Ticket>): Observable<Ticket> {
+  updateTicket(ticketId: string, update: Partial<Ticket>): Observable<Ticket> {
     return this.http.patch<Ticket>(
-      `${this.ticketsUrl}/${id}`,
+      `${this.ticketsUrl}/${ticketId}`,
       update,
       this.httpOptions
     );
   }
 
-  deleteTicket(id: string): Observable<Ticket> {
+  deleteTicket(ticketId: string): Observable<any> {
     return this.http.delete<Ticket>(
-      `${this.ticketsUrl}/${id}`,
+      `${this.ticketsUrl}/${ticketId}`,
       this.httpOptions
     );
   }

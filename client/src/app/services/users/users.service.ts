@@ -19,23 +19,26 @@ export class UsersService {
     return this.http.post<User>(this.usersUrl, user, this.httpOptions);
   }
 
-  getUsers(): Observable<User[]> {
+  getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.usersUrl);
   }
 
-  getUserById(id: string): Observable<User> {
-    return this.http.get<User>(`${this.usersUrl}/${id}`);
+  getUserById(userId: string): Observable<User> {
+    return this.http.get<User>(`${this.usersUrl}/${userId}`);
   }
 
-  updateUser(id: string, update: Partial<User>): Observable<User> {
+  updateUser(userId: string, update: Partial<User>): Observable<User> {
     return this.http.patch<User>(
-      `${this.usersUrl}/${id}`,
+      `${this.usersUrl}/${userId}`,
       update,
       this.httpOptions
     );
   }
 
-  deleteUser(id: string): Observable<User> {
-    return this.http.delete<User>(`${this.usersUrl}/${id}`, this.httpOptions);
+  deleteUser(userId: string): Observable<any> {
+    return this.http.delete<User>(
+      `${this.usersUrl}/${userId}`,
+      this.httpOptions
+    );
   }
 }

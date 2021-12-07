@@ -20,25 +20,28 @@ export class ProjectsService {
     return this.http.post<Project>(this.projectsUrl, project, this.httpOptions);
   }
 
-  getProjects(): Observable<Project[]> {
+  getAllProjects(): Observable<Project[]> {
     return this.http.get<Project[]>(this.projectsUrl);
   }
 
-  getProjectById(id: string): Observable<Project> {
-    return this.http.get<Project>(`${this.projectsUrl}/${id}`);
+  getProjectById(projectId: string): Observable<Project> {
+    return this.http.get<Project>(`${this.projectsUrl}/${projectId}`);
   }
 
-  updateProject(id: string, update: Partial<Project>): Observable<Project> {
+  updateProject(
+    projectId: string,
+    update: Partial<Project>
+  ): Observable<Project> {
     return this.http.patch<Project>(
-      `${this.projectsUrl}/${id}`,
+      `${this.projectsUrl}/${projectId}`,
       update,
       this.httpOptions
     );
   }
 
-  deleteProject(id: string): Observable<Project> {
+  deleteProject(projectId: string): Observable<any> {
     return this.http.delete<Project>(
-      `${this.projectsUrl}/${id}`,
+      `${this.projectsUrl}/${projectId}`,
       this.httpOptions
     );
   }
