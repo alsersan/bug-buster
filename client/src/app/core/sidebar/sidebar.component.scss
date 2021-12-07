@@ -15,19 +15,24 @@
   padding: 2rem 0.5rem;
 }
 
-.sections {
+.section {
   display: flex;
-  align-items: center;
-  padding: 0 1rem;
   margin: 1.5rem 0;
   height: 4rem;
   border-radius: $border-radius;
-  cursor: pointer;
+  //cursor: pointer;
   font-weight: bold;
 
   &:hover {
     background-color: $primary-color;
   }
+}
+
+.link {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  padding: 0 1rem;
 }
 
 .logo {
