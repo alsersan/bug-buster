@@ -14,8 +14,8 @@ export const projectsReducer = createReducer(
   on(actions.getAllprojectsSucess, (state, { projects }) => [...projects]),
 
   // DELETE PROJECT
-  on(actions.deleteProjectSuccess, (state, { project }) => {
-    console.log(project);
-    return state.filter((el) => el._id !== project.deletedProjectId);
-  })
+  on(actions.deleteProject, (state, project) => state.filter((el) => el)),
+  on(actions.deleteProjectSuccess, (state, { project }) =>
+    state.filter((el) => el._id !== project.deletedProjectId)
+  )
 );

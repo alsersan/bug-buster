@@ -46,28 +46,28 @@ export const getProjectByIdFailure = createAction(
 
 // UPDATE PROJECT
 export const updateProject = createAction(
-  '[Projects] Update Project',
+  '[Projects] Update project',
   props<{ projectId: string; update: Partial<Project> }>()
 );
 export const updateProjectSuccess = createAction(
-  '[Projects] Update Project sucess',
+  '[Projects] Update project sucess',
   props<{ project: Project }>()
 );
 export const updateProjectFailure = createAction(
-  '[Projects] Update Project',
+  '[Projects] Update project failure',
   props<{ error: any }>()
 );
 
 // DELETE PROJECT
 export const deleteProject = createAction(
-  '[Projects] Delete Project',
+  '[Projects] Delete project',
   props<{ projectId: string }>()
 );
 export const deleteProjectSuccess = createAction(
-  '[Projects] Delete Project',
+  '[Projects] Delete project success',
   props<{ project: DeletedProject }>()
 );
 export const deleteProjectFailure = createAction(
-  '[Projects] Delete Project',
+  '[Projects] Delete project failure',
   props<{ error: any }>()
 );

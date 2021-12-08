@@ -18,9 +18,7 @@ export class ProjectsEffects {
       ofType(actions.createProject),
       exhaustMap((action) =>
         this.projectsService.createProject(action.project).pipe(
-          map((project) => {
-            return actions.createProjectSuccess({ project });
-          }),
+          map((project) => actions.createProjectSuccess({ project })),
           catchError((error: any) => of(actions.createProjectFailure(error)))
         )
       )
@@ -32,9 +30,7 @@ export class ProjectsEffects {
       ofType(actions.getAllprojects),
       exhaustMap(() =>
         this.projectsService.getAllProjects().pipe(
-          map((projects) => {
-            return actions.getAllprojectsSucess({ projects });
-          }),
+          map((projects) => actions.getAllprojectsSucess({ projects })),
           catchError((error: any) => of(actions.getAllprojectsFailure(error)))
         )
       )
@@ -46,9 +42,7 @@ export class ProjectsEffects {
       ofType(actions.getProjectById),
       exhaustMap((action) =>
         this.projectsService.getProjectById(action.projectId).pipe(
-          map((project) => {
-            return actions.getProjectByIdSuccess({ project });
-          }),
+          map((project) => actions.getProjectByIdSuccess({ project })),
           catchError((error: any) => of(actions.getProjectByIdFailure(error)))
         )
       )
@@ -62,9 +56,7 @@ export class ProjectsEffects {
         this.projectsService
           .updateProject(action.projectId, action.update)
           .pipe(
-            map((project) => {
-              return actions.updateProjectSuccess({ project });
-            }),
+            map((project) => actions.updateProjectSuccess({ project })),
             catchError((error: any) => of(actions.updateProjectFailure(error)))
           )
       )
@@ -74,16 +66,12 @@ export class ProjectsEffects {
   deleteProject$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.deleteProject),
-      exhaustMap((action) => {
-        console.log('ACTION', action);
-        return this.projectsService.deleteProject(action.projectId).pipe(
-          map((project) => {
-            console.log('EFFECT', project);
-            return actions.deleteProjectSuccess({ project });
-          }),
+      exhaustMap((action) =>
+        this.projectsService.deleteProject(action.projectId).pipe(
+          map((project) => actions.deleteProjectSuccess({ project })),
           catchError((error: any) => of(actions.deleteProjectFailure(error)))
-        );
-      })
+        )
+      )
     )
   );
 }
