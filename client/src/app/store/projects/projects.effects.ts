@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
+import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { NEVER, of } from 'rxjs';
 import { map, exhaustMap, catchError } from 'rxjs/operators';
+import { Project } from 'src/app/models/project.model';
 import { ProjectsService } from 'src/app/services/projects/projects.service';
-
 import * as actions from './projects.actions';
 
 @Injectable()
 export class ProjectsEffects {
   constructor(
     private actions$: Actions,
-    private projectsService: ProjectsService
+    private projectsService: ProjectsService,
+    private store: Store<{ projects: Project[] }>
   ) {}
 
   createProject$ = createEffect(() =>
@@ -40,12 +42,24 @@ export class ProjectsEffects {
   getProjectById$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.getProjectById),
-      exhaustMap((action) =>
-        this.projectsService.getProjectById(action.projectId).pipe(
-          map((project) => actions.getProjectByIdSuccess({ project })),
-          catchError((error: any) => of(actions.getProjectByIdFailure(error)))
-        )
-      )
+      concatLatestFrom(() => {
+        return this.store.select('projects');
+      }),
+      exhaustMap(([action, projects]) => {
+        const exists = projects.some(
+          (el: Project) => el._id === action.projectId
+        );
+        if (exists) {
+          return NEVER;
+        } else {
+          return this.projectsService.getProjectById(action.projectId).pipe(
+            map((project) => {
+              return actions.getProjectByIdSuccess({ project });
+            }),
+            catchError((error: any) => of(actions.getProjectByIdFailure(error)))
+          );
+        }
+      })
     )
   );
 

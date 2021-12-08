@@ -1,5 +1,5 @@
 <section class="project-container">
-  <div class="member-container">
+  <div *ngIf="project$ | async" class="member-container">
     <div class="manager-container">
       PROJECT MANAGER
       {{ (project$ | async)!.members.projectManager | json }}

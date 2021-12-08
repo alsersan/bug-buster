@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
 import { Project } from 'src/app/models/project.model';
+import { getProjectById } from 'src/app/store/projects/projects.actions';
 
 @Component({
   selector: 'app-project',
@@ -23,5 +24,9 @@ export class ProjectComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store.dispatch(
+      getProjectById({ projectId: this.route.snapshot.paramMap.get('id')! })
+    );
+  }
 }
