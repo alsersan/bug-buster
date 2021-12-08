@@ -12,12 +12,24 @@
   align-items: center;
   list-style: none;
   padding: 3rem;
+  gap: 2rem;
 }
 
 .project {
   width: 100%;
   max-width: 80rem;
-  height: 15rem;
+  min-height: 15rem;
+  padding: 2rem;
   background-color: white;
   border-radius: $border-radius;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.name-wrapper {
+  display: flex;
+  gap: 3rem;
+}
+
+.name {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
 }

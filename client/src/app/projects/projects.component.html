@@ -2,10 +2,12 @@
   <button (click)="addProject()">Add Project</button>
   <ul class="project-list">
     <li class="project" *ngFor="let project of projects$ | async">
-      <p>name: {{ project.name }}</p>
+      <div class="name-wrapper">
+        <h3 class="name">{{ project.name }}</h3>
+        <p># {{ project._id }}</p>
+      </div>
       <p>description: {{ project.description }}</p>
       <p>status: {{ project.status }}</p>
-      <p>id: {{ project._id }}</p>
       <button (click)="deleteProjectNow(project._id!)">Delete</button>
     </li>
   </ul>
