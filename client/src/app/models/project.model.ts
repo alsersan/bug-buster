@@ -1,3 +1,6 @@
+import { Ticket } from './ticket.model';
+import { User } from './user.model';
+
 export interface Project {
   _id?: string;
   name: string;
@@ -5,11 +8,11 @@ export interface Project {
   status: string;
   dateCreated: string;
   dateClosed: string | null;
-  tickets: Array<any>;
+  tickets: Array<Ticket>;
   members: {
-    projectManager: any;
-    developers?: Array<any>;
-    qualityAssurance?: Array<any>;
+    projectManager: User;
+    developers?: Array<User>;
+    qualityAssurance?: Array<User>;
   };
 }
 
@@ -18,7 +21,7 @@ export interface NewProject {
   description: string;
   dateCreated: string;
   members: {
-    projectManager: any;
+    projectManager: string;
   };
 }
 

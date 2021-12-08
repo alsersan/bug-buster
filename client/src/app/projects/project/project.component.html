@@ -1,57 +1,33 @@
 <section class="project-container">
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
-  <p>Test</p>
+  <div class="member-container">
+    <div class="manager-container">
+      PROJECT MANAGER
+      {{ (project$ | async)!.members.projectManager | json }}
+    </div>
+    <div class="developer-container">
+      DEVELOPERS
+      <ul class="developer-list">
+        <li
+          class="member"
+          *ngFor="let developer of (project$ | async)!.members.developers"
+        >
+          {{ developer }}
+        </li>
+      </ul>
+    </div>
+    <div class="quality-container">
+      QUALITY ASSURANCE
+      <ul class="quality-list">
+        <li
+          class="quality"
+          *ngFor="
+            let qualityAssurance of (project$ | async)!.members.qualityAssurance
+          "
+        >
+          {{ qualityAssurance }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  {{ this.project$ | async | json }}
 </section>
