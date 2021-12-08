@@ -1,10 +1,14 @@
 import { createAction, props } from '@ngrx/store';
-import { Project } from 'src/app/models/project.model';
+import {
+  DeletedProject,
+  NewProject,
+  Project,
+} from 'src/app/models/project.model';
 
 // CREATE PROJECT
 export const createProject = createAction(
   '[Projects] Create project',
-  props<{ project: Project }>()
+  props<{ project: NewProject }>()
 );
 export const createProjectSuccess = createAction(
   '[Projects] Create project success',
@@ -61,7 +65,7 @@ export const deleteProject = createAction(
 );
 export const deleteProjectSuccess = createAction(
   '[Projects] Delete Project',
-  props<{ project: any }>()
+  props<{ project: DeletedProject }>()
 );
 export const deleteProjectFailure = createAction(
   '[Projects] Delete Project',

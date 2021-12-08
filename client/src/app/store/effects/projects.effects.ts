@@ -74,14 +74,16 @@ export class ProjectsEffects {
   deleteProject$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.deleteProject),
-      exhaustMap((action) =>
-        this.projectsService.deleteProject(action.projectId).pipe(
+      exhaustMap((action) => {
+        console.log('ACTION', action);
+        return this.projectsService.deleteProject(action.projectId).pipe(
           map((project) => {
+            console.log('EFFECT', project);
             return actions.deleteProjectSuccess({ project });
           }),
           catchError((error: any) => of(actions.deleteProjectFailure(error)))
-        )
-      )
+        );
+      })
     )
   );
 }

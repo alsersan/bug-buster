@@ -7,6 +7,15 @@ const initialState: ReadonlyArray<Project> = [];
 export const projectsReducer = createReducer(
   initialState,
 
+  // CREATE PROJECT
+  on(actions.createProjectSuccess, (state, { project }) => [...state, project]),
+
   // GET PROJECTS
-  on(actions.getAllprojectsSucess, (state, { projects }) => [...projects])
+  on(actions.getAllprojectsSucess, (state, { projects }) => [...projects]),
+
+  // DELETE PROJECT
+  on(actions.deleteProjectSuccess, (state, { project }) => {
+    console.log(project);
+    return state.filter((el) => el._id !== project.deletedProjectId);
+  })
 );

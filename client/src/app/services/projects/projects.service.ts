@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Project } from 'src/app/models/project.model';
+import { NewProject, Project } from 'src/app/models/project.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class ProjectsService {
 
   constructor(private http: HttpClient) {}
 
-  createProject(project: Project): Observable<Project> {
+  createProject(project: NewProject): Observable<Project> {
     return this.http.post<Project>(this.projectsUrl, project, this.httpOptions);
   }
 

@@ -12,3 +12,16 @@ export interface Project {
     qualityAssurance?: Array<any>;
   };
 }
+
+export interface NewProject {
+  name: string;
+  description: string;
+  dateCreated: string;
+  members: {
+    projectManager: any;
+  };
+}
+
+export interface DeletedProject {
+  deletedProjectId: string;
+}

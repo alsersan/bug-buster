@@ -1,8 +1,12 @@
 <section class="projects-container">
-  <p>projects works!</p>
+  <button (click)="addProject()">Add Project</button>
   <ul class="project-list">
-    <li *ngFor="let project of projects$ | async">
-      {{ project | json }}
+    <li class="project" *ngFor="let project of projects$ | async">
+      <p>name: {{ project.name }}</p>
+      <p>description: {{ project.description }}</p>
+      <p>status: {{ project.status }}</p>
+      <p>id: {{ project._id }}</p>
+      <button (click)="deleteProjectNow(project._id!)">Delete</button>
     </li>
   </ul>
 </section>
