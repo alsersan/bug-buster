@@ -1,0 +1,7 @@
+<div *ngIf="project$ | async" class="project-details-container">
+  <p>{{ (this.project$ | async)!.name }}</p>
+  <p>{{ (this.project$ | async)!.description }}</p>
+  <p>{{ (this.project$ | async)!._id }}</p>
+  <p>{{ (this.project$ | async)!.status }}</p>
+  <p>{{ (this.project$ | async)!.dateCreated }}</p>
+</div>
