@@ -83,7 +83,8 @@ export class ProjectsService {
   }
 
   async deleteProject(projectId: string) {
-    return this.projectModel.findByIdAndDelete(projectId);
+    const deletedProject = await this.projectModel.findByIdAndDelete(projectId);
+    return { deletedProjectId: deletedProject._id };
   }
 
   processQuery(queryResult) {
