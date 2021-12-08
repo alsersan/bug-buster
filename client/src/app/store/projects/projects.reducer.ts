@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { Project } from 'src/app/models/project.model';
-import * as actions from '../actions/projects.actions';
+import * as actions from './projects.actions';
 
 const initialState: ReadonlyArray<Project> = [];
 

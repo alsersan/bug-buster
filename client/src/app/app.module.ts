@@ -7,8 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
-import { ProjectsEffects } from './store/effects/projects.effects';
-import { projectsReducer } from './store/reducers/projects.reducer';
+import { ProjectsEffects } from './store/projects/projects.effects';
+import { projectsReducer } from './store/projects/projects.reducer';
 
 @NgModule({
   declarations: [AppComponent],

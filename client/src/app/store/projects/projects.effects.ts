@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { map, exhaustMap, catchError } from 'rxjs/operators';
 import { ProjectsService } from 'src/app/services/projects/projects.service';
 
-import * as actions from '../actions/projects.actions';
+import * as actions from './projects.actions';
 
 @Injectable()
 export class ProjectsEffects {

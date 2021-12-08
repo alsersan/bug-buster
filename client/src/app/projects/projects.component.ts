@@ -6,7 +6,7 @@ import {
   createProject,
   deleteProject,
   getAllprojects,
-} from '../store/actions/projects.actions';
+} from '../store/projects/projects.actions';
 
 @Component({
   selector: 'app-projects',
