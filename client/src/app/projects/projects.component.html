@@ -4,11 +4,12 @@
     <li class="project" *ngFor="let project of projects$ | async">
       <div class="name-wrapper">
         <h3 class="name">{{ project.name }}</h3>
-        <p># {{ project._id }}</p>
+        <p>#{{ project._id }}</p>
       </div>
       <p>description: {{ project.description }}</p>
       <p>status: {{ project.status }}</p>
-      <button (click)="deleteProjectNow(project._id!)">Delete</button>
+      <button (click)="delete(project._id!)">Delete</button>
+      <button (click)="viewDetails(project._id!)">View details</button>
     </li>
   </ul>
 </section>

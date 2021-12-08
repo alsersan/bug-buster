@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { NewProject, Project } from '../models/project.model';
@@ -17,7 +18,10 @@ import {
 export class ProjectsComponent implements OnInit {
   projects$: Observable<Array<Project>> = this.store.select('projects');
 
-  constructor(private store: Store<{ projects: Project[] }>) {}
+  constructor(
+    private store: Store<{ projects: Project[] }>,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.store.dispatch(getAllprojects());
@@ -35,7 +39,11 @@ export class ProjectsComponent implements OnInit {
     this.store.dispatch(createProject({ project }));
   }
 
-  deleteProjectNow(projectId: string) {
+  delete(projectId: string) {
     this.store.dispatch(deleteProject({ projectId }));
+  }
+
+  viewDetails(projectId: string) {
+    this.router.navigateByUrl(`/projects/${projectId}`);
   }
 }

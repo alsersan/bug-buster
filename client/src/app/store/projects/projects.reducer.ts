@@ -13,8 +13,10 @@ export const projectsReducer = createReducer(
   // GET PROJECTS
   on(actions.getAllprojectsSucess, (state, { projects }) => [...projects]),
 
+  // GET PROJECTS BY ID
+  on(actions.getProjectByIdSuccess, (state, { project }) => []),
+
   // DELETE PROJECT
-  on(actions.deleteProject, (state, project) => state.filter((el) => el)),
   on(actions.deleteProjectSuccess, (state, { project }) =>
     state.filter((el) => el._id !== project.deletedProjectId)
   )
