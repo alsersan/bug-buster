@@ -6,6 +6,7 @@ import { ProjectsComponent } from './projects.component';
 import { ProjectComponent } from './project/project.component';
 import { MembersComponent } from './members/members.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { TicketsComponent } from './tickets/tickets.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ProjectDetailsComponent } from './project-details/project-details.compo
     ProjectsComponent,
     ProjectComponent,
     MembersComponent,
-    ProjectDetailsComponent
+    ProjectDetailsComponent,
+    TicketsComponent
   ],
   imports: [
     CommonModule,

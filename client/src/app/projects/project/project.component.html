@@ -1,5 +1,6 @@
 <section class="project-container">
   <app-project-details [project$]="this.project$"></app-project-details>
   <app-members [project$]="this.project$"></app-members>
+  <app-tickets [project$]="this.project$"></app-tickets>
   {{ this.project$ | async | json }}
 </section>
