@@ -1,15 +1,12 @@
-<div *ngIf="project$ | async" class="member-container">
+<div class="member-container">
   <div class="manager-container">
     PROJECT MANAGER
-    {{ (project$ | async)!.members.projectManager | json }}
+    {{ project.members.projectManager | json }}
   </div>
   <div class="developer-container">
     DEVELOPERS
     <ul class="developer-list">
-      <li
-        class="member"
-        *ngFor="let developer of (project$ | async)!.members.developers"
-      >
+      <li class="member" *ngFor="let developer of project.members.developers">
         {{ developer }}
       </li>
     </ul>
@@ -19,9 +16,7 @@
     <ul class="quality-list">
       <li
         class="quality"
-        *ngFor="
-          let qualityAssurance of (project$ | async)!.members.qualityAssurance
-        "
+        *ngFor="let qualityAssurance of project!.members.qualityAssurance"
       >
         {{ qualityAssurance }}
       </li>

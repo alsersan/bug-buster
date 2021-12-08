@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, Input } from '@angular/core';
 import { Project } from 'src/app/models/project.model';
 
 @Component({
@@ -7,10 +6,8 @@ import { Project } from 'src/app/models/project.model';
   templateUrl: './project-details.component.html',
   styleUrls: ['./project-details.component.scss'],
 })
-export class ProjectDetailsComponent implements OnInit {
-  @Input() project$!: Observable<Project>;
+export class ProjectDetailsComponent {
+  @Input() project!: Project;
 
   constructor() {}
-
-  ngOnInit(): void {}
 }
