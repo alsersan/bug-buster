@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { ProjectsService } from '../services/projects/projects.service';
+import { Project } from '../models/project.model';
+import { getAllprojects } from '../store/actions/projects.actions';
 
 @Component({
   selector: 'app-projects',
@@ -9,11 +11,11 @@ import { ProjectsService } from '../services/projects/projects.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectsComponent implements OnInit {
-  projects$!: Observable<Array<any>>;
+  projects$: Observable<Array<Project>> = this.store.select('projects');
 
-  constructor(private projectsService: ProjectsService) {}
+  constructor(private store: Store<{ projects: Project[] }>) {}
 
   ngOnInit(): void {
-    this.projects$ = this.projectsService.getProjects();
+    this.store.dispatch(getAllprojects());
   }
 }

@@ -6,9 +6,9 @@ export interface Project {
   dateCreated: string;
   dateClosed: string | null;
   tickets: Array<any>;
-  members?: {
+  members: {
     projectManager: any;
-    developers: Array<any>;
-    qualityAssurance: Array<any>;
+    developers?: Array<any>;
+    qualityAssurance?: Array<any>;
   };
 }

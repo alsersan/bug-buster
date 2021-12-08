@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EMPTY, of } from 'rxjs';
+import { of } from 'rxjs';
 import { map, exhaustMap, catchError } from 'rxjs/operators';
 import { ProjectsService } from 'src/app/services/projects/projects.service';
 
-import * as actions from '../actions/project.actions';
+import * as actions from '../actions/projects.actions';
 
 @Injectable()
 export class ProjectsEffects {
@@ -33,7 +33,6 @@ export class ProjectsEffects {
       exhaustMap(() =>
         this.projectsService.getAllProjects().pipe(
           map((projects) => {
-            console.log('response:::', projects);
             return actions.getAllprojectsSucess({ projects });
           }),
           catchError((error: any) => of(actions.getAllprojectsFailure(error)))

@@ -28,15 +28,15 @@ export const getAllprojectsFailure = createAction(
 
 // GET PROJECTS BY ID
 export const getProjectById = createAction(
-  '[Projects] Get all projects',
+  '[Projects] Get project by id',
   props<{ projectId: string }>()
 );
 export const getProjectByIdSuccess = createAction(
-  '[Projects] Get all projects',
+  '[Projects] Get project by id success',
   props<{ project: Project }>()
 );
 export const getProjectByIdFailure = createAction(
-  '[Projects] Get all projects',
+  '[Projects] Get project by id failure',
   props<{ error: any }>()
 );
 
