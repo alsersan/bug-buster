@@ -8,7 +8,10 @@ export const loginReducer = createReducer(
   initialState,
 
   // CHECK LOGIN
-  on(actions.checkLoginSuccess, (state, { loguedInUser }) => loguedInUser)
+  on(actions.checkLoginSuccess, (state, { loguedInUser }) => loguedInUser),
+
+  // LOGOUT
+  on(actions.logoutSuccess, (state) => ({} as User))
 
   /* on(actions.getAllprojectsSucess, (state, { projects }) => [...projects]),
 

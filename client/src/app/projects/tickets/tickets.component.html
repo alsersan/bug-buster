@@ -1,8 +1,8 @@
 <div class="ticket-container">
-  <ul *ngIf="project.tickets" class="developer-list">
+  <ul *ngIf="project.tickets.length" class="developer-list">
     <li class="ticket" *ngFor="let ticket of project.tickets">
       {{ ticket }}
     </li>
   </ul>
-  <div #elseBlock>No tickets</div>
+  <div *ngIf="!project.tickets.length">No tickets</div>
 </div>

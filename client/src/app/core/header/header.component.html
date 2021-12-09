@@ -1,6 +1,6 @@
 <nav class="navbar">
   <div class="logo">here goes the logo</div>
-  <div *ngIf="loguedInUser" class="user-wrapper">
+  <div *ngIf="loguedInUser.name" class="user-wrapper">
     <div class="name-wrapper">
       <p class="name">{{ loguedInUser.name }} {{ loguedInUser.surname }}</p>
       <p class="role">{{ loguedInUser.role }}</p>
