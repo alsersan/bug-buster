@@ -22,4 +22,8 @@ export class AuthService {
       this.httpOptions
     );
   }
+
+  logout(): void {
+    localStorage.removeItem('jwtToken');
+  }
 }

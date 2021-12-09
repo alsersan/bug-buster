@@ -8,9 +8,9 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { User } from './models/user.model';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
-import { checkLogin } from './store/login/login.actions';
-import { LoginEffects } from './store/login/login.effects';
-import { loginReducer } from './store/login/login.reducers';
+import { checkLogin } from './store/auth/auth.actions';
+import { LoginEffects } from './store/auth/auth.effects';
+import { loginReducer } from './store/auth/auth.reducers';
 import { ProjectsEffects } from './store/projects/projects.effects';
 import { projectsReducer } from './store/projects/projects.reducer';
 
