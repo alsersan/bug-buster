@@ -32,7 +32,6 @@ export class UsersService {
 
   async getUserWithToken(req: Request) {
     const user: JwtTokenPayload = req['user'];
-    console.log(user);
     const queryResult = this.userModel.findById(user.userId);
     return this.processQuery(queryResult);
   }

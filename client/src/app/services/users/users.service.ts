@@ -2,12 +2,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  private usersUrl = 'http://localhost:3001/users';
+  private usersUrl = `${environment.baseUrl}/users`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -25,6 +26,10 @@ export class UsersService {
 
   getUserById(userId: string): Observable<User> {
     return this.http.get<User>(`${this.usersUrl}/${userId}`);
+  }
+
+  getUserWithToken(): Observable<User> {
+    return this.http.get<User>(`${this.usersUrl}/token`);
   }
 
   updateUser(userId: string, update: Partial<User>): Observable<User> {
