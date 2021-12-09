@@ -1,8 +1,11 @@
 <section class="project-container">
   <div *ngIf="project$ | async" class="content-wrapper">
     <app-project-details [project]="(project$ | async)!"></app-project-details>
-    <app-members [project]="(project$ | async)!"></app-members>
-    <app-tickets [project]="(project$ | async)!"></app-tickets>
+    <div class="flex-wrapper">
+      <app-members [project]="(project$ | async)!"></app-members>
+      <app-tickets [project]="(project$ | async)!"></app-tickets>
+    </div>
+
     {{ this.project$ | async | json }}
   </div>
 </section>

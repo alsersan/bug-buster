@@ -7,6 +7,14 @@
 }
 
 .content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   min-height: 100%;
   padding: 3rem;
+}
+
+.flex-wrapper {
+  display: flex;
+  gap: 2rem;
 }

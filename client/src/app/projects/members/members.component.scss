@@ -1,0 +1,12 @@
+@import "src/styles/abstracts/mixins";
+
+:host {
+  display: flex;
+  flex-basis: 0;
+  flex-grow: 1;
+}
+
+.member-container {
+  @include box-styles;
+  width: 100%;
+}
