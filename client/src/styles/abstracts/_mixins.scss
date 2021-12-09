@@ -1,0 +1,7 @@
+@import "./variables";
+
+@mixin box-styles {
+  border-radius: $border-radius;
+  background-color: $main-background;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

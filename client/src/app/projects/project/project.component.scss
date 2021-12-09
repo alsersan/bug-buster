@@ -1,7 +1,12 @@
 @import "src/styles/abstracts/variables";
 
 .project-container {
-  background-color: $main-background;
+  background-color: $secondary-background;
   width: 100%;
   min-height: 100%;
+}
+
+.content-wrapper {
+  min-height: 100%;
+  padding: 3rem;
 }

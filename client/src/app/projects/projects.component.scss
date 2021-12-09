@@ -1,7 +1,8 @@
 @import "src/styles/abstracts/variables";
+@import "src/styles/abstracts/mixins";
 
 .projects-container {
-  background-color: $main-background;
+  background-color: $secondary-background;
   width: 100%;
   min-height: 100%;
 }
@@ -16,13 +17,11 @@
 }
 
 .project {
+  @include box-styles;
   width: 100%;
   max-width: 80rem;
   min-height: 15rem;
   padding: 2rem;
-  background-color: white;
-  border-radius: $border-radius;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .name-wrapper {
   display: flex;
