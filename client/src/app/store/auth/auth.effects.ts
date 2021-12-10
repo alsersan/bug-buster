@@ -21,15 +21,14 @@ export class LoginEffects {
       ofType(actions.checkLogin),
       exhaustMap(() => {
         const jwtToken = localStorage.getItem('jwtToken');
-        console.log(jwtToken);
         if (jwtToken) {
-          return this.usersService.getUserWithToken().pipe(
-            map((loguedInUser) => {
-              console.log(loguedInUser);
-              return actions.loginSuccess({ loguedInUser });
-            })
-          );
+          return this.usersService
+            .getUserWithToken()
+            .pipe(
+              map((loguedInUser) => actions.loginSuccess({ loguedInUser }))
+            );
         } else {
+          this.router.navigateByUrl('/login');
           return NEVER;
         }
       })
