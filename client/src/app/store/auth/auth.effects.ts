@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { NEVER, of } from 'rxjs';
 import { map, exhaustMap, catchError } from 'rxjs/operators';
@@ -9,6 +10,7 @@ import * as actions from './auth.actions';
 @Injectable()
 export class LoginEffects {
   constructor(
+    private router: Router,
     private actions$: Actions,
     private usersService: UsersService,
     private authService: AuthService
@@ -24,7 +26,7 @@ export class LoginEffects {
           return this.usersService.getUserWithToken().pipe(
             map((loguedInUser) => {
               console.log(loguedInUser);
-              return actions.checkLoginSuccess({ loguedInUser });
+              return actions.loginSuccess({ loguedInUser });
             })
           );
         } else {
@@ -34,11 +36,35 @@ export class LoginEffects {
     )
   );
 
+  login$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.login),
+      exhaustMap((action) =>
+        this.authService.login(action.email, action.password).pipe(
+          exhaustMap(({ jwtToken }) => {
+            localStorage.setItem('jwtToken', jwtToken);
+            return this.usersService.getUserWithToken().pipe(
+              map((loguedInUser) => {
+                this.router.navigateByUrl('/dashboard');
+                return actions.loginSuccess({ loguedInUser });
+              })
+            );
+          })
+        )
+      )
+    )
+  );
+
   logout$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.logout),
       exhaustMap(() =>
-        of(this.authService.logout()).pipe(map(() => actions.logoutSuccess()))
+        of(this.authService.logout()).pipe(
+          map(() => {
+            this.router.navigateByUrl('/login');
+            return actions.logoutSuccess();
+          })
+        )
       )
     )
   );

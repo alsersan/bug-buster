@@ -1,1 +1,25 @@
-<p>login works!</p>
+<section class="login-container">
+  <form class="login-wrapper" [formGroup]="login">
+    <div class="input-container">
+      <label for="login-email">Email</label>
+      <input id="login-email" type="text" formControlName="email" />
+    </div>
+    <div class="input-container">
+      <label for="login-password">Password</label>
+      <input
+        id="login-password"
+        [type]="showPassword ? 'text' : 'password'"
+        formControlName="password"
+      />
+    </div>
+    <button (click)="onSubmit()">Login</button>
+  </form>
+  <button
+    (mousedown)="showPassword = !showPassword"
+    (mouseup)="showPassword = !showPassword"
+  >
+    View password
+  </button>
+  <div class="square left"></div>
+  <div class="square right"></div>
+</section>

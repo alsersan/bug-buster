@@ -10,7 +10,7 @@ import { User } from './models/user.model';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
 import { checkLogin } from './store/auth/auth.actions';
 import { LoginEffects } from './store/auth/auth.effects';
-import { loginReducer } from './store/auth/auth.reducers';
+import { authReducer, clearState } from './store/auth/auth.reducers';
 import { ProjectsEffects } from './store/projects/projects.effects';
 import { projectsReducer } from './store/projects/projects.reducer';
 
@@ -21,10 +21,13 @@ import { projectsReducer } from './store/projects/projects.reducer';
     AppRoutingModule,
     CoreModule,
     HttpClientModule,
-    StoreModule.forRoot({
-      projects: projectsReducer,
-      loguedInUser: loginReducer,
-    }),
+    StoreModule.forRoot(
+      {
+        projects: projectsReducer,
+        loguedInUser: authReducer,
+      },
+      { metaReducers: [clearState] }
+    ),
     EffectsModule.forRoot([ProjectsEffects, LoginEffects]),
   ],
   providers: [

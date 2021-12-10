@@ -1,0 +1,44 @@
+@import "src/styles/abstracts/variables";
+@import "src/styles/abstracts/mixins";
+
+.login-container {
+  position: relative;
+  background-color: $main-background;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-wrapper {
+  border: 1px solid black;
+  width: 40rem;
+  height: 60rem;
+}
+
+.square {
+  position: absolute;
+  width: 50rem;
+  height: 50rem;
+  border-radius: 10rem;
+  background: radial-gradient(
+    circle,
+    rgba(4, 184, 237, 1) 18%,
+    rgba(10, 142, 230, 1) 67%,
+    rgba(17, 94, 223, 1) 100%
+  );
+}
+
+.left {
+  transform: rotateZ(55deg);
+  bottom: 0;
+  left: -25rem;
+}
+
+.right {
+  transform: rotateZ(30deg);
+  top: -20rem;
+  right: -20rem;
+}

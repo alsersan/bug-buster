@@ -3,11 +3,18 @@ import { User } from 'src/app/models/user.model';
 
 // CHECK LOGIN
 export const checkLogin = createAction('[Login] Check login');
-export const checkLoginSuccess = createAction(
-  '[Login] Check login success',
+
+//LOGIN
+export const login = createAction(
+  '[Login] Login user',
+  props<{ email: string; password: string }>()
+);
+export const loginSuccess = createAction(
+  '[Login] Login user success',
   props<{ loguedInUser: User }>()
 );
 
 // LOGOUT
+export const LOGOUT_SUCCESS = '[Logout] Logout user success';
 export const logout = createAction('[Logout] Logout user');
-export const logoutSuccess = createAction('[Logout] Logout user success');
+export const logoutSuccess = createAction(LOGOUT_SUCCESS);
