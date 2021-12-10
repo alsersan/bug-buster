@@ -3,7 +3,7 @@
   <div *ngIf="loguedInUser.name" class="user-wrapper">
     <div class="name-wrapper">
       <p class="name">{{ loguedInUser.name }} {{ loguedInUser.surname }}</p>
-      <p class="role">{{ loguedInUser.role }}</p>
+      <p class="role">{{ roles[loguedInUser.role] }}</p>
     </div>
     <div class="avatar"></div>
     <img class="arrow" src="/assets/icons/arrow.svg" alt="Down arrow icon" />
