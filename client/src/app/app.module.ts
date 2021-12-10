@@ -13,6 +13,7 @@ import { LoginEffects } from './store/auth/auth.effects';
 import { authReducer, clearState } from './store/auth/auth.reducers';
 import { ProjectsEffects } from './store/projects/projects.effects';
 import { projectsReducer } from './store/projects/projects.reducer';
+import { usersReducer } from './store/users/users.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { projectsReducer } from './store/projects/projects.reducer';
     StoreModule.forRoot(
       {
         projects: projectsReducer,
+        users: usersReducer,
         loguedInUser: authReducer,
       },
       { metaReducers: [clearState] }
