@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Project } from 'src/app/models/project.model';
+import { NewProject, Project } from 'src/app/models/project.model';
 import { createProject } from 'src/app/store/projects/projects.actions';
 
 @Component({
@@ -17,14 +17,11 @@ export class CreateProjectComponent {
     dateCreated: new FormControl(''),
     projectManager: new FormControl('61aa5d8510c9e6570de7332e'),
   });
-  constructor(
-    private store: Store<{ projects: Project[] }>,
-    private router: Router
-  ) {}
+  constructor(private store: Store<{ projects: Project[] }>) {}
 
   onSubmit() {
     const formResult = this.createProject.value;
-    const project = {
+    const project: NewProject = {
       name: formResult.name,
       description: formResult.description,
       dateCreated: 'today',

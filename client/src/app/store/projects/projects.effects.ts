@@ -34,11 +34,11 @@ export class ProjectsEffects {
 
   getAllProjects$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(actions.getAllprojects),
+      ofType(actions.getAllProjects),
       exhaustMap(() =>
         this.projectsService.getAllProjects().pipe(
-          map((projects) => actions.getAllprojectsSucess({ projects })),
-          catchError((error: any) => of(actions.getAllprojectsFailure(error)))
+          map((projects) => actions.getAllProjectsSucess({ projects })),
+          catchError((error: any) => of(actions.getAllProjectsFailure(error)))
         )
       )
     )

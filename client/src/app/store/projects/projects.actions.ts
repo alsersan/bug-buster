@@ -20,12 +20,12 @@ export const createProjectFailure = createAction(
 );
 
 // GET ALL PROJECTS
-export const getAllprojects = createAction('[Projects] Get all projects');
-export const getAllprojectsSucess = createAction(
+export const getAllProjects = createAction('[Projects] Get all projects');
+export const getAllProjectsSucess = createAction(
   '[Projects] Get all projects success',
   props<{ projects: Project[] }>()
 );
-export const getAllprojectsFailure = createAction(
+export const getAllProjectsFailure = createAction(
   '[Projects] Get all projects failure',
   props<{ error: any }>()
 );

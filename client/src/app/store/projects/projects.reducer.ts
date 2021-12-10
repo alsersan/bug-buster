@@ -11,7 +11,7 @@ export const projectsReducer = createReducer(
   on(actions.createProjectSuccess, (state, { project }) => [...state, project]),
 
   // GET PROJECTS
-  on(actions.getAllprojectsSucess, (state, { projects }) => [...projects]),
+  on(actions.getAllProjectsSucess, (state, { projects }) => [...projects]),
 
   // GET PROJECTS BY ID
   on(actions.getProjectByIdSuccess, (state, { project }) => [
