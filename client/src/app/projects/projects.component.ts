@@ -27,20 +27,12 @@ export class ProjectsComponent implements OnInit {
     this.store.dispatch(getAllprojects());
   }
 
-  addProject() {
-    const project: NewProject = {
-      name: 'Guau',
-      description: 'project test',
-      dateCreated: 'today',
-      members: {
-        projectManager: '61aa5bb1961b19bc89b6a6f6',
-      },
-    };
-    this.store.dispatch(createProject({ project }));
-  }
-
   delete(projectId: string) {
     this.store.dispatch(deleteProject({ projectId }));
+  }
+
+  addProject() {
+    this.router.navigateByUrl('/projects/create');
   }
 
   viewDetails(projectId: string) {

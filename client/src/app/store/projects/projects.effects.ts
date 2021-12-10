@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { NEVER, of } from 'rxjs';
@@ -12,7 +13,8 @@ export class ProjectsEffects {
   constructor(
     private actions$: Actions,
     private projectsService: ProjectsService,
-    private store: Store<{ projects: Project[] }>
+    private store: Store<{ projects: Project[] }>,
+    private router: Router
   ) {}
 
   createProject$ = createEffect(() =>
@@ -20,7 +22,10 @@ export class ProjectsEffects {
       ofType(actions.createProject),
       exhaustMap((action) =>
         this.projectsService.createProject(action.project).pipe(
-          map((project) => actions.createProjectSuccess({ project })),
+          map((project) => {
+            this.router.navigateByUrl('/projects');
+            return actions.createProjectSuccess({ project });
+          }),
           catchError((error: any) => of(actions.createProjectFailure(error)))
         )
       )

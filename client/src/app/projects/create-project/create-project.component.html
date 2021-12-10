@@ -1,1 +1,18 @@
-<p>create-project works!</p>
+<section class="create-project-container">
+  <form class="form-container" [formGroup]="createProject">
+    <div class="input-container">
+      <label for="project-name">Name</label>
+      <input id="project-name" type="text" formControlName="name" />
+    </div>
+    <div class="input-container">
+      <label for="project-description">Description</label>
+      <input id="project-description" formControlName="description" />
+    </div>
+    <div class="input-container">
+      <label for="project-manager">Manager</label>
+      <input id="project-manager" formControlName="projectManager" />
+    </div>
+
+    <button (click)="onSubmit()">Login</button>
+  </form>
+</section>

@@ -1,0 +1,17 @@
+@import "src/styles/abstracts/variables";
+@import "src/styles/abstracts/mixins";
+
+.create-project-container {
+  background-color: $secondary-background;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container {
+  @include box-styles;
+  width: 40rem;
+  height: 60rem;
+}
