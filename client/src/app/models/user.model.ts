@@ -14,7 +14,7 @@ export interface User {
   tickets: Array<Ticket>;
 }
 
-export interface newUser {
+export interface NewUser {
   name: string;
   surname: string;
   avatarUrl: string;

@@ -1,10 +1,10 @@
 import { createAction, props } from '@ngrx/store';
-import { DeletedUser, newUser, User } from 'src/app/models/user.model';
+import { DeletedUser, NewUser, User } from 'src/app/models/user.model';
 
 // CREATE USER
 export const createUser = createAction(
   '[Users] Create user',
-  props<{ user: newUser }>()
+  props<{ user: NewUser }>()
 );
 export const createUserSuccess = createAction(
   '[Users] Create user success',
