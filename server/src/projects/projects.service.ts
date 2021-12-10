@@ -16,14 +16,12 @@ export class ProjectsService {
 
   async createProject(createProjectDto: CreateProjectDto): Promise<Project> {
     const newProject = await this.projectModel.create(createProjectDto);
-    if (newProject.members?.projectManager) {
-      await addItemToList(
-        newProject.members.projectManager,
-        'projects',
-        newProject._id,
-        this.userModel,
-      );
-    }
+    await addItemToList(
+      newProject.members.projectManager,
+      'projects',
+      newProject._id,
+      this.userModel,
+    );
     const queryResult = this.projectModel.findById(newProject._id);
     return this.processQuery(queryResult);
   }
@@ -84,6 +82,21 @@ export class ProjectsService {
 
   async deleteProject(projectId: string) {
     const deletedProject = await this.projectModel.findByIdAndDelete(projectId);
+
+    // DELETE FROM USERS
+    const membersArray = [
+      deletedProject.members.projectManager,
+      ...deletedProject.members.developers,
+      ...deletedProject.members.qualityAssurance,
+    ];
+    for (let i = 0; i < membersArray.length; i++) {
+      await removeItemFromList(
+        membersArray[i],
+        'projects',
+        deletedProject._id,
+        this.userModel,
+      );
+    }
     return { deletedProjectId: deletedProject._id };
   }
 

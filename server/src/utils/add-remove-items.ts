@@ -19,7 +19,7 @@ export async function removeItemFromList(
 ) {
   const container = await model.findById(containerId);
   container[listName] = container[listName].filter((el) => {
-    return el.toString() !== deletedItemId;
+    return el.toString() !== deletedItemId.toString();
   });
   container.save();
 }
