@@ -6,3 +6,18 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   padding: 2rem;
 }
+
+@mixin label-required {
+  font-weight: 500;
+  position: relative;
+
+  &::after {
+    content: "*";
+    position: absolute;
+    margin-left: 4px;
+  }
+}
+
+@mixin label {
+  font-weight: 500;
+}

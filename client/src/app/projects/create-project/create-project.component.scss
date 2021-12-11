@@ -15,3 +15,23 @@
   width: 40rem;
   height: 60rem;
 }
+
+.title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+label {
+  @include label-required;
+}
+
+.project-description {
+  height: 15rem;
+}
