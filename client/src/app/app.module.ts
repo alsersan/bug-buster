@@ -13,6 +13,7 @@ import { LoginEffects } from './store/auth/auth.effects';
 import { authReducer, clearState } from './store/auth/auth.reducers';
 import { ProjectsEffects } from './store/projects/projects.effects';
 import { projectsReducer } from './store/projects/projects.reducer';
+import { UsersEffects } from './store/users/users.effects';
 import { usersReducer } from './store/users/users.reducer';
 
 @NgModule({
@@ -30,7 +31,7 @@ import { usersReducer } from './store/users/users.reducer';
       },
       { metaReducers: [clearState] }
     ),
-    EffectsModule.forRoot([ProjectsEffects, LoginEffects]),
+    EffectsModule.forRoot([ProjectsEffects, UsersEffects, LoginEffects]),
   ],
   providers: [
     {

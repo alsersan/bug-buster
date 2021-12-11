@@ -9,7 +9,7 @@ import { UsersService } from 'src/app/services/users/users.service';
 import * as actions from './users.actions';
 
 @Injectable()
-export class ProjectsEffects {
+export class UsersEffects {
   constructor(
     private actions$: Actions,
     private usersService: UsersService,
