@@ -1,0 +1,5 @@
+<section class="user-container">
+  <div *ngIf="user$ | async" class="content-wrapper">
+    {{ this.user$ | async | json }}
+  </div>
+</section>
