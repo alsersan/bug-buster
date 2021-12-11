@@ -1,5 +1,10 @@
 $main-background: #ffffff;
 $secondary-background: #f4f6f9;
-$primary-color: rgba(98, 174, 255, 0.5);
+
+$primary-color: #0a92e68a;
+$primary-color-svg: invert(50%) sepia(47%) saturate(5700%) hue-rotate(178deg)
+  brightness(97%) contrast(92%);
+$delete-color-svg: invert(12%) sepia(91%) saturate(7183%) hue-rotate(5deg)
+  brightness(95%) contrast(118%);
 
 $border-radius: 5px;

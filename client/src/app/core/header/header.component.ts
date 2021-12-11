@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/models/user.model';
+import { capitalizedRoles } from 'src/app/utils/roles';
 
 @Component({
   selector: 'app-header',
@@ -9,12 +10,7 @@ import { User } from 'src/app/models/user.model';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  roles: Record<string, string> = {
-    admin: 'Administrator',
-    ['project-manager']: 'Project Manager',
-    developer: 'Developer',
-    ['quality-assurance']: 'Quality Assurance',
-  };
+  roles = capitalizedRoles;
   loguedInUser!: User;
 
   constructor(private store: Store<{ loguedInUser: User }>) {}

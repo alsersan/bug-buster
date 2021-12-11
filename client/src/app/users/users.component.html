@@ -2,13 +2,43 @@
   <button (click)="addUser()">Add User</button>
   <ul class="user-list">
     <li class="user" *ngFor="let user of users$ | async">
-      <h3>{{ user.name }} {{ user.surname }}</h3>
-      <p>#{{ user._id }}</p>
-      <p>role: {{ user.email }}</p>
-      <p>role: {{ user.role }}</p>
-      <p>seniority: {{ user.seniority }}</p>
+      <div class="user-info">
+        <div class="avatar"></div>
+        <div class="user-data">
+          <h3>{{ user.name }} {{ user.surname }}</h3>
+          <p class="user-role">
+            {{ roles[user.role] }} - {{ user.seniority | titlecase }}
+          </p>
+          <p>{{ user.email }}</p>
+        </div>
+        <div>
+          <p *ngIf="user.role !== 'admin'">
+            Active projects: {{ user.projects.length }}
+          </p>
+          <p *ngIf="user.role === 'developer || quality-assuranec'">
+            Active tickets: {{ user.tickets.length }}
+          </p>
+        </div>
+      </div>
+      <div class="button-container">
+        <button (click)="viewDetails(user._id!)">
+          <img
+            class="details"
+            src="/assets/icons/user-details.svg"
+            alt="User detail icons"
+            title="View user details"
+          />
+        </button>
+        <button (click)="viewDetails(user._id!)">
+          <img
+            class="delete"
+            src="/assets/icons/delete.svg"
+            alt="Delete user icons"
+            title="Delete user"
+          />
+        </button>
+      </div>
       <!-- <button (click)="delete(user._id!)">Delete</button> -->
-      <button (click)="viewDetails(user._id!)">View details</button>
     </li>
   </ul>
 </section>
