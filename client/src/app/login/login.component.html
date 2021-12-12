@@ -1,25 +1,41 @@
 <section class="login-container">
-  <form class="login-wrapper" [formGroup]="login">
-    <div class="input-container">
-      <label for="login-email">Email</label>
-      <input id="login-email" type="text" formControlName="email" />
-    </div>
-    <div class="input-container">
-      <label for="login-password">Password</label>
-      <input
-        id="login-password"
-        [type]="showPassword ? 'text' : 'password'"
-        formControlName="password"
-      />
-    </div>
-    <button (click)="onSubmit()">Login</button>
-  </form>
-  <button
-    (mousedown)="showPassword = !showPassword"
-    (mouseup)="showPassword = !showPassword"
-  >
-    View password
-  </button>
+  <div class="login-wrapper">
+    <h2 class="title">Login</h2>
+    <form [formGroup]="login" (submit)="onSubmit()">
+      <div class="input-container">
+        <label for="login-email">Email</label>
+        <input id="login-email" type="text" formControlName="email" />
+      </div>
+      <div class="input-container">
+        <label for="login-password">Password</label>
+        <div class="login-password-wrapper">
+          <input
+            class="login-password"
+            id="login-password"
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            (click)="showPassword = !showPassword"
+          >
+            <img
+              class="toggle-password-icon"
+              src="/assets/icons/{{
+                showPassword ? 'password-visible' : 'password-hidden'
+              }}.svg"
+              alt="{{
+                showPassword ? 'Password visible icon' : 'Password Hidden icon'
+              }}"
+            />
+          </button>
+        </div>
+      </div>
+      <button class="login-button">Login</button>
+    </form>
+  </div>
+
   <div class="square left"></div>
   <div class="square right"></div>
 </section>
