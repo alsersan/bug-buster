@@ -1,5 +1,21 @@
 <section class="user-container">
-  <div *ngIf="user$ | async" class="content-wrapper">
-    {{ this.user$ | async | json }}
+  <div *ngIf="user" class="content-wrapper">
+    <button class="edit-btn">
+      <img
+        class="edit-icon"
+        src="/assets/icons/edit.svg"
+        alt="Edit icon"
+        title="Edit user"
+      />
+    </button>
+    <div class="user">
+      <div class="avatar"></div>
+      <h2 class="user-name">{{ user.name }} {{ user.surname }}</h2>
+      <div class="user-info">
+        <p>Role: {{ roles[user.role] }}</p>
+        <p>Seniority: {{ user.seniority | titlecase }}</p>
+        <p>Email: {{ user.email }}</p>
+      </div>
+    </div>
   </div>
 </section>
