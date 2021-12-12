@@ -40,6 +40,11 @@ label {
   display: flex;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: $border-radius;
+
+  &:focus-within {
+    border: 1px solid $primary-color;
+    box-shadow: 0 0 5px $primary-color;
+  }
 }
 
 .login-password {
