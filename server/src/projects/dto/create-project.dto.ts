@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsDate, IsNotEmpty, IsString } from 'class-validator';
 import { Members } from '../schemas/members.schema';
 
 export class CreateProjectDto {
@@ -12,8 +12,8 @@ export class CreateProjectDto {
   description: string;
 
   @IsNotEmpty()
-  @IsString()
-  dateCreated: string;
+  @IsDate()
+  dateCreated: Date;
 
   @Type(() => Members)
   @IsNotEmpty()
