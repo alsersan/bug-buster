@@ -1,5 +1,11 @@
 <section class="projects-container">
-  <button (click)="addProject()">Add Project</button>
+  <button class="add-project" (click)="addProject()">
+    <img
+      class="add-user-logo"
+      src="/assets/icons/add-user.svg"
+      alt="Add user icon"
+    />
+  </button>
   <ul class="project-list">
     <li class="project" *ngFor="let project of projects$ | async">
       <div class="name-wrapper">
