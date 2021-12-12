@@ -1,5 +1,11 @@
 <section class="users">
-  <button (click)="addUser()">Add User</button>
+  <button class="add-user" (click)="addUser()">
+    <img
+      class="add-user-logo"
+      src="/assets/icons/add-user.svg"
+      alt="Add user icon"
+    />
+  </button>
   <ul class="user-list">
     <li class="user" *ngFor="let user of users$ | async">
       <div class="user-info">

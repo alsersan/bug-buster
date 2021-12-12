@@ -4,12 +4,12 @@
 .projects-container {
   background-color: $secondary-background;
   width: 100%;
-  min-height: 100%;
-  position: relative;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .add-project {
-  position: sticky;
+  position: absolute;
   top: 2rem;
   left: 2rem;
   background-color: $main-background;

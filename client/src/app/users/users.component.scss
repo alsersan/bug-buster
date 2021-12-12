@@ -4,7 +4,27 @@
 .users {
   background-color: $secondary-background;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.add-user {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background-color: $main-background;
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+  &:hover .add-user-logo {
+    filter: $primary-color-svg;
+  }
+}
+
+.add-user-logo {
+  height: 2.5rem;
 }
 
 .user-list {
