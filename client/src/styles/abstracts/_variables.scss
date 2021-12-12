@@ -10,4 +10,9 @@ $delete-color-svg: invert(12%) sepia(91%) saturate(7183%) hue-rotate(5deg)
 $white-color-svg: invert(100%) sepia(0%) saturate(1%) hue-rotate(16deg)
   brightness(106%) contrast(100%);
 
+$green-status: rgb(61, 237, 4);
+$red-status: rgb(237, 4, 4);
+$orange-status: rgb(237, 189, 4);
+$yellow-status: rgb(230, 237, 4);
+
 $border-radius: 5px;
