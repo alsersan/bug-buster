@@ -11,7 +11,7 @@
 }
 
 .form-container {
-  @include box-styles;
+  @include box-styles(3rem);
   width: 40rem;
   height: 60rem;
 }

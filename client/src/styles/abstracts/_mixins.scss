@@ -1,10 +1,15 @@
 @import "./variables";
 
-@mixin box-styles {
+@mixin box-styles($padding: false) {
   border-radius: $border-radius;
   background-color: $main-background;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  padding: 2rem;
+
+  @if $padding {
+    padding: $padding;
+  } @else {
+    padding: 2rem;
+  }
 }
 
 @mixin label-required {
