@@ -6,8 +6,8 @@ export interface Project {
   name: string;
   description: string;
   status: string;
-  dateCreated: string;
-  dateClosed: string | null;
+  dateCreated: Date;
+  dateClosed: Date | null;
   tickets: Array<Ticket>;
   members: {
     projectManager: User;
@@ -19,7 +19,7 @@ export interface Project {
 export interface NewProject {
   name: string;
   description: string;
-  dateCreated: string;
+  dateCreated: Date;
   members: {
     projectManager: string;
   };

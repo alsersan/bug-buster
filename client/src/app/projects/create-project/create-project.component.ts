@@ -38,7 +38,7 @@ export class CreateProjectComponent {
       const project: NewProject = {
         name: formResult.name,
         description: formResult.description,
-        dateCreated: 'today',
+        dateCreated: new Date(),
         members: { projectManager: formResult.projectManager },
       };
       this.store.dispatch(createProject({ project }));
