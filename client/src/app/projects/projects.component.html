@@ -14,6 +14,7 @@
       </div>
       <p>description: {{ project.description }}</p>
       <p>status: {{ project.status }}</p>
+      <div class="status-icon-active"></div>
       <p>date created: {{ project.dateCreated | date: "medium" }}</p>
       <button (click)="delete(project._id!)">Delete</button>
       <button (click)="viewDetails(project._id!)">View details</button>

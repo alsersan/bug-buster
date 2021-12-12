@@ -26,3 +26,43 @@
 @mixin label {
   font-weight: 500;
 }
+
+@mixin status-icon($type) {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
+
+  @if $type == "green" {
+    background: radial-gradient(
+      circle,
+      rgb(61, 237, 4) 12%,
+      rgb(38, 230, 10) 37%,
+      rgb(14, 195, 15) 100%
+    );
+    box-shadow: 0 0 4px rgb(38, 230, 10);
+  } @else if $type == "red" {
+    background: radial-gradient(
+      circle,
+      rgb(237, 4, 4) 12%,
+      rgb(230, 10, 10) 37%,
+      rgb(195, 14, 14) 100%
+    );
+    box-shadow: 0 0 4px rgb(230, 10, 10);
+  } @else if $type == "orange" {
+    background: radial-gradient(
+      circle,
+      rgb(237, 189, 4) 12%,
+      rgb(230, 174, 10) 37%,
+      rgb(195, 143, 14) 100%
+    );
+    box-shadow: 0 0 4px rgb(230, 174, 10);
+  } @else if $type == "yellow" {
+    background: radial-gradient(
+      circle,
+      rgb(230, 237, 4) 12%,
+      rgb(223, 230, 10) 37%,
+      rgb(192, 195, 14) 100%
+    );
+    box-shadow: 0 0 4px rgb(223, 230, 10);
+  }
+}
