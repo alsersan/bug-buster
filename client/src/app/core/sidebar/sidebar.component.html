@@ -3,6 +3,7 @@
     <li class="section" *ngFor="let section of sections">
       <a class="link" routerLink="{{ section }}" routerLinkActive="is-active"
         ><img
+          routerLinkActive="is-logo-active"
           class="logo"
           src="/assets/icons/{{ section }}.svg"
           alt="{{ section | titlecase }} icon"

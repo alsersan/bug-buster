@@ -44,8 +44,13 @@
   width: 2.5rem;
 }
 
+.is-logo-active {
+  filter: $white-color-svg;
+}
+
 .is-active {
   background-color: $primary-color;
+  color: white;
   &:hover {
     background-color: $primary-color;
   }
