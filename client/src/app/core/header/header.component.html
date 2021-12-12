@@ -1,11 +1,43 @@
 <nav class="navbar">
   <div class="logo">here goes the logo</div>
-  <div *ngIf="loguedInUser.name" class="user-wrapper">
-    <div class="name-wrapper">
-      <p class="name">{{ loguedInUser.name }} {{ loguedInUser.surname }}</p>
-      <p class="role">{{ roles[loguedInUser.role] }}</p>
+  <div class="menu-wrapper">
+    <div *ngIf="loguedInUser.name" class="user-wrapper">
+      <div class="name-wrapper">
+        <p class="name">{{ loguedInUser.name }} {{ loguedInUser.surname }}</p>
+        <p class="role">{{ roles[loguedInUser.role] }}</p>
+      </div>
+      <div class="avatar"></div>
+      <img class="arrow" src="/assets/icons/arrow.svg" alt="Down arrow icon" />
     </div>
-    <div class="avatar"></div>
-    <img class="arrow" src="/assets/icons/arrow.svg" alt="Down arrow icon" />
+    <ul class="menu">
+      <li>
+        <a class="menu-item" routerLink="profile"
+          ><div class="menu-logo-wrapper">
+            <img
+              class="menu-logo"
+              src="/assets/icons/profile.svg"
+              alt="Profile icon"
+            />
+          </div>
+          Profile</a
+        >
+      </li>
+      <li>
+        <button
+          (click)="logoutUser()"
+          class="menu-item menu-button"
+          routerLink="profile"
+        >
+          <div class="menu-logo-wrapper">
+            <img
+              class="menu-logo"
+              src="/assets/icons/logout.svg"
+              alt="Logout icon"
+            />
+          </div>
+          Logout
+        </button>
+      </li>
+    </ul>
   </div>
 </nav>

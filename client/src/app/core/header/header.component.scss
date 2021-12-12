@@ -21,6 +21,52 @@
   background-color: lightskyblue;
 }
 
+.menu-wrapper {
+  position: relative;
+
+  &:hover .menu {
+    display: block;
+  }
+}
+
+.menu {
+  position: absolute;
+  display: none;
+  right: 2rem;
+  background-color: $main-background;
+  z-index: 2;
+  border-radius: 0 0 $border-radius $border-radius;
+  padding: 0.5rem;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  transition: opacity 1s;
+}
+
+.menu-item {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  border-radius: $border-radius;
+
+  &:hover {
+    background-color: $hover-menu-color;
+  }
+}
+
+.menu-button {
+  font-size: 1.6rem;
+}
+
+.menu-logo-wrapper {
+  width: 4rem;
+  text-align: left;
+}
+
+.menu-logo {
+  height: 2.2rem;
+}
+
 .user-wrapper {
   display: flex;
   align-items: center;
