@@ -127,7 +127,7 @@ describe('Given UsersService', () => {
   });
 
   describe('when deleteUser is called', () => {
-    it('it should return the updated user', () => {
+    it('it should return a delete message', () => {
       const userId = '1';
       const deleteMsg = { deletedUserId: userId };
       service.deleteUser(userId).subscribe((data) => {

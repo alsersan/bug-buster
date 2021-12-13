@@ -8,7 +8,7 @@ import { User } from 'src/app/models/user.model';
 import { Ticket } from 'src/app/models/ticket.model';
 
 const mockModification = {
-  modifiedProperty: 'testUser',
+  modifiedProperty: 'testModification',
 };
 
 describe('Given ModificationsService', () => {
