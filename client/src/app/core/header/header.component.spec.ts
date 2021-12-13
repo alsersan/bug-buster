@@ -7,7 +7,12 @@ import { HeaderComponent } from './header.component';
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
-  let initialState = { loguedInUser: { _id: '' } };
+  let initialState = {
+    loguedInUser: {
+      user: { name: 'test' },
+      loginFailed: false,
+    },
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
