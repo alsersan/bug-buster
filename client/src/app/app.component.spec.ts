@@ -1,12 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
 
 describe('AppComponent', () => {
+  let initialState = { loguedInUser: { _id: '' } };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, CoreModule],
       declarations: [AppComponent],
+      providers: [provideMockStore({ initialState })],
     }).compileComponents();
   });
 

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { provideMockStore } from '@ngrx/store/testing';
 
 import { CreateProjectComponent } from './create-project.component';
@@ -11,6 +12,7 @@ describe('CreateProjectComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CreateProjectComponent],
+      imports: [ReactiveFormsModule],
       providers: [provideMockStore({ initialState })],
     }).compileComponents();
   });
