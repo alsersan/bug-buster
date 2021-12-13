@@ -1,17 +1,32 @@
 import { ActionReducer, createReducer, on } from '@ngrx/store';
-import { User } from 'src/app/models/user.model';
+import { User, UserState } from 'src/app/models/user.model';
 import * as actions from './auth.actions';
 
-const initialState: User = {} as User;
+const initialState: UserState = {
+  user: {} as User,
+  loginFailed: false,
+};
 
 export const authReducer = createReducer(
   initialState,
 
-  // LOGIN
-  on(actions.loginSuccess, (state, { loguedInUser }) => loguedInUser),
+  // LOGIN SUCCESS
+  on(actions.loginSuccess, (state, { loguedInUser }) => ({
+    ...state,
+    user: loguedInUser,
+  })),
+
+  // LOGIN FAILURE
+  on(actions.loginFailure, (state, { error }) => ({
+    ...state,
+    loginFailed: true,
+  })),
 
   // LOGOUT
-  on(actions.logoutSuccess, (state) => ({} as User))
+  on(actions.logoutSuccess, (state) => ({
+    user: {} as User,
+    loginFailed: false,
+  }))
 );
 
 export function clearState(reducer: ActionReducer<any>): ActionReducer<any> {

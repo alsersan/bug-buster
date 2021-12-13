@@ -27,3 +27,8 @@ export interface NewUser {
 export interface DeletedUser {
   deletedUserId: string;
 }
+
+export interface UserState {
+  user: User;
+  loginFailed: boolean;
+}

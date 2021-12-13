@@ -64,6 +64,11 @@ label {
   width: 2rem;
 }
 
+.login-error {
+  color: red;
+  font-size: 1.4rem;
+}
+
 .login-button {
   background-color: $primary-color;
   color: white;

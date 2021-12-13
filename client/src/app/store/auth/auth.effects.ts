@@ -48,7 +48,8 @@ export class LoginEffects {
                 return actions.loginSuccess({ loguedInUser });
               })
             );
-          })
+          }),
+          catchError((error: any) => of(actions.loginFailure(error)))
         )
       )
     )
