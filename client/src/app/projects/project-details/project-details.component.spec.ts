@@ -8,14 +8,35 @@ describe('ProjectDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProjectDetailsComponent ]
-    })
-    .compileComponents();
+      declarations: [ProjectDetailsComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProjectDetailsComponent);
     component = fixture.componentInstance;
+    component.project = {
+      name: '',
+      status: '',
+      dateClosed: null,
+      dateCreated: new Date(),
+      description: '',
+      tickets: [],
+      members: {
+        projectManager: {
+          name: '',
+          surname: '',
+          avatarUrl: '',
+          role: '',
+          seniority: '',
+          email: '',
+          projects: [],
+          tickets: [],
+        },
+        developers: [],
+        qualityAssurance: [],
+      },
+    };
     fixture.detectChanges();
   });
 
