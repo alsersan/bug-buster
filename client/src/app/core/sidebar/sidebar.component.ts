@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { User } from 'src/app/models/user.model';
+import { UserState } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,9 +9,9 @@ import { User } from 'src/app/models/user.model';
 })
 export class SidebarComponent implements OnInit {
   sections: string[] = ['dashboard', 'projects', 'users'];
-  loguedInUser!: User;
+  loguedInUser!: UserState;
 
-  constructor(private store: Store<{ loguedInUser: User }>) {}
+  constructor(private store: Store<{ loguedInUser: UserState }>) {}
   ngOnInit(): void {
     this.store
       .select('loguedInUser')

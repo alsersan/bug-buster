@@ -1,10 +1,12 @@
 <nav class="navbar">
   <div class="logo">here goes the logo</div>
   <div class="menu-wrapper">
-    <div *ngIf="loguedInUser.name" class="user-wrapper">
+    <div *ngIf="loguedInUser.user.name" class="user-wrapper">
       <div class="name-wrapper">
-        <p class="name">{{ loguedInUser.name }} {{ loguedInUser.surname }}</p>
-        <p class="role">{{ roles[loguedInUser.role] }}</p>
+        <p class="name">
+          {{ loguedInUser.user.name }} {{ loguedInUser.user.surname }}
+        </p>
+        <p class="role">{{ roles[loguedInUser.user.role] }}</p>
       </div>
       <div class="avatar"></div>
       <img class="arrow" src="/assets/icons/arrow.svg" alt="Down arrow icon" />

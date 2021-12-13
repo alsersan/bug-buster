@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { User } from 'src/app/models/user.model';
+import { UserState } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-layout',
@@ -8,8 +8,8 @@ import { User } from 'src/app/models/user.model';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  loguedInUser!: User;
-  constructor(private store: Store<{ loguedInUser: User }>) {}
+  loguedInUser!: UserState;
+  constructor(private store: Store<{ loguedInUser: UserState }>) {}
 
   ngOnInit(): void {
     this.store

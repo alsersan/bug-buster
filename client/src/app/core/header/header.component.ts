@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { User } from 'src/app/models/user.model';
+import { User, UserState } from 'src/app/models/user.model';
 import { logout } from 'src/app/store/auth/auth.actions';
 import { capitalizedRoles } from 'src/app/utils/roles';
 
@@ -11,9 +11,9 @@ import { capitalizedRoles } from 'src/app/utils/roles';
 })
 export class HeaderComponent implements OnInit {
   roles = capitalizedRoles;
-  loguedInUser!: User;
+  loguedInUser!: UserState;
 
-  constructor(private store: Store<{ loguedInUser: User }>) {}
+  constructor(private store: Store<{ loguedInUser: UserState }>) {}
 
   ngOnInit() {
     this.store

@@ -6,7 +6,7 @@ import { Store, StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { User } from './models/user.model';
+import { UserState } from './models/user.model';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
 import { checkLogin } from './store/auth/auth.actions';
 import { LoginEffects } from './store/auth/auth.effects';
@@ -41,7 +41,7 @@ import { usersReducer } from './store/users/users.reducer';
     },
     {
       provide: APP_INITIALIZER,
-      useFactory: (store: Store<{ loguedInUser: User }>) => {
+      useFactory: (store: Store<{ loguedInUser: UserState }>) => {
         return () => {
           store.dispatch(checkLogin());
         };
