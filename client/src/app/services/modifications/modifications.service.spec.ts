@@ -30,7 +30,7 @@ describe('Given ModificationsService', () => {
   });
 
   describe('when createModification is called', () => {
-    it('it should return a new modification', () => {
+    it('should return a new modification', () => {
       service
         .createModification({
           modifiedProperty: '',

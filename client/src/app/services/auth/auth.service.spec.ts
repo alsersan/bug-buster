@@ -28,7 +28,7 @@ describe('Given AuthService', () => {
   });
 
   describe('when login is called', () => {
-    it('it should return a token', () => {
+    it('should return a token', () => {
       service.login('test@test.com', 'password').subscribe((data) => {
         expect(JSON.stringify(data)).toEqual(JSON.stringify(mockToken));
       });
@@ -57,7 +57,7 @@ describe('Given AuthService', () => {
         mockLocalStorage.removeItem
       );
     });
-    it('it should delete token from local storage', () => {
+    it('should delete token from local storage', () => {
       service.logout();
       expect(storage).toEqual({});
     });

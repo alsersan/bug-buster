@@ -29,7 +29,7 @@ describe('Given ProjectsService', () => {
   });
 
   describe('when createProject is called', () => {
-    it('it should return a new project', () => {
+    it('should return a new project', () => {
       service
         .createProject({
           name: '',
@@ -55,7 +55,7 @@ describe('Given ProjectsService', () => {
   });
 
   describe('when getAllProjects is called', () => {
-    it('it should return all the projects', () => {
+    it('should return all the projects', () => {
       service.getAllProjects().subscribe((data) => {
         expect(JSON.stringify(data)).toEqual(JSON.stringify([mockProject]));
       });
@@ -72,7 +72,7 @@ describe('Given ProjectsService', () => {
   });
 
   describe('when getProjectById is called', () => {
-    it('it should one project', () => {
+    it('should return one project', () => {
       const projectId = '1';
       service.getProjectById(projectId).subscribe((data) => {
         expect(JSON.stringify(data)).toEqual(JSON.stringify(mockProject));
@@ -90,7 +90,7 @@ describe('Given ProjectsService', () => {
   });
 
   describe('when updateProject is called', () => {
-    it('it should return the updated project', () => {
+    it('should return the updated project', () => {
       const projectId = '1';
       service.updateProject(projectId, { name: '' }).subscribe((data) => {
         expect(JSON.stringify(data)).toEqual(JSON.stringify(mockProject));
@@ -108,7 +108,7 @@ describe('Given ProjectsService', () => {
   });
 
   describe('when deleteProject is called', () => {
-    it('it should return a delete message', () => {
+    it('should return a delete message', () => {
       const projectId = '1';
       const deleteMsg = { deletedProjectId: projectId };
       service.deleteProject(projectId).subscribe((data) => {

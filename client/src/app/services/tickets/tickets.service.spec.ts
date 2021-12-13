@@ -31,7 +31,7 @@ describe('Given TicketsService', () => {
   });
 
   describe('when createTicket is called', () => {
-    it('it should return a new ticket', () => {
+    it('should return a new ticket', () => {
       service
         .createTicket({
           name: '',
@@ -58,7 +58,7 @@ describe('Given TicketsService', () => {
   });
 
   describe('when getTicketById is called', () => {
-    it('it should return one ticket', () => {
+    it('should return one ticket', () => {
       const ticketId = '1';
       service.getTicketById(ticketId).subscribe((data) => {
         expect(JSON.stringify(data)).toEqual(JSON.stringify(mockTicket));
@@ -76,7 +76,7 @@ describe('Given TicketsService', () => {
   });
 
   describe('when updateTicket is called', () => {
-    it('it should return the updated ticket', () => {
+    it('should return the updated ticket', () => {
       const ticketId = '1';
       service.updateTicket(ticketId, { name: '' }).subscribe((data) => {
         expect(JSON.stringify(data)).toEqual(JSON.stringify(mockTicket));
@@ -94,7 +94,7 @@ describe('Given TicketsService', () => {
   });
 
   describe('when deleteTicket is called', () => {
-    it('it should return a delete message', () => {
+    it('should return a delete message', () => {
       const ticketId = '1';
       const deleteMsg = { deletedTicketId: ticketId };
       service.deleteTicket(ticketId).subscribe((data) => {

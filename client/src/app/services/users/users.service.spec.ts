@@ -29,7 +29,7 @@ describe('Given UsersService', () => {
   });
 
   describe('when createUser is called', () => {
-    it('it should return a new user', () => {
+    it('should return a new user', () => {
       service
         .createUser({
           name: '',
@@ -56,7 +56,7 @@ describe('Given UsersService', () => {
   });
 
   describe('when getAllUsers is called', () => {
-    it('it should return all the users', () => {
+    it('should return all the users', () => {
       service.getAllUsers().subscribe((data) => {
         expect(JSON.stringify(data)).toEqual(JSON.stringify([mockUser]));
       });
@@ -73,7 +73,7 @@ describe('Given UsersService', () => {
   });
 
   describe('when getUserById is called', () => {
-    it('it should one users', () => {
+    it('should return one user', () => {
       const userId = '1';
       service.getUserById(userId).subscribe((data) => {
         expect(JSON.stringify(data)).toEqual(JSON.stringify(mockUser));
@@ -91,7 +91,7 @@ describe('Given UsersService', () => {
   });
 
   describe('when getUserWithToken is called', () => {
-    it('it should one users', () => {
+    it('should return one user', () => {
       const userId = '1';
       service.getUserWithToken().subscribe((data) => {
         expect(JSON.stringify(data)).toEqual(JSON.stringify(mockUser));
@@ -109,7 +109,7 @@ describe('Given UsersService', () => {
   });
 
   describe('when updateUser is called', () => {
-    it('it should return the updated user', () => {
+    it('should return the updated user', () => {
       const userId = '1';
       service.updateUser(userId, { name: '' }).subscribe((data) => {
         expect(JSON.stringify(data)).toEqual(JSON.stringify(mockUser));
@@ -127,7 +127,7 @@ describe('Given UsersService', () => {
   });
 
   describe('when deleteUser is called', () => {
-    it('it should return a delete message', () => {
+    it('should return a delete message', () => {
       const userId = '1';
       const deleteMsg = { deletedUserId: userId };
       service.deleteUser(userId).subscribe((data) => {
