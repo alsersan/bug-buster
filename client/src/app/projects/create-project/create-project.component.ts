@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { NewProject, Project } from 'src/app/models/project.model';
@@ -9,7 +9,7 @@ import { createProject } from 'src/app/store/projects/projects.actions';
   templateUrl: './create-project.component.html',
   styleUrls: ['./create-project.component.scss'],
 })
-export class CreateProjectComponent {
+export class CreateProjectComponent implements OnInit {
   managers = [
     { name: 'bla', _id: '2' },
     { name: 'blu', _id: '3' },
@@ -19,18 +19,23 @@ export class CreateProjectComponent {
       hidden: true,
     },
   ];
-  createProject = new FormGroup(
-    {
-      name: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
-      projectManager: new FormControl(
-        '61aa5d8510c9e6570de7332e',
-        Validators.required
-      ),
-    },
-    { updateOn: 'blur' }
-  );
+  createProject!: FormGroup;
+
   constructor(private store: Store<{ projects: Project[] }>) {}
+
+  ngOnInit() {
+    this.createProject = new FormGroup(
+      {
+        name: new FormControl('', Validators.required),
+        description: new FormControl('', Validators.required),
+        projectManager: new FormControl(
+          '61aa5d8510c9e6570de7332e',
+          Validators.required
+        ),
+      },
+      { updateOn: 'blur' }
+    );
+  }
 
   onSubmit() {
     if (this.createProject.valid) {
