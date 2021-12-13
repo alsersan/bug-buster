@@ -12,7 +12,7 @@
             createProject.controls['name'].touched
           "
         >
-          Name is required.
+          Name is required
         </div>
       </div>
       <div class="input-container">
@@ -22,10 +22,18 @@
           class="project-description"
           formControlName="description"
         ></textarea>
+        <div
+          class="error-msg"
+          *ngIf="
+            createProject.controls['description'].invalid &&
+            createProject.controls['description'].touched
+          "
+        >
+          Description is required
+        </div>
       </div>
       <div class="input-container">
         <label for="project-manager">Project Manager</label>
-
         <select
           name="project-manager"
           id="project-manager"
