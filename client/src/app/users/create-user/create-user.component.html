@@ -1,0 +1,47 @@
+<section class="create-user-container">
+  <div class="form-container">
+    <h2 class="title">Create User</h2>
+    <form [formGroup]="createUser">
+      <div class="input-container">
+        <label for="user-name">Name</label>
+        <input id="user-name" type="text" formControlName="name" />
+        <div
+          class="error-msg"
+          *ngIf="
+            createUser.controls['name'].invalid &&
+            createUser.controls['name'].touched
+          "
+        >
+          Name is required
+        </div>
+      </div>
+      <div class="input-container">
+        <label for="user-surname">Surname</label>
+        <input id="user-surname" type="text" formControlName="surname" />
+        <div
+          class="error-msg"
+          *ngIf="
+            createUser.controls['surname'].invalid &&
+            createUser.controls['surname'].touched
+          "
+        >
+          Surname is required
+        </div>
+      </div>
+      <div class="input-container">
+        <label for="user-email">Email</label>
+        <input id="user-email" type="text" formControlName="email" />
+        <div
+          class="error-msg"
+          *ngIf="
+            createUser.controls['email'].invalid &&
+            createUser.controls['email'].touched
+          "
+        >
+          Email is required and must be valid
+        </div>
+      </div>
+      <button class="create-btn" (click)="onSubmit()">Create User</button>
+    </form>
+  </div>
+</section>
