@@ -10,6 +10,9 @@
 
 .add-project {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   top: 2rem;
   left: 2rem;
   background-color: $main-background;

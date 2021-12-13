@@ -1,11 +1,11 @@
 <section class="projects-container">
-  <button class="add-project" (click)="addProject()">
+  <a routerLink="/projects/create" class="add-project">
     <img
       class="add-project-logo"
       src="/assets/icons/add-project.svg"
       alt="Add user icon"
     />
-  </button>
+  </a>
   <ul class="project-list">
     <li class="project" *ngFor="let project of projects$ | async">
       <div class="top-row">
@@ -32,14 +32,14 @@
           </p>
         </div>
         <div class="button-container">
-          <button (click)="viewDetails(project._id!)">
+          <a routerLink="/projects/{{ project._id }}">
             <img
               class="details"
               src="/assets/icons/details.svg"
               alt="User detail icons"
               title="View user details"
             />
-          </button>
+          </a>
           <button (click)="delete(project._id!)">
             <img
               class="delete"

@@ -24,11 +24,5 @@ export class UsersComponent implements OnInit {
     this.store.dispatch(getAllUsers());
   }
 
-  addUser() {
-    this.router.navigateByUrl('/users/create');
-  }
-
-  viewDetails(userId: string) {
-    this.router.navigateByUrl(`/users/${userId}`);
-  }
+  delete(userId: string) {}
 }

@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { Project } from 'src/app/models/project.model';
 import { capitalizedRoles } from 'src/app/utils/roles';
 
@@ -12,10 +11,7 @@ export class MembersComponent {
   @Input() project!: Project;
   roles = capitalizedRoles;
 
-  constructor(private router: Router) {}
+  constructor() {}
 
-  viewDetails(userId: string) {
-    this.router.navigateByUrl(`/users/${userId}`);
-  }
   deleteMember(userId: string) {}
 }

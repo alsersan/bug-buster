@@ -29,12 +29,4 @@ export class ProjectsComponent implements OnInit {
   delete(projectId: string) {
     this.store.dispatch(deleteProject({ projectId }));
   }
-
-  addProject() {
-    this.router.navigateByUrl('/projects/create');
-  }
-
-  viewDetails(projectId: string) {
-    this.router.navigateByUrl(`/projects/${projectId}`);
-  }
 }
