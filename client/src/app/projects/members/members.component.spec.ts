@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { MembersComponent } from './members.component';
 
@@ -8,14 +9,36 @@ describe('MembersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MembersComponent ]
-    })
-    .compileComponents();
+      declarations: [MembersComponent],
+      imports: [RouterTestingModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(MembersComponent);
     component = fixture.componentInstance;
+    component.project = {
+      name: '',
+      status: '',
+      dateClosed: null,
+      dateCreated: new Date(),
+      description: '',
+      tickets: [],
+      members: {
+        projectManager: {
+          name: '',
+          surname: '',
+          avatarUrl: '',
+          role: '',
+          seniority: '',
+          email: '',
+          projects: [],
+          tickets: [],
+        },
+        developers: [],
+        qualityAssurance: [],
+      },
+    };
     fixture.detectChanges();
   });
 

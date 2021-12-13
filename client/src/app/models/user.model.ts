@@ -9,7 +9,7 @@ export interface User {
   role: string;
   seniority: string;
   email: string;
-  password: string;
+  password?: string;
   projects: Array<Project>;
   tickets: Array<Ticket>;
 }
