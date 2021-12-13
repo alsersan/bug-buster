@@ -65,7 +65,7 @@ label {
 }
 
 .login-button {
-  background-color: #0995e7;
+  background-color: $primary-color;
   color: white;
   font-size: 1.8rem;
   font-weight: bold;
@@ -75,7 +75,7 @@ label {
   margin-top: 2rem;
 
   &:hover {
-    background-color: #0c7de4;
+    background-color: $primary-color-darker;
   }
 }
 

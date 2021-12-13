@@ -6,6 +6,7 @@
         <label for="project-name">Name</label>
         <input id="project-name" type="text" formControlName="name" />
         <div
+          class="error-msg"
           *ngIf="
             createProject.controls['name'].invalid &&
             createProject.controls['name'].touched
@@ -35,8 +36,7 @@
           </option>
         </select>
       </div>
-
-      <button (click)="onSubmit()">Add project</button>
+      <button class="create-btn" (click)="onSubmit()">Create Project</button>
     </form>
   </div>
 </section>
