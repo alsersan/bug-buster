@@ -5,7 +5,5 @@
       <app-members [project]="(project$ | async)!"></app-members>
       <app-tickets [project]="(project$ | async)!"></app-tickets>
     </div>
-
-    {{ this.project$ | async | json }}
   </div>
 </section>

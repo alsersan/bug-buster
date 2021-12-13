@@ -1,25 +1,97 @@
-<div class="member-container">
-  <div class="manager-container">
-    PROJECT MANAGER
-    {{ project.members.projectManager | json }}
+<div class="members-wrapper">
+  <div class="member-container">
+    <p class="role-title">PROJECT MANAGER</p>
+    <div *ngIf="project.members.projectManager?.name" class="member">
+      <div class="details-container">
+        <div class="avatar"></div>
+        <div class="name-container">
+          <p class="name">
+            {{ project.members.projectManager.name }}
+            {{ project.members.projectManager.surname }}
+          </p>
+          <p>
+            {{ project.members.projectManager.seniority | titlecase }}
+          </p>
+        </div>
+      </div>
+      <div class="icon-container">
+        <button (click)="viewDetails(project.members.projectManager._id!)">
+          <img
+            class="details"
+            src="/assets/icons/user-details.svg"
+            alt="User detail icons"
+            title="View user details"
+          />
+        </button>
+        <button (click)="deleteMember(project.members.projectManager._id!)">
+          <img
+            class="delete"
+            src="/assets/icons/delete.svg"
+            alt="Delete user icons"
+            title="Delete user"
+          />
+        </button>
+      </div>
+    </div>
+    <div class="member">
+      <div class="details-container">
+        <div class="avatar"></div>
+        <div class="name-container">
+          <p class="name">
+            {{ project.members.projectManager.name }}
+            {{ project.members.projectManager.surname }}
+          </p>
+          <p>
+            {{ project.members.projectManager.seniority | titlecase }}
+          </p>
+        </div>
+      </div>
+      <div class="icon-container">
+        <button (click)="viewDetails(project.members.projectManager._id!)">
+          <img
+            class="details"
+            src="/assets/icons/user-details.svg"
+            alt="User detail icons"
+            title="View user details"
+          />
+        </button>
+        <button (click)="deleteMember(project.members.projectManager._id!)">
+          <img
+            class="delete"
+            src="/assets/icons/delete.svg"
+            alt="Delete user icons"
+            title="Delete user"
+          />
+        </button>
+      </div>
+    </div>
+    <div *ngIf="!project.members.projectManager?.name" class="member">
+      No project manager assigned
+    </div>
   </div>
-  <div class="developer-container">
-    DEVELOPERS
-    <ul class="developer-list">
+  <div class="member-container">
+    <p class="role-title">DEVELOPERS</p>
+    <ul *ngIf="project.members.developers?.length" class="member-list">
       <li class="member" *ngFor="let developer of project.members.developers">
         {{ developer }}
       </li>
     </ul>
+    <div *ngIf="!project.members.developers?.length" class="member">
+      No developers assigned
+    </div>
   </div>
-  <div class="quality-container">
-    QUALITY ASSURANCE
-    <ul class="quality-list">
+  <div class="member-container">
+    <p class="role-title">QUALITY ASSURANCE</p>
+    <ul *ngIf="project.members.qualityAssurance?.length" class="member-list">
       <li
-        class="quality"
+        class="member"
         *ngFor="let qualityAssurance of project!.members.qualityAssurance"
       >
         {{ qualityAssurance }}
       </li>
     </ul>
+    <div *ngIf="!project.members.qualityAssurance?.length" class="member">
+      No quality assurance assigned
+    </div>
   </div>
 </div>
