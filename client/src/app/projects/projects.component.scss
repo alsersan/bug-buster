@@ -41,18 +41,65 @@
   max-width: 80rem;
   min-height: 15rem;
 }
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
 .name-wrapper {
   display: flex;
   gap: 3rem;
 }
 
 .name {
+  font-size: 1.8rem;
+}
+
+.status-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.details-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.description {
   margin-bottom: 1rem;
-  font-size: 1.6rem;
+}
+
+.bolder {
+  font-weight: 600;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+.details {
+  height: 2rem;
+  &:hover {
+    filter: $primary-color-svg;
+  }
+}
+
+.delete {
+  width: 2rem;
+
+  &:hover {
+    filter: $delete-color-svg;
+  }
 }
 
 .status-icon-active {
-  @include status-icon("orange");
+  @include status-icon("green");
 }
 
 .status-icon-closed {
