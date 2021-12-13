@@ -1,13 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Ticket } from 'src/app/models/ticket.model';
+import { NewTicket, Ticket } from 'src/app/models/ticket.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TicketsService {
-  private ticketsUrl = 'http://localhost:3001/projects';
+  private ticketsUrl = `${environment.baseUrl}/tickets`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -15,7 +16,7 @@ export class TicketsService {
 
   constructor(private http: HttpClient) {}
 
-  createTicket(ticket: Ticket): Observable<Ticket> {
+  createTicket(ticket: NewTicket): Observable<Ticket> {
     return this.http.post<Ticket>(this.ticketsUrl, ticket, this.httpOptions);
   }
 
