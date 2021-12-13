@@ -1,16 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideMockStore } from '@ngrx/store/testing';
 import { SidebarComponent } from './sidebar.component';
 
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
   let fixture: ComponentFixture<SidebarComponent>;
+  let initialState = { loguedInUser: { _id: '' } };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SidebarComponent ]
-    })
-    .compileComponents();
+      declarations: [SidebarComponent],
+      providers: [provideMockStore({ initialState })],
+    }).compileComponents();
   });
 
   beforeEach(() => {
