@@ -1,7 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NewProject, Project } from 'src/app/models/project.model';
+import {
+  DeletedProject,
+  NewProject,
+  Project,
+} from 'src/app/models/project.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -39,8 +43,8 @@ export class ProjectsService {
     );
   }
 
-  deleteProject(projectId: string): Observable<any> {
-    return this.http.delete<Project>(
+  deleteProject(projectId: string): Observable<DeletedProject> {
+    return this.http.delete<DeletedProject>(
       `${this.projectsUrl}/${projectId}`,
       this.httpOptions
     );

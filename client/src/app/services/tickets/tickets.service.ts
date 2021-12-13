@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NewTicket, Ticket } from 'src/app/models/ticket.model';
+import { DeletedTicket, NewTicket, Ticket } from 'src/app/models/ticket.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -32,8 +32,8 @@ export class TicketsService {
     );
   }
 
-  deleteTicket(ticketId: string): Observable<any> {
-    return this.http.delete<Ticket>(
+  deleteTicket(ticketId: string): Observable<DeletedTicket> {
+    return this.http.delete<DeletedTicket>(
       `${this.ticketsUrl}/${ticketId}`,
       this.httpOptions
     );

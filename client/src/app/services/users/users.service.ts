@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NewUser, User } from 'src/app/models/user.model';
+import { DeletedUser, NewUser, User } from 'src/app/models/user.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -40,8 +40,8 @@ export class UsersService {
     );
   }
 
-  deleteUser(userId: string): Observable<any> {
-    return this.http.delete<User>(
+  deleteUser(userId: string): Observable<DeletedUser> {
+    return this.http.delete<DeletedUser>(
       `${this.usersUrl}/${userId}`,
       this.httpOptions
     );
