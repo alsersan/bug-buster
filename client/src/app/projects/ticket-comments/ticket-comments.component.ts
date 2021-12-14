@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Ticket } from 'src/app/models/ticket.model';
 import { capitalizedRoles } from 'src/app/utils/roles';
 
 @Component({
@@ -8,6 +9,7 @@ import { capitalizedRoles } from 'src/app/utils/roles';
   styleUrls: ['./ticket-comments.component.scss'],
 })
 export class TicketCommentsComponent implements OnInit {
+  @Input() ticket!: Ticket;
   roles = capitalizedRoles;
   addComment!: FormGroup;
   comments = [

@@ -1,12 +1,12 @@
 <section class="ticket-container">
-  <div class="content-wrapper">
+  <div *ngIf="ticket$ | async" class="content-wrapper">
     <div class="flex-wrapper">
-      <app-ticket-details></app-ticket-details>
-      <app-ticket-members></app-ticket-members>
+      <app-ticket-details [ticket]="(ticket$ | async)!"></app-ticket-details>
+      <app-ticket-members [ticket]="(ticket$ | async)!"></app-ticket-members>
     </div>
     <div class="flex-wrapper">
-      <app-ticket-history></app-ticket-history>
-      <app-ticket-comments></app-ticket-comments>
+      <app-ticket-history [ticket]="(ticket$ | async)!"></app-ticket-history>
+      <app-ticket-comments [ticket]="(ticket$ | async)!"></app-ticket-comments>
     </div>
   </div>
 </section>

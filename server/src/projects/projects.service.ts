@@ -7,6 +7,7 @@ import { Project, ProjectDocument } from './schemas/project.schema';
 import { User, UserDocument } from 'src/users/schemas/user.schema';
 import { addItemToList, removeItemFromList } from 'src/utils/add-remove-items';
 import { getChangedItems } from 'src/utils/get-changed-items';
+import { Members } from './schemas/members.schema';
 @Injectable()
 export class ProjectsService {
   constructor(
@@ -103,13 +104,20 @@ export class ProjectsService {
 
   processQuery(queryResult) {
     return queryResult
-      .select('-__v -members._id')
-      .populate('tickets', '-__v -modifications -assignedTo -author')
+      .select('-members._id')
+      .populate({
+        path: 'tickets',
+        select: '-__v',
+        populate: {
+          path: 'assignedTo author',
+          select: '-__v -password -tickets -projects',
+        },
+      })
       .populate({
         path: 'members',
         populate: {
           path: 'projectManager developers qualityAssurance',
-          select: '-__v -password -tickets -projects -role',
+          select: '-__v -password -tickets -projects',
         },
       });
   }

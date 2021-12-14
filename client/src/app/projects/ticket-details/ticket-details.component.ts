@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Ticket } from 'src/app/models/ticket.model';
 import { capitalizedRoles } from 'src/app/utils/roles';
 
 @Component({
@@ -7,22 +8,8 @@ import { capitalizedRoles } from 'src/app/utils/roles';
   styleUrls: ['./ticket-details.component.scss'],
 })
 export class TicketDetailsComponent implements OnInit {
+  @Input() ticket!: Ticket;
   roles = capitalizedRoles;
-  ticket = {
-    _id: '9834769832649',
-    name: 'Test ticket',
-    description: 'Test ticket description',
-    status: 'active',
-    priority: 'high',
-    type: 'bug',
-    dateCreated: 'today',
-    project: 'ProjectId',
-    author: {
-      name: 'bla',
-      surname: 'blublu',
-      role: 'quality-assurance',
-    },
-  };
 
   constructor() {}
 
