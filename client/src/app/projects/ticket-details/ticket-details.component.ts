@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Ticket } from 'src/app/models/ticket.model';
 import { capitalizedRoles } from 'src/app/utils/roles';
 
@@ -7,11 +7,9 @@ import { capitalizedRoles } from 'src/app/utils/roles';
   templateUrl: './ticket-details.component.html',
   styleUrls: ['./ticket-details.component.scss'],
 })
-export class TicketDetailsComponent implements OnInit {
+export class TicketDetailsComponent {
   @Input() ticket!: Ticket;
   roles = capitalizedRoles;
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

@@ -1,14 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { ProjectDetailsComponent } from './project-details.component';
 
 describe('ProjectDetailsComponent', () => {
   let component: ProjectDetailsComponent;
   let fixture: ComponentFixture<ProjectDetailsComponent>;
+  let initialState = {};
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ProjectDetailsComponent],
+      imports: [RouterTestingModule],
+      providers: [provideMockStore({ initialState })],
     }).compileComponents();
   });
 

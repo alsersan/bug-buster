@@ -7,7 +7,12 @@ import { LoginComponent } from './login.component';
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  let initialState = { loguedInUser: { _id: '' } };
+  let initialState = {
+    loguedInUser: {
+      user: { name: 'test' },
+      loginFailed: false,
+    },
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

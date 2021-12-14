@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
+import { CreateTicketComponent } from '../create-ticket/create-ticket.component';
 import { MembersComponent } from '../members/members.component';
 import { ProjectDetailsComponent } from '../project-details/project-details.component';
 import { TicketsComponent } from '../tickets/tickets.component';
@@ -36,6 +37,7 @@ describe('ProjectComponent', () => {
         MembersComponent,
         ProjectDetailsComponent,
         TicketsComponent,
+        CreateTicketComponent,
       ],
       imports: [RouterTestingModule],
       providers: [
