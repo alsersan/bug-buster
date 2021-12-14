@@ -45,6 +45,15 @@ label {
   @include label-required;
 }
 
+.button-container {
+  display: flex;
+  gap: 1rem;
+}
+
 .create-btn {
   @include create-btn;
+}
+
+.cancel-btn {
+  @include cancel-btn;
 }

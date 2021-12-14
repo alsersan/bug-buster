@@ -6,5 +6,8 @@
       <app-tickets [project]="(project$ | async)!"></app-tickets>
     </div>
   </div>
-  <app-create-ticket *ngIf="isCreateTicketVisible"></app-create-ticket>
+  <app-create-ticket
+    *ngIf="isCreateTicketVisible"
+    [project]="(project$ | async)!"
+  ></app-create-ticket>
 </section>

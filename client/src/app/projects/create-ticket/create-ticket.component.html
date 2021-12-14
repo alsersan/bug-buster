@@ -32,7 +32,33 @@
           Description is required
         </div>
       </div>
-      <button class="create-btn" (click)="onSubmit()">Create Ticket</button>
+      <div class="input-container">
+        <label for="ticket-type">Ticket type</label>
+        <select name="ticket-type" id="ticket-type" formControlName="type">
+          <option *ngFor="let type of ticketTypes" value="{{ type.value }}">
+            {{ type.name }}
+          </option>
+        </select>
+      </div>
+      <div class="input-container">
+        <label for="ticket-priority">Ticket priority</label>
+        <select
+          name="ticket-priority"
+          id="ticket-priority"
+          formControlName="priority"
+        >
+          <option
+            *ngFor="let priority of ticketPriorities"
+            value="{{ priority.value }}"
+          >
+            {{ priority.name }}
+          </option>
+        </select>
+      </div>
+      <div class="button-container">
+        <button class="cancel-btn" (click)="onSubmit()">Cancel</button>
+        <button class="create-btn" (click)="onSubmit()">Create Ticket</button>
+      </div>
     </form>
   </div>
 </div>
