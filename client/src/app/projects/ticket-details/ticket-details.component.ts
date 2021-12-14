@@ -3,13 +3,26 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-ticket-details',
   templateUrl: './ticket-details.component.html',
-  styleUrls: ['./ticket-details.component.scss']
+  styleUrls: ['./ticket-details.component.scss'],
 })
 export class TicketDetailsComponent implements OnInit {
+  ticket = {
+    _id: '9834769832649',
+    name: 'Test ticket',
+    description: 'Test ticket description',
+    status: 'active',
+    priority: 'high',
+    type: 'bug',
+    dateCreated: 'today',
+    project: 'ProjectId',
+    author: {
+      name: 'bla',
+      surname: 'blublu',
+      role: 'quality-assurance',
+    },
+  };
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

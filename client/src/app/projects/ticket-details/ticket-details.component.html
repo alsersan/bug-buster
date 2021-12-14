@@ -1,1 +1,39 @@
-<div class="ticket-details-container">details</div>
+<div class="ticket-details-container">
+  <p class="ticket-title">{{ ticket.name }}</p>
+  <div class="info-section">
+    <p class="section-title">Description</p>
+    <p>{{ ticket.description }}</p>
+  </div>
+  <div class="info-section">
+    <p class="section-title">Ticket ID</p>
+    <p>{{ ticket._id }}</p>
+  </div>
+  <div class="info-section">
+    <p class="section-title">Belongs to</p>
+    <p>Project ID: {{ ticket._id }}</p>
+  </div>
+  <div class="info-section">
+    <p class="section-title">Date created</p>
+    <p>{{ ticket.dateCreated }}</p>
+  </div>
+  <div class="info-section">
+    <p class="section-title">Author</p>
+    <p>{{ ticket.description }}</p>
+  </div>
+  <div class="info-section">
+    <p class="section-title">Tags</p>
+    <div class="tag-container">
+      <div class="status-container">
+        <div ngClass="status-icon-{{ ticket.status }}"></div>
+        <p>{{ ticket.status | titlecase }}</p>
+      </div>
+      <div class="status-container">
+        <div ngClass="status-icon-{{ ticket.priority }}"></div>
+        <p>{{ ticket.priority | titlecase }} priority</p>
+      </div>
+      <div class="status-container">
+        <p>{{ ticket.type | titlecase }}</p>
+      </div>
+    </div>
+  </div>
+</div>
