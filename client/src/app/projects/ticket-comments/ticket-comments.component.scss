@@ -1,6 +1,58 @@
+@import "src/styles/abstracts/variables";
 @import "src/styles/abstracts/mixins";
 
+:host {
+  display: flex;
+  flex-grow: 1;
+}
+
 .ticket-comments-container {
-  @include box-styles;
+  @include box-styles(2rem 0);
   width: 100%;
+}
+
+.title {
+  margin-bottom: 2rem;
+  font-weight: bold;
+  font-size: 1.8rem;
+  padding: 0 2rem;
+}
+
+.add-comment {
+  padding: 0 2rem;
+}
+
+.label {
+  display: none;
+}
+
+.input-container {
+  display: flex;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: $border-radius;
+
+  &:focus-within {
+    border: 1px solid $primary-color;
+    box-shadow: 0 0 5px $primary-color;
+  }
+}
+
+.comment-input {
+  flex-grow: 1;
+  border: none;
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.add-btn {
+  color: white;
+  background-color: $primary-color;
+  font-weight: bold;
+  padding: 0 2rem;
+
+  &:hover {
+    background-color: $primary-color-darker;
+  }
 }

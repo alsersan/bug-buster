@@ -1,1 +1,15 @@
-<div class="ticket-comments-container">comments</div>
+<div class="ticket-comments-container">
+  <p class="title">COMMENTS</p>
+  <form (submit)="onSubmit()" [formGroup]="addComment" class="add-comment">
+    <label class="label" for="comment-input">Add comment</label>
+    <div class="input-container">
+      <input
+        placeholder="Write a comment"
+        class="comment-input"
+        id="comment-input"
+        formControlName="comment"
+      />
+      <button class="add-btn">Send</button>
+    </div>
+  </form>
+</div>
