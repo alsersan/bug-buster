@@ -84,6 +84,7 @@
 .tag-container {
   display: flex;
   gap: 1rem;
+  margin-top: 0.2rem;
 }
 
 .status-container {
@@ -113,4 +114,8 @@
 .status-icon-closed,
 .status-icon-immediate {
   @include status-icon("red");
+}
+
+.no-tickets {
+  padding: 2rem;
 }

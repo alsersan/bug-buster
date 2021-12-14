@@ -1,13 +1,7 @@
 <div class="ticket-container">
   <p class="title">TICKETS</p>
-  <!-- <ul *ngIf="project.tickets.length" class="developer-list">
-    <li class="ticket" *ngFor="let ticket of project.tickets">
-      {{ ticket }}
-    </li>
-  </ul>
-  <div *ngIf="!project.tickets.length">No tickets</div> -->
-  <ul class="ticket-list">
-    <li class="ticket-list-element" *ngFor="let ticket of tickets">
+  <ul *ngIf="project.tickets.length" class="ticket-list">
+    <li class="ticket-list-element" *ngFor="let ticket of project.tickets">
       <a routerLink="tickets/{{ ticket._id }}" class="ticket">
         <div class="top-row">
           <p class="name">{{ ticket.name }}</p>
@@ -30,4 +24,5 @@
       </a>
     </li>
   </ul>
+  <div class="no-tickets" *ngIf="!project.tickets.length">No tickets</div>
 </div>
