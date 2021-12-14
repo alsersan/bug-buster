@@ -41,7 +41,7 @@
     </div>
     <div class="member-container">
       <p class="role-title">DEVELOPERS</p>
-      <ul *ngIf="project.members.developers?.length" class="member-list">
+      <ul *ngIf="project.members.developers?.length" class="developer-list">
         <li class="member" *ngFor="let developer of project.members.developers">
           <div class="details-container">
             <div class="avatar"></div>
@@ -81,7 +81,7 @@
     </div>
     <div class="member-container">
       <p class="role-title">QUALITY ASSURANCE</p>
-      <ul *ngIf="project.members.qualityAssurance?.length" class="member-list">
+      <ul *ngIf="project.members.qualityAssurance?.length" class="quality-list">
         <li
           class="member"
           *ngFor="let qualityAssurance of project!.members.qualityAssurance"
