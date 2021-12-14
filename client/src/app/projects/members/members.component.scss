@@ -11,8 +11,21 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+}
+
+.title {
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+
+.member-list {
+  display: flex;
+  flex-direction: column;
   gap: 3rem;
   overflow-y: auto;
+  height: 30rem;
+  flex-grow: 1;
 }
 
 .role-title {
