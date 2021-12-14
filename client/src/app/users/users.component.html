@@ -21,8 +21,12 @@
           <p *ngIf="user.role !== 'admin'">
             Active projects: {{ user.projects.length }}
           </p>
-          <p *ngIf="user.role === ('developer' || 'quality-assurance')">
-            Active tickets: {{ user.tickets.length }}
+          <p
+            *ngIf="
+              user.role === 'developer' || user.role === 'quality-assurance'
+            "
+          >
+            Active tickets: {{ user.tickets | filterStatus: "active" }}
           </p>
         </div>
       </div>
