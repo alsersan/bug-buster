@@ -1,1 +1,35 @@
-<div class="ticket-members-container">members</div>
+<div class="ticket-members-container">
+  <p class="title">ASSIGNED DEVELOPERS</p>
+  <ul class="member-list">
+    <li *ngFor="let member of members" class="member">
+      <div class="details-container">
+        <div class="avatar"></div>
+        <div class="name-container">
+          <p class="name">
+            {{ member.name }}
+            {{ member.surname }}
+          </p>
+          <p>{{ member.role }} - {{ member.seniority | titlecase }}</p>
+        </div>
+      </div>
+      <div class="icon-container">
+        <a>
+          <img
+            class="details"
+            src="/assets/icons/user-details.svg"
+            alt="User detail icons"
+            title="View user details"
+          />
+        </a>
+        <button>
+          <img
+            class="delete"
+            src="/assets/icons/delete.svg"
+            alt="Delete user icons"
+            title="Delete user"
+          />
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>
