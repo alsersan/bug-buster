@@ -9,10 +9,12 @@
 .ticket-comments-container {
   @include box-styles(2rem 0);
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .title {
-  margin-bottom: 2rem;
   font-weight: bold;
   font-size: 1.8rem;
   padding: 0 2rem;
@@ -55,4 +57,35 @@
   &:hover {
     background-color: $primary-color-darker;
   }
+}
+
+.comment-list {
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  flex-grow: 1;
+  height: 5rem;
+  overflow-y: auto;
+}
+
+.top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.author-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.author {
+  font-weight: 600;
+}
+
+.small-text {
+  font-size: 1.4rem;
 }

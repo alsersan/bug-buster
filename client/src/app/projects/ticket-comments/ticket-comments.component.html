@@ -12,4 +12,22 @@
       <button class="add-btn">Send</button>
     </div>
   </form>
+  <ul class="comment-list">
+    <li class="comment" *ngFor="let comment of comments">
+      <div class="top-row">
+        <div class="author-container">
+          <p class="author">
+            {{ comment.author.name }} {{ comment.author.surname }}
+          </p>
+          <p class="small-text">
+            {{ roles[comment.author.role] }}
+          </p>
+        </div>
+        <p class="small-text">
+          {{ comment.dateCreated | date: "medium" }}
+        </p>
+      </div>
+      <p>{{ comment.content }}</p>
+    </li>
+  </ul>
 </div>

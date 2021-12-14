@@ -18,7 +18,10 @@
   </div>
   <div class="info-section">
     <p class="section-title">Author</p>
-    <p>{{ ticket.description }}</p>
+    <p>
+      {{ ticket.author.name }} {{ ticket.author.name }} -
+      {{ roles[ticket.author.role] }}
+    </p>
   </div>
   <div class="info-section">
     <p class="section-title">Tags</p>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { capitalizedRoles } from 'src/app/utils/roles';
 
 @Component({
   selector: 'app-ticket-details',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ticket-details.component.scss'],
 })
 export class TicketDetailsComponent implements OnInit {
+  roles = capitalizedRoles;
   ticket = {
     _id: '9834769832649',
     name: 'Test ticket',
