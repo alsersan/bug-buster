@@ -10,20 +10,6 @@ import { capitalizedRoles } from 'src/app/utils/roles';
 export class TicketMembersComponent implements OnInit {
   @Input() ticket!: Ticket;
   roles = capitalizedRoles;
-  members = [
-    {
-      name: 'Patato',
-      surname: 'Man',
-      role: 'developer',
-      seniority: 'junior',
-    },
-    {
-      name: 'Patato',
-      surname: 'Man',
-      role: 'developer',
-      seniority: 'junior',
-    },
-  ];
 
   constructor() {}
 

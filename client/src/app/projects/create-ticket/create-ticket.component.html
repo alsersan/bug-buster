@@ -1,0 +1,38 @@
+<div class="create-ticket-container">
+  <div class="form-container">
+    <h2 class="title">Create Ticket</h2>
+    <form [formGroup]="createTicket">
+      <div class="input-container">
+        <label for="ticket-name">Name</label>
+        <input id="ticket-name" type="text" formControlName="name" />
+        <div
+          class="error-msg"
+          *ngIf="
+            createTicket.controls['name'].invalid &&
+            createTicket.controls['name'].touched
+          "
+        >
+          Name is required
+        </div>
+      </div>
+      <div class="input-container">
+        <label for="ticket-description">Description</label>
+        <input
+          id="ticket-description"
+          type="text"
+          formControlName="description"
+        />
+        <div
+          class="error-msg"
+          *ngIf="
+            createTicket.controls['description'].invalid &&
+            createTicket.controls['description'].touched
+          "
+        >
+          Description is required
+        </div>
+      </div>
+      <button class="create-btn" (click)="onSubmit()">Create Ticket</button>
+    </form>
+  </div>
+</div>

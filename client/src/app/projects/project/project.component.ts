@@ -11,6 +11,7 @@ import { getProjectById } from 'src/app/store/projects/projects.actions';
   styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent implements OnInit {
+  isCreateTicketVisible: boolean = true;
   projects$: Observable<Array<Project>> = this.store.select('projects');
   project$: Observable<Project> = this.projects$.pipe(
     map(
