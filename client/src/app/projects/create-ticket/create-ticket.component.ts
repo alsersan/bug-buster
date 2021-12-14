@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Project } from 'src/app/models/project.model';
@@ -11,6 +11,8 @@ import { UserState } from 'src/app/models/user.model';
 })
 export class CreateTicketComponent implements OnInit {
   @Input() project!: Project;
+  @Output() isVisible = new EventEmitter<boolean>();
+
   ticketTypes = [
     { name: 'Bug', value: 'bug' },
     { name: 'Feature request', value: 'feature-request' },
@@ -56,6 +58,11 @@ export class CreateTicketComponent implements OnInit {
         author: this.loguedInUser.user._id,
       };
       console.log(ticket);
+      this.isVisible.emit(false);
     }
+  }
+
+  onCancel() {
+    this.isVisible.emit(false);
   }
 }

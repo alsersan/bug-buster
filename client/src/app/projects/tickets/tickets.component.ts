@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Project } from 'src/app/models/project.model';
 
 @Component({
@@ -8,106 +8,11 @@ import { Project } from 'src/app/models/project.model';
 })
 export class TicketsComponent {
   @Input() project!: Project;
-  tickets = [
-    {
-      _id: '9384573498',
-      name: 'Test ticket',
-      description: 'This is a test ticket',
-      status: 'pending',
-      priority: 'high',
-      type: 'bug',
-      dateCreated: 'blablabla',
-      dateClosed: null,
-      project: 'projectId',
-      author: 'AuthorId',
-      assignedTo: [],
-      modifications: [],
-    },
-    {
-      _id: '9384573498',
-      name: 'Test ticket',
-      description: 'This is a test ticket',
-      status: 'active',
-      priority: 'low',
-      type: 'bug',
-      dateCreated: 'blablabla',
-      dateClosed: null,
-      project: 'projectId',
-      author: 'AuthorId',
-      assignedTo: [],
-      modifications: [],
-    },
-    {
-      _id: '9384573498',
-      name: 'Test ticket',
-      description: 'This is a test ticket',
-      status: 'closed',
-      priority: 'medium',
-      type: 'feature request',
-      dateCreated: 'blablabla',
-      dateClosed: null,
-      project: 'projectId',
-      author: 'AuthorId',
-      assignedTo: [],
-      modifications: [],
-    },
-    {
-      _id: '9384573498',
-      name: 'Test ticket',
-      description: 'This is a test ticket',
-      status: 'pending',
-      priority: 'immediate',
-      type: 'bug',
-      dateCreated: 'blablabla',
-      dateClosed: null,
-      project: 'projectId',
-      author: 'AuthorId',
-      assignedTo: [],
-      modifications: [],
-    },
-    {
-      _id: '9384573498',
-      name: 'Test ticket',
-      description: 'This is a test ticket',
-      status: 'pending',
-      priority: 'high',
-      type: 'bug',
-      dateCreated: 'blablabla',
-      dateClosed: null,
-      project: 'projectId',
-      author: 'AuthorId',
-      assignedTo: [],
-      modifications: [],
-    },
-    {
-      _id: '9384573498',
-      name: 'Test ticket',
-      description: 'This is a test ticket',
-      status: 'pending',
-      priority: 'high',
-      type: 'bug',
-      dateCreated: 'blablabla',
-      dateClosed: null,
-      project: 'projectId',
-      author: 'AuthorId',
-      assignedTo: [],
-      modifications: [],
-    },
-    {
-      _id: '9384573498',
-      name: 'Test ticket',
-      description: 'This is a test ticket',
-      status: 'pending',
-      priority: 'high',
-      type: 'bug',
-      dateCreated: 'blablabla',
-      dateClosed: null,
-      project: 'projectId',
-      author: 'AuthorId',
-      assignedTo: [],
-      modifications: [],
-    },
-  ];
+  @Output() isVisible = new EventEmitter<boolean>();
 
   constructor() {}
+
+  onCreateBtnClick() {
+    this.isVisible.emit(true);
+  }
 }

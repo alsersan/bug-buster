@@ -3,11 +3,15 @@
     <app-project-details [project]="(project$ | async)!"></app-project-details>
     <div class="flex-wrapper">
       <app-members [project]="(project$ | async)!"></app-members>
-      <app-tickets [project]="(project$ | async)!"></app-tickets>
+      <app-tickets
+        (isVisible)="setCreateTicketVisibility($event)"
+        [project]="(project$ | async)!"
+      ></app-tickets>
     </div>
   </div>
   <app-create-ticket
     *ngIf="isCreateTicketVisible"
+    (isVisible)="setCreateTicketVisibility($event)"
     [project]="(project$ | async)!"
   ></app-create-ticket>
 </section>

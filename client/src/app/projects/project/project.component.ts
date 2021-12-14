@@ -30,4 +30,8 @@ export class ProjectComponent implements OnInit {
       getProjectById({ projectId: this.route.snapshot.paramMap.get('id')! })
     );
   }
+
+  setCreateTicketVisibility(isVisible: boolean) {
+    this.isCreateTicketVisible = isVisible;
+  }
 }
