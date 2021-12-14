@@ -1,7 +1,33 @@
 <div class="project-details-container">
-  <p>{{ project.name }}</p>
-  <p>{{ project.description }}</p>
-  <p>{{ project._id }}</p>
-  <p>{{ project.status }}</p>
-  <p>{{ project.dateCreated }}</p>
+  <div class="top-row">
+    <h2 class="project-title">{{ project.name }}</h2>
+    <div class="status-container">
+      <div ngClass="status-icon-{{ project.status }}"></div>
+      <p>{{ project.status | titlecase }}</p>
+    </div>
+  </div>
+  <div class="bottom-row">
+    <div class="info">
+      <p>
+        <span class="info-title">Description:</span> {{ project.description }}
+      </p>
+      <div class="details">
+        <p><span class="info-title">Project ID:</span> {{ project._id }}</p>
+        <p>
+          <span class="info-title">Date created:</span>
+          {{ project.dateCreated | date: "medium" }}
+        </p>
+      </div>
+    </div>
+    <div class="button-container">
+      <button (click)="delete(project._id!)">
+        <img
+          class="delete"
+          src="/assets/icons/delete.svg"
+          alt="Delete user icons"
+          title="Delete project"
+        />
+      </button>
+    </div>
+  </div>
 </div>

@@ -1,5 +1,8 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Project } from 'src/app/models/project.model';
+import { deleteProject } from 'src/app/store/projects/projects.actions';
 
 @Component({
   selector: 'app-project-details',
@@ -9,5 +12,13 @@ import { Project } from 'src/app/models/project.model';
 export class ProjectDetailsComponent {
   @Input() project!: Project;
 
-  constructor() {}
+  constructor(
+    private store: Store<{ projects: Project[] }>,
+    private router: Router
+  ) {}
+
+  delete(projectId: string) {
+    this.store.dispatch(deleteProject({ projectId }));
+    this.router.navigateByUrl('/projects');
+  }
 }
