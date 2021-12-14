@@ -8,6 +8,10 @@ import { ProjectDetailsComponent } from './project-details/project-details.compo
 import { TicketsComponent } from './tickets/tickets.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TicketComponent } from './ticket/ticket.component';
+import { TicketCommentsComponent } from './ticket-comments/ticket-comments.component';
+import { TicketDetailsComponent } from './ticket-details/ticket-details.component';
+import { TicketMembersComponent } from './ticket-members/ticket-members.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +21,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProjectDetailsComponent,
     TicketsComponent,
     CreateProjectComponent,
+    TicketComponent,
+    TicketCommentsComponent,
+    TicketDetailsComponent,
+    TicketMembersComponent,
   ],
   imports: [CommonModule, ProjectsRoutingModule, ReactiveFormsModule],
 })
