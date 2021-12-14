@@ -1,0 +1,6 @@
+@import "src/styles/abstracts/mixins";
+
+.ticket-comments-container {
+  @include box-styles;
+  width: 100%;
+}

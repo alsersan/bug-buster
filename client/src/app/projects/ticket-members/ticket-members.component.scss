@@ -1,0 +1,6 @@
+@import "src/styles/abstracts/mixins";
+
+.ticket-members-container {
+  @include box-styles;
+  width: 100%;
+}
