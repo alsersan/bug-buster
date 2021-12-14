@@ -35,134 +35,6 @@
           </button>
         </div>
       </div>
-      <div class="member">
-        <div class="details-container">
-          <div class="avatar"></div>
-          <div class="name-container">
-            <p class="name">
-              {{ project.members.projectManager.name }}
-              {{ project.members.projectManager.surname }}
-            </p>
-            <p>
-              {{ project.members.projectManager.seniority | titlecase }}
-            </p>
-          </div>
-        </div>
-        <div class="icon-container">
-          <a routerLink="/users/{{ project.members.projectManager._id }}">
-            <img
-              class="details"
-              src="/assets/icons/user-details.svg"
-              alt="User detail icons"
-              title="View user details"
-            />
-          </a>
-          <button (click)="deleteMember(project.members.projectManager._id!)">
-            <img
-              class="delete"
-              src="/assets/icons/delete.svg"
-              alt="Delete user icons"
-              title="Delete user"
-            />
-          </button>
-        </div>
-      </div>
-      <div class="member">
-        <div class="details-container">
-          <div class="avatar"></div>
-          <div class="name-container">
-            <p class="name">
-              {{ project.members.projectManager.name }}
-              {{ project.members.projectManager.surname }}
-            </p>
-            <p>
-              {{ project.members.projectManager.seniority | titlecase }}
-            </p>
-          </div>
-        </div>
-        <div class="icon-container">
-          <a routerLink="/users/{{ project.members.projectManager._id }}">
-            <img
-              class="details"
-              src="/assets/icons/user-details.svg"
-              alt="User detail icons"
-              title="View user details"
-            />
-          </a>
-          <button (click)="deleteMember(project.members.projectManager._id!)">
-            <img
-              class="delete"
-              src="/assets/icons/delete.svg"
-              alt="Delete user icons"
-              title="Delete user"
-            />
-          </button>
-        </div>
-      </div>
-      <div class="member">
-        <div class="details-container">
-          <div class="avatar"></div>
-          <div class="name-container">
-            <p class="name">
-              {{ project.members.projectManager.name }}
-              {{ project.members.projectManager.surname }}
-            </p>
-            <p>
-              {{ project.members.projectManager.seniority | titlecase }}
-            </p>
-          </div>
-        </div>
-        <div class="icon-container">
-          <a routerLink="/users/{{ project.members.projectManager._id }}">
-            <img
-              class="details"
-              src="/assets/icons/user-details.svg"
-              alt="User detail icons"
-              title="View user details"
-            />
-          </a>
-          <button (click)="deleteMember(project.members.projectManager._id!)">
-            <img
-              class="delete"
-              src="/assets/icons/delete.svg"
-              alt="Delete user icons"
-              title="Delete user"
-            />
-          </button>
-        </div>
-      </div>
-      <div class="member">
-        <div class="details-container">
-          <div class="avatar"></div>
-          <div class="name-container">
-            <p class="name">
-              {{ project.members.projectManager.name }}
-              {{ project.members.projectManager.surname }}
-            </p>
-            <p>
-              {{ project.members.projectManager.seniority | titlecase }}
-            </p>
-          </div>
-        </div>
-        <div class="icon-container">
-          <a routerLink="/users/{{ project.members.projectManager._id }}">
-            <img
-              class="details"
-              src="/assets/icons/user-details.svg"
-              alt="User detail icons"
-              title="View user details"
-            />
-          </a>
-          <button (click)="deleteMember(project.members.projectManager._id!)">
-            <img
-              class="delete"
-              src="/assets/icons/delete.svg"
-              alt="Delete user icons"
-              title="Delete user"
-            />
-          </button>
-        </div>
-      </div>
       <div *ngIf="!project.members.projectManager?.name" class="member">
         No project manager assigned
       </div>
@@ -171,7 +43,36 @@
       <p class="role-title">DEVELOPERS</p>
       <ul *ngIf="project.members.developers?.length" class="member-list">
         <li class="member" *ngFor="let developer of project.members.developers">
-          {{ developer }}
+          <div class="details-container">
+            <div class="avatar"></div>
+            <div class="name-container">
+              <p class="name">
+                {{ developer.name }}
+                {{ developer.surname }}
+              </p>
+              <p>
+                {{ developer.seniority | titlecase }}
+              </p>
+            </div>
+          </div>
+          <div class="icon-container">
+            <a routerLink="/users/{{ developer._id }}">
+              <img
+                class="details"
+                src="/assets/icons/user-details.svg"
+                alt="User detail icons"
+                title="View user details"
+              />
+            </a>
+            <button (click)="deleteMember(developer._id!)">
+              <img
+                class="delete"
+                src="/assets/icons/delete.svg"
+                alt="Delete user icons"
+                title="Delete user"
+              />
+            </button>
+          </div>
         </li>
       </ul>
       <div *ngIf="!project.members.developers?.length" class="member">
@@ -185,7 +86,36 @@
           class="member"
           *ngFor="let qualityAssurance of project!.members.qualityAssurance"
         >
-          {{ qualityAssurance }}
+          <div class="details-container">
+            <div class="avatar"></div>
+            <div class="name-container">
+              <p class="name">
+                {{ qualityAssurance.name }}
+                {{ qualityAssurance.surname }}
+              </p>
+              <p>
+                {{ qualityAssurance.seniority | titlecase }}
+              </p>
+            </div>
+          </div>
+          <div class="icon-container">
+            <a routerLink="/users/{{ qualityAssurance._id }}">
+              <img
+                class="details"
+                src="/assets/icons/user-details.svg"
+                alt="User detail icons"
+                title="View user details"
+              />
+            </a>
+            <button (click)="deleteMember(qualityAssurance._id!)">
+              <img
+                class="delete"
+                src="/assets/icons/delete.svg"
+                alt="Delete user icons"
+                title="Delete user"
+              />
+            </button>
+          </div>
         </li>
       </ul>
       <div *ngIf="!project.members.qualityAssurance?.length" class="member">
