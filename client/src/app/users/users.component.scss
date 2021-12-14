@@ -60,7 +60,7 @@
 
 .user-data {
   margin-left: 3rem;
-  margin-right: 6rem;
+  min-width: 30rem;
 }
 
 .avatar {
@@ -72,6 +72,12 @@
 
 .user-role {
   margin: 0.3rem 0 1rem;
+}
+
+.work-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .button-container {

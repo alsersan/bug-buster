@@ -17,11 +17,11 @@
           </p>
           <p>{{ user.email }}</p>
         </div>
-        <div>
+        <div class="work-container">
           <p *ngIf="user.role !== 'admin'">
             Active projects: {{ user.projects.length }}
           </p>
-          <p *ngIf="user.role === 'developer || quality-assuranec'">
+          <p *ngIf="user.role === ('developer' || 'quality-assurance')">
             Active tickets: {{ user.tickets.length }}
           </p>
         </div>
