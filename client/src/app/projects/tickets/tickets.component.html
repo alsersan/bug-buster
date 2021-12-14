@@ -8,7 +8,7 @@
   <div *ngIf="!project.tickets.length">No tickets</div> -->
   <ul class="ticket-list">
     <li class="ticket-list-element" *ngFor="let ticket of tickets">
-      <a routerLink="/" class="ticket">
+      <a routerLink="tickets/{{ ticket._id }}" class="ticket">
         <div class="top-row">
           <p class="name">{{ ticket.name }}</p>
           <p>#{{ ticket._id }}</p>

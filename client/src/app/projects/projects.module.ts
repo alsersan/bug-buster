@@ -12,6 +12,7 @@ import { TicketComponent } from './ticket/ticket.component';
 import { TicketCommentsComponent } from './ticket-comments/ticket-comments.component';
 import { TicketDetailsComponent } from './ticket-details/ticket-details.component';
 import { TicketMembersComponent } from './ticket-members/ticket-members.component';
+import { TicketHistoryComponent } from './ticket-history/ticket-history.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { TicketMembersComponent } from './ticket-members/ticket-members.componen
     TicketCommentsComponent,
     TicketDetailsComponent,
     TicketMembersComponent,
+    TicketHistoryComponent,
   ],
   imports: [CommonModule, ProjectsRoutingModule, ReactiveFormsModule],
 })
