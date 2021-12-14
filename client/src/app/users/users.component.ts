@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
@@ -15,10 +14,7 @@ export class UsersComponent implements OnInit {
   roles = capitalizedRoles;
   users$: Observable<Array<User>> = this.store.select('users');
 
-  constructor(
-    private store: Store<{ users: User[] }>,
-    private router: Router
-  ) {}
+  constructor(private store: Store<{ users: User[] }>) {}
 
   ngOnInit(): void {
     this.store.dispatch(getAllUsers());

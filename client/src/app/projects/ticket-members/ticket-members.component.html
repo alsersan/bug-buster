@@ -9,7 +9,7 @@
             {{ member.name }}
             {{ member.surname }}
           </p>
-          <p>{{ member.role }} - {{ member.seniority | titlecase }}</p>
+          <p>{{ roles[member.role] }} - {{ member.seniority | titlecase }}</p>
         </div>
       </div>
       <div class="icon-container">
