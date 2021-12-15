@@ -25,7 +25,6 @@ describe('TicketDetailsComponent', () => {
       dateCreated: new Date(),
       description: '',
       assignedTo: [],
-      modifications: [],
       priority: '',
       type: '',
       project: { _id: '' } as Project,

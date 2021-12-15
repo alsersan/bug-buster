@@ -1,4 +1,3 @@
-import { Modification } from './modification.model';
 import { Project } from './project.model';
 import { User } from './user.model';
 
@@ -14,7 +13,6 @@ export interface Ticket {
   project: Project;
   author: User;
   assignedTo: Array<User>;
-  modifications: Array<Modification>;
 }
 
 export interface NewTicket {

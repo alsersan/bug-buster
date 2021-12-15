@@ -1,5 +1,10 @@
 import { Type } from 'class-transformer';
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import {
+  IsDateString,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { Project } from 'src/projects/schemas/project.schema';
 import { User } from 'src/users/schemas/user.schema';
 
@@ -21,8 +26,8 @@ export class CreateTicketDto {
   type: string;
 
   @IsNotEmpty()
-  @IsString()
-  dateCreated: string;
+  @IsDateString()
+  dateCreated: Date;
 
   @Type(() => Project)
   @IsNotEmpty()

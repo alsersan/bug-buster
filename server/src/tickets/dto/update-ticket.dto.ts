@@ -37,9 +37,8 @@ export class UpdateTicketDto extends PartialType(CreateTicketDto) {
   type: string;
 
   @IsOptional()
-  @IsNotEmpty()
-  @IsString()
-  dateCreated: string;
+  @Exclude()
+  dateRegistered: Date;
 
   @IsOptional()
   @IsNotEmpty()
