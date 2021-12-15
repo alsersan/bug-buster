@@ -14,6 +14,7 @@ import { TicketDetailsComponent } from './ticket-details/ticket-details.componen
 import { TicketMembersComponent } from './ticket-members/ticket-members.component';
 import { CreateTicketComponent } from './create-ticket/create-ticket.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,11 @@ import { EditProjectComponent } from './edit-project/edit-project.component';
     CreateTicketComponent,
     EditProjectComponent,
   ],
-  imports: [CommonModule, ProjectsRoutingModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ProjectsRoutingModule,
+    ReactiveFormsModule,
+    NgMultiSelectDropDownModule.forRoot(),
+  ],
 })
 export class ProjectsModule {}

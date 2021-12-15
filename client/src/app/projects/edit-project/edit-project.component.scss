@@ -21,7 +21,12 @@
 
 .form-container {
   @include box-styles(3rem);
-  width: 40rem;
+  width: 80rem;
+}
+
+.flex-row {
+  display: flex;
+  gap: 2rem;
 }
 
 .title {
@@ -38,5 +43,19 @@
 }
 
 label {
-  @include label-required;
+  @include label;
+}
+
+.button-container {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.edit-btn {
+  @include create-btn;
+}
+
+.cancel-btn {
+  @include cancel-btn;
 }

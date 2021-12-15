@@ -1,64 +1,59 @@
 <div class="edit-project-container">
   <div class="form-container">
     <h2 class="title">Edit Project</h2>
-    <form [formGroup]="editProject" class="form">
-      <div class="input-container">
-        <label for="status">Status</label>
-        <select name="status" id="status" formControlName="status" multiple>
-          <option *ngFor="let status of statusOptions" value="{{ status }}">
-            {{ status | titlecase }}
-          </option>
-        </select>
+    <form *ngIf="managers.length" [formGroup]="editProject" class="form">
+      <div class="flex-row">
+        <div class="input-container">
+          <label for="status">Status</label>
+          <ng-multiselect-dropdown
+            *ngIf="statusOptions.length"
+            name="status"
+            [placeholder]="'Select Status'"
+            formControlName="status"
+            [settings]="dropdownSettingsSingleSelect"
+            [data]="statusOptions"
+          ></ng-multiselect-dropdown>
+        </div>
+        <div class="input-container">
+          <label for="manager">Project Manager</label>
+          <ng-multiselect-dropdown
+            *ngIf="managers.length"
+            name="manager"
+            [placeholder]="'Select Project Manager'"
+            formControlName="manager"
+            [settings]="dropdownSettingsSingleSelect"
+            [data]="managers"
+          ></ng-multiselect-dropdown>
+        </div>
       </div>
-
-      <div class="input-container">
-        <label for="project-manager">Project Manager</label>
-        <select
-          name="project-manager"
-          id="project-manager"
-          formControlName="projectManager"
-        >
-          <option *ngFor="let manager of managers" value="{{ manager._id }}">
-            {{ manager.name }} {{ manager.surname }} -
-            {{ manager.seniority | titlecase }}
-          </option>
-        </select>
+      <div class="flex-row">
+        <div class="input-container">
+          <label for="developers">Developers</label>
+          <ng-multiselect-dropdown
+            *ngIf="developers.length"
+            name="developers"
+            [placeholder]="'Select Developers'"
+            formControlName="developers"
+            [settings]="dropdownSettings"
+            [data]="developers"
+          ></ng-multiselect-dropdown>
+        </div>
+        <div class="input-container">
+          <label for="quality-assurance">Quality Assurance</label>
+          <ng-multiselect-dropdown
+            *ngIf="qualityAssuranceMembers.length"
+            name="quality-assurance"
+            [placeholder]="'Select Quality Assurance'"
+            formControlName="qualityAssurance"
+            [settings]="dropdownSettings"
+            [data]="qualityAssuranceMembers"
+          ></ng-multiselect-dropdown>
+        </div>
       </div>
-
-      <div class="input-container">
-        <label for="developers">Developers</label>
-        <select name="developers" id="developers" formControlName="developers">
-          <option
-            *ngFor="let developer of developers"
-            value="{{ developer._id }}"
-          >
-            {{ developer.name }} {{ developer.surname }} -
-            {{ developer.seniority | titlecase }}
-          </option>
-        </select>
-      </div>
-
-      <div class="input-container">
-        <label for="quality-assurance">Quality Assurance</label>
-        <select
-          name="quality-assurance"
-          id="quality-assurance"
-          formControlName="qualityAssurance"
-        >
-          <option
-            *ngFor="let qualityAssurance of qualityAssuranceMembers"
-            value="{{ qualityAssurance._id }}"
-          >
-            {{ qualityAssurance.name }} {{ qualityAssurance.surname }} -
-            {{ qualityAssurance.seniority }}
-          </option>
-        </select>
-      </div>
-
-      <!-- <div class="button-container">
+      <div class="button-container">
         <button class="cancel-btn" (click)="onCancel()">Cancel</button>
         <button class="edit-btn" (click)="onSubmit()">Update Project</button>
-      </div> -->
+      </div>
     </form>
   </div>
 </div>
