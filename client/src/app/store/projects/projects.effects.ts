@@ -76,7 +76,10 @@ export class ProjectsEffects {
           .updateProject(action.projectId, action.update)
           .pipe(
             map((project) => actions.updateProjectSuccess({ project })),
-            catchError((error: any) => of(actions.updateProjectFailure(error)))
+            catchError((error: any) => {
+              console.log(error);
+              return of(actions.updateProjectFailure(error));
+            })
           )
       )
     )

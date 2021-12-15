@@ -1,25 +1,18 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
 import { Project } from 'src/app/models/project.model';
 import { User } from 'src/app/models/user.model';
 import { getAllUsers } from 'src/app/store/users/users.actions';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { updateProject } from 'src/app/store/projects/projects.actions';
 
 @Component({
   selector: 'app-edit-project',
   templateUrl: './edit-project.component.html',
   styleUrls: ['./edit-project.component.scss'],
 })
-export class EditProjectComponent implements OnInit, OnDestroy {
+export class EditProjectComponent implements OnInit {
   @Input() project!: Project;
   @Output() isVisible = new EventEmitter<boolean>();
   editProject!: FormGroup;
@@ -33,26 +26,6 @@ export class EditProjectComponent implements OnInit, OnDestroy {
   dropdownSettingsSingleSelect: IDropdownSettings = {};
 
   selectedItems: Array<any> = [];
-
-  subscription: Subscription = this.store.select('users').subscribe((users) => {
-    users.forEach((user) => {
-      const userObject = {
-        item_id: user._id as string,
-        item_text: `${user.name} ${user.surname} - ${user.seniority}`,
-      };
-      if (user.role === 'project-manager') {
-        this.managers.push(userObject);
-      }
-      if (user.role === 'developer') {
-        this.developers.push(userObject);
-      }
-      if (user.role === 'quality-assurance') {
-        this.qualityAssuranceMembers.push(userObject);
-      }
-    });
-
-    this.initializeForm();
-  });
 
   constructor(
     private fb: FormBuilder,
@@ -82,9 +55,14 @@ export class EditProjectComponent implements OnInit, OnDestroy {
       allowSearchFilter: false,
       enableCheckAll: false,
     };
-  }
 
-  initializeForm() {
+    this.editProject = this.fb.group({
+      status: ['', Validators.required],
+      manager: ['', Validators.required],
+      developers: [''],
+      qualityAssurance: [''],
+    });
+
     this.statusOptions = [
       {
         item_id: 'active',
@@ -96,11 +74,22 @@ export class EditProjectComponent implements OnInit, OnDestroy {
       },
     ];
 
-    this.editProject = this.fb.group({
-      status: ['', Validators.required],
-      manager: ['', Validators.required],
-      developers: [''],
-      qualityAssurance: [''],
+    this.store.select('users').subscribe((users) => {
+      users.forEach((user) => {
+        const userObject = {
+          item_id: user._id as string,
+          item_text: `${user.name} ${user.surname} - ${user.seniority}`,
+        };
+        if (user.role === 'project-manager') {
+          this.managers.push(userObject);
+        }
+        if (user.role === 'developer') {
+          this.developers.push(userObject);
+        }
+        if (user.role === 'quality-assurance') {
+          this.qualityAssuranceMembers.push(userObject);
+        }
+      });
     });
   }
 
@@ -121,18 +110,17 @@ export class EditProjectComponent implements OnInit, OnDestroy {
       }
 
       const updatedProject = {
-        status: formResult.status[0],
+        status: formResult.status[0].item_id,
         members: {
           projectManager: formResult.manager[0].item_id,
           developers: developersArray,
           qualityAssurance: qualityArray,
         },
       };
-      console.log(updatedProject);
+      this.store.dispatch(
+        updateProject({ projectId: this.project._id!, update: updatedProject })
+      );
+      this.isVisible.emit(false);
     }
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 }

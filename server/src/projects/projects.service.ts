@@ -42,6 +42,7 @@ export class ProjectsService {
     projectId: string,
     updateProjectDto: UpdateProjectDto,
   ): Promise<Project> {
+    console.log('UPDATE', updateProjectDto);
     if (updateProjectDto.hasOwnProperty('members')) {
       const previousState = await this.projectModel.findById(projectId);
       const previousMembers = previousState.members;

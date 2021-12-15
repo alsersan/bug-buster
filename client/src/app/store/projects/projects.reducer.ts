@@ -20,6 +20,12 @@ export const projectsReducer = createReducer(
     project,
   ]),
 
+  // UPDATE PROJECT
+
+  on(actions.updateProjectSuccess, (state, { project }) =>
+    state.map((el) => (el._id === project._id ? project : el))
+  ),
+
   // DELETE PROJECT
   on(actions.deleteProjectSuccess, (state, { project }) =>
     state.filter((el) => el._id !== project.deletedProjectId)
