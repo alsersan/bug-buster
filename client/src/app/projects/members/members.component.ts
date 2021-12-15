@@ -12,6 +12,4 @@ export class MembersComponent {
   roles = capitalizedRoles;
 
   constructor() {}
-
-  deleteMember(userId: string) {}
 }

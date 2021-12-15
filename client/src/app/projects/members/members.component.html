@@ -29,14 +29,6 @@
               title="View user details"
             />
           </a>
-          <button (click)="deleteMember(project.members.projectManager._id!)">
-            <img
-              class="delete"
-              src="/assets/icons/delete.svg"
-              alt="Delete user icons"
-              title="Delete user"
-            />
-          </button>
         </div>
       </div>
       <div *ngIf="!project.members.projectManager?.name" class="member">
@@ -72,14 +64,6 @@
                 title="View user details"
               />
             </a>
-            <button (click)="deleteMember(developer._id!)">
-              <img
-                class="delete"
-                src="/assets/icons/delete.svg"
-                alt="Delete user icons"
-                title="Delete user"
-              />
-            </button>
           </div>
         </li>
       </ul>
@@ -119,14 +103,6 @@
                 title="View user details"
               />
             </a>
-            <button (click)="deleteMember(qualityAssurance._id!)">
-              <img
-                class="delete"
-                src="/assets/icons/delete.svg"
-                alt="Delete user icons"
-                title="Delete user"
-              />
-            </button>
           </div>
         </li>
       </ul>

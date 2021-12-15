@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Project } from 'src/app/models/project.model';
@@ -11,6 +11,7 @@ import { deleteProject } from 'src/app/store/projects/projects.actions';
 })
 export class ProjectDetailsComponent {
   @Input() project!: Project;
+  @Output() isVisible = new EventEmitter<boolean>();
 
   constructor(
     private store: Store<{ projects: Project[] }>,
@@ -20,5 +21,9 @@ export class ProjectDetailsComponent {
   delete(projectId: string) {
     this.store.dispatch(deleteProject({ projectId }));
     this.router.navigateByUrl('/projects');
+  }
+
+  onClick() {
+    this.isVisible.emit(true);
   }
 }

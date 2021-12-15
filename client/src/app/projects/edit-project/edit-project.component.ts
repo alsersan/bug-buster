@@ -1,10 +1,12 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Project } from 'src/app/models/project.model';
@@ -19,6 +21,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class EditProjectComponent implements OnInit, OnDestroy {
   @Input() project!: Project;
+  @Output() isVisible = new EventEmitter<boolean>();
   editProject!: FormGroup;
 
   managers: Array<any> = [];
@@ -101,7 +104,9 @@ export class EditProjectComponent implements OnInit, OnDestroy {
     });
   }
 
-  onCancel() {}
+  onCancel() {
+    this.isVisible.emit(false);
+  }
 
   onSubmit() {
     if (this.editProject.valid) {
