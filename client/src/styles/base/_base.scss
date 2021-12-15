@@ -49,6 +49,13 @@ textarea {
   }
 }
 
+select {
+  height: 4rem;
+  background-color: white;
+  border-radius: $border-radius;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
 input {
   height: 4rem;
   padding: 0 1rem;
