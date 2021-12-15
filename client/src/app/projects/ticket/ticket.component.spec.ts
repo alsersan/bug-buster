@@ -57,7 +57,6 @@ describe('TicketComponent', () => {
         TicketMembersComponent,
         TicketDetailsComponent,
         TicketCommentsComponent,
-        TicketHistoryComponent,
       ],
       providers: [
         provideMockStore({ initialState }),
