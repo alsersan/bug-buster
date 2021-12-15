@@ -8,7 +8,11 @@
         </p>
         <p class="role">{{ roles[loguedInUser.user.role] }}</p>
       </div>
-      <div class="avatar"></div>
+      <img
+        class="avatar"
+        src="{{ loguedInUser.user.avatarUrl }}"
+        alt="User profile picture"
+      />
       <img class="arrow" src="/assets/icons/arrow.svg" alt="Down arrow icon" />
     </div>
     <ul class="menu">
