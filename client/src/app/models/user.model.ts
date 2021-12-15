@@ -12,6 +12,7 @@ export interface User {
   password?: string;
   projects: Array<Project>;
   tickets: Array<Ticket>;
+  dateRegistered: Date;
 }
 
 export interface NewUser {
@@ -22,6 +23,7 @@ export interface NewUser {
   seniority: string;
   email: string;
   password: string;
+  dateRegistered: Date;
 }
 
 export interface DeletedUser {

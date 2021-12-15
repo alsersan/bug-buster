@@ -7,7 +7,7 @@ import { Project, ProjectDocument } from './schemas/project.schema';
 import { User, UserDocument } from 'src/users/schemas/user.schema';
 import { addItemToList, removeItemFromList } from 'src/utils/add-remove-items';
 import { getChangedItems } from 'src/utils/get-changed-items';
-import { Members } from './schemas/members.schema';
+
 @Injectable()
 export class ProjectsService {
   constructor(

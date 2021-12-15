@@ -60,6 +60,7 @@ export class CreateUserComponent implements OnInit {
           role: formResult.role,
           seniority: formResult.seniority,
           avatarUrl: res.url,
+          dateRegistered: new Date(),
         };
         this.usersService.createUser(user).subscribe({
           next: (res) => {
