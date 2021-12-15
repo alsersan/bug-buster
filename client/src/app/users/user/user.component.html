@@ -9,12 +9,17 @@
       />
     </button>
     <div class="user">
-      <div class="avatar"></div>
+      <img
+        class="avatar"
+        src="{{ user.avatarUrl }}"
+        alt="User profile picture"
+      />
       <h2 class="user-name">{{ user.name }} {{ user.surname }}</h2>
       <div class="user-info">
         <p>Role: {{ roles[user.role] }}</p>
         <p>Seniority: {{ user.seniority | titlecase }}</p>
         <p>Email: {{ user.email }}</p>
+        <p>Date registered: {{ user.dateRegistered | date: "mediumDate" }}</p>
       </div>
     </div>
   </div>
