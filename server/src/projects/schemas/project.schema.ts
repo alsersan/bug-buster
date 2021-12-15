@@ -13,7 +13,7 @@ export class Project {
   @Prop({ required: true })
   description: string;
 
-  @Prop({ default: 'active' })
+  @Prop({ default: 'active', enum: ['active', 'closed'] })
   status: string;
 
   @Prop()

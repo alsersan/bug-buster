@@ -17,10 +17,13 @@ export class User {
   @Prop({ required: true })
   avatarUrl: string;
 
-  @Prop({ required: true })
+  @Prop({
+    required: true,
+    enum: ['admin', 'project-manager', 'developer', 'quality-assurance'],
+  })
   role: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, enum: ['trainee', 'junior', 'middle', 'senior'] })
   seniority: string;
 
   @Prop({ required: true })

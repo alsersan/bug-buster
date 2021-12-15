@@ -14,20 +14,20 @@ export class Ticket {
   @Prop({ required: true })
   description: string;
 
-  @Prop({ default: 'pending' })
+  @Prop({ default: 'pending', enum: ['pending', 'active', 'closed'] })
   status: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, enum: ['low', 'medium', 'high', 'immediate'] })
   priority: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, enum: ['bug', 'feature-request', 'other'] })
   type: string;
 
   @Prop({ required: true })
   dateCreated: Date;
 
   @Prop({ default: null })
-  dateClosed: string | null;
+  dateClosed: Date | null;
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Project' })
   project: Project;
