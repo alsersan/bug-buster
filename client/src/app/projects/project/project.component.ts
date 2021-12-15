@@ -12,6 +12,7 @@ import { getProjectById } from 'src/app/store/projects/projects.actions';
 })
 export class ProjectComponent implements OnInit {
   isCreateTicketVisible: boolean = false;
+  isEditProjectVisible: boolean = true;
   projects$: Observable<Array<Project>> = this.store.select('projects');
   project$: Observable<Project> = this.projects$.pipe(
     map(

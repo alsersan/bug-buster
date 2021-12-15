@@ -14,4 +14,8 @@
     (isVisible)="setCreateTicketVisibility($event)"
     [project]="(project$ | async)!"
   ></app-create-ticket>
+  <app-edit-project
+    *ngIf="isEditProjectVisible"
+    [project]="(project$ | async)!"
+  ></app-edit-project>
 </section>
