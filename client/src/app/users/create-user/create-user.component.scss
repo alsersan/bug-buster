@@ -12,7 +12,7 @@
 
 .form-container {
   @include box-styles(3rem);
-  width: 40rem;
+  width: 80rem;
 }
 
 .title {
@@ -25,8 +25,15 @@
   font-size: 1.4rem;
 }
 
+.row {
+  display: flex;
+  gap: 2rem;
+}
+
 .input-container {
   display: flex;
+  flex-grow: 1;
+  flex-basis: 0;
   flex-direction: column;
   gap: 1rem;
   margin-bottom: 2.5rem;

@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     .subscribe((user) => {
       this.loguedInUser = user;
       if (user.loginFailed) {
-        this.login.reset();
         this.showError = true;
         setTimeout(() => (this.showError = false), 3000);
       }
