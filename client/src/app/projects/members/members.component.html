@@ -5,7 +5,11 @@
       <p class="role-title">PROJECT MANAGER</p>
       <div *ngIf="project.members.projectManager?.name" class="member">
         <div class="details-container">
-          <div class="avatar"></div>
+          <img
+            class="avatar"
+            src="{{ project.members.projectManager.avatarUrl }}"
+            alt="User profile picture"
+          />
           <div class="name-container">
             <p class="name">
               {{ project.members.projectManager.name }}
@@ -44,7 +48,11 @@
       <ul *ngIf="project.members.developers?.length" class="developer-list">
         <li class="member" *ngFor="let developer of project.members.developers">
           <div class="details-container">
-            <div class="avatar"></div>
+            <img
+              class="avatar"
+              src="{{ developer.avatarUrl }}"
+              alt="User profile picture"
+            />
             <div class="name-container">
               <p class="name">
                 {{ developer.name }}
@@ -87,7 +95,11 @@
           *ngFor="let qualityAssurance of project!.members.qualityAssurance"
         >
           <div class="details-container">
-            <div class="avatar"></div>
+            <img
+              class="avatar"
+              src="{{ qualityAssurance.avatarUrl }}"
+              alt="User profile picture"
+            />
             <div class="name-container">
               <p class="name">
                 {{ qualityAssurance.name }}
