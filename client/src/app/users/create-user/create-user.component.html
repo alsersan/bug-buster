@@ -43,6 +43,9 @@
           >
             Email is required and must be valid
           </div>
+          <div class="error-msg" *ngIf="isEmailInvalid">
+            Email is invalid or already in use
+          </div>
         </div>
         <div class="input-container">
           <label for="user-password">Password</label>
@@ -66,6 +69,15 @@
               {{ role.name }}
             </option>
           </select>
+          <div
+            class="error-msg"
+            *ngIf="
+              createUser.controls['role'].invalid &&
+              createUser.controls['role'].touched
+            "
+          >
+            Role is required
+          </div>
         </div>
         <div class="input-container">
           <label for="user-seniority">Seniority</label>
@@ -81,20 +93,31 @@
               {{ seniority | titlecase }}
             </option>
           </select>
+          <div
+            class="error-msg"
+            *ngIf="
+              createUser.controls['seniority'].invalid &&
+              createUser.controls['seniority'].touched
+            "
+          >
+            Seniority is required
+          </div>
         </div>
       </div>
-      <div class="input-container">
-        <label for="user-avatar">Picture</label>
-        <input
-          type="file"
-          class="user-avatar"
-          id="user-avatar"
-          name="user-avatar"
-          formControlName="avatar"
-          placeholder="img"
-        />
+      <div class="row">
+        <div class="input-container">
+          <label for="user-avatar">Picture</label>
+          <input
+            type="file"
+            class="user-avatar"
+            id="user-avatar"
+            name="user-avatar"
+            formControlName="avatar"
+            placeholder="img"
+          />
+        </div>
+        <button class="create-btn" (click)="onSubmit()">Create User</button>
       </div>
-      <button class="create-btn" (click)="onSubmit()">Create User</button>
     </form>
   </div>
 </section>

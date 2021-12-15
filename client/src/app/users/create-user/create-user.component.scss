@@ -28,6 +28,7 @@
 .row {
   display: flex;
   gap: 2rem;
+  align-items: center;
 }
 
 .input-container {
@@ -49,4 +50,9 @@ label {
 
 .create-btn {
   @include create-btn;
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 0;
+  align-items: center;
+  justify-content: center;
 }

@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./create-user.component.scss'],
 })
 export class CreateUserComponent implements OnInit {
+  isEmailInvalid: boolean = false;
   createUser!: FormGroup;
   roles = [
     { name: 'Administrator', value: 'admin' },
@@ -67,7 +68,10 @@ export class CreateUserComponent implements OnInit {
             this.createUser.reset();
             this.router.navigateByUrl('/users');
           },
-          error: (err) => console.log('ERR', err),
+          error: (err) => {
+            this.isEmailInvalid = true;
+            setTimeout(() => (this.isEmailInvalid = false), 3000);
+          },
         });
       });
     }

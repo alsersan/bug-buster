@@ -26,7 +26,7 @@ export class User {
   @Prop({ required: true, enum: ['trainee', 'junior', 'middle', 'senior'] })
   seniority: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true })
   email: string;
 
   @Prop({ required: true })
