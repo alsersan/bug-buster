@@ -13,14 +13,10 @@
   background-color: $main-background;
   display: flex;
   justify-content: space-between;
-  padding-right: 2rem;
-  padding-left: 1rem;
 }
 
-.logo {
-  height: 100%;
-  width: 19.5rem;
-  background-color: lightskyblue;
+.main-logo {
+  margin-left: 1rem;
 }
 
 .menu-wrapper {
@@ -75,6 +71,7 @@
   display: flex;
   align-items: center;
   height: 100%;
+  padding-right: 2rem;
 }
 
 .name-wrapper {
