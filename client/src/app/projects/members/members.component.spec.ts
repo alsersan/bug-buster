@@ -26,6 +26,7 @@ describe('MembersComponent', () => {
       tickets: [],
       members: {
         projectManager: {
+          dateRegistered: new Date(),
           name: '',
           surname: '',
           avatarUrl: '',

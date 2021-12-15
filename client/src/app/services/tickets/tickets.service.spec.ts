@@ -39,8 +39,8 @@ describe('Given TicketsService', () => {
           priority: '',
           type: '',
           dateCreated: new Date(),
-          author: {} as User,
-          project: {} as Project,
+          author: '',
+          project: '',
         })
         .subscribe((data) => {
           expect(JSON.stringify(data)).toEqual(JSON.stringify(mockTicket));

@@ -32,6 +32,7 @@ describe('Given UsersService', () => {
     it('should return a new user', () => {
       service
         .createUser({
+          dateRegistered: new Date(),
           name: '',
           surname: '',
           role: '',

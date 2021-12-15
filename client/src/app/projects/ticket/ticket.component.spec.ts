@@ -3,7 +3,6 @@ import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { provideMockStore } from '@ngrx/store/testing';
 import { TicketCommentsComponent } from '../ticket-comments/ticket-comments.component';
 import { TicketDetailsComponent } from '../ticket-details/ticket-details.component';
-import { TicketHistoryComponent } from '../ticket-history/ticket-history.component';
 import { TicketMembersComponent } from '../ticket-members/ticket-members.component';
 
 import { TicketComponent } from './ticket.component';
