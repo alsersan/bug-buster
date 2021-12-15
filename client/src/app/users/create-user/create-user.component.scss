@@ -43,6 +43,10 @@ label {
   @include label-required;
 }
 
+.user-avatar {
+  padding-top: 0.5rem;
+}
+
 .create-btn {
   @include create-btn;
 }
