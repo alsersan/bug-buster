@@ -2,7 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Project } from 'src/app/models/project.model';
+import { NewTicket } from 'src/app/models/ticket.model';
 import { UserState } from 'src/app/models/user.model';
+import { createTicket } from 'src/app/store/tickets/tickets.actions';
 
 @Component({
   selector: 'app-create-ticket',
@@ -24,13 +26,15 @@ export class CreateTicketComponent implements OnInit {
     { name: 'High', value: 'high' },
     { name: 'Immediate', value: 'immediate' },
   ];
-  createTicket!: FormGroup;
+  newTicket!: FormGroup;
   loguedInUser!: UserState;
 
-  constructor(private store: Store<{ loguedInUser: UserState }>) {}
+  constructor(
+    private store: Store<{ loguedInUser: UserState; projects: Project[] }>
+  ) {}
 
   ngOnInit(): void {
-    this.createTicket = new FormGroup(
+    this.newTicket = new FormGroup(
       {
         name: new FormControl('', Validators.required),
         description: new FormControl('', Validators.required),
@@ -46,18 +50,19 @@ export class CreateTicketComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.createTicket.valid) {
-      const formResult = this.createTicket.value;
-      const ticket = {
+    if (this.newTicket.valid) {
+      const formResult = this.newTicket.value;
+      const ticket: NewTicket = {
         name: formResult.name,
         description: formResult.description,
         type: formResult.type,
         priority: formResult.priority,
         dateCreated: new Date(),
-        project: this.project._id,
-        author: this.loguedInUser.user._id,
+        project: this.project._id!,
+        author: this.loguedInUser.user._id!,
       };
       console.log(ticket);
+      this.store.dispatch(createTicket({ ticket }));
       this.isVisible.emit(false);
     }
   }

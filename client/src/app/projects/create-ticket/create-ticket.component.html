@@ -1,15 +1,15 @@
 <div class="create-ticket-container">
   <div class="form-container">
     <h2 class="title">Create Ticket</h2>
-    <form [formGroup]="createTicket">
+    <form [formGroup]="newTicket">
       <div class="input-container">
         <label for="ticket-name">Name</label>
         <input id="ticket-name" type="text" formControlName="name" />
         <div
           class="error-msg"
           *ngIf="
-            createTicket.controls['name'].invalid &&
-            createTicket.controls['name'].touched
+            newTicket.controls['name'].invalid &&
+            newTicket.controls['name'].touched
           "
         >
           Name is required
@@ -25,8 +25,8 @@
         <div
           class="error-msg"
           *ngIf="
-            createTicket.controls['description'].invalid &&
-            createTicket.controls['description'].touched
+            newTicket.controls['description'].invalid &&
+            newTicket.controls['description'].touched
           "
         >
           Description is required
@@ -39,6 +39,15 @@
             {{ type.name }}
           </option>
         </select>
+        <div
+          class="error-msg"
+          *ngIf="
+            newTicket.controls['type'].invalid &&
+            newTicket.controls['type'].touched
+          "
+        >
+          Ticket type is required
+        </div>
       </div>
       <div class="input-container">
         <label for="ticket-priority">Ticket priority</label>
@@ -54,6 +63,15 @@
             {{ priority.name }}
           </option>
         </select>
+        <div
+          class="error-msg"
+          *ngIf="
+            newTicket.controls['priority'].invalid &&
+            newTicket.controls['priority'].touched
+          "
+        >
+          Ticket priority is required
+        </div>
       </div>
       <div class="button-container">
         <button class="cancel-btn" (click)="onCancel()">Cancel</button>

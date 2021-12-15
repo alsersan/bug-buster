@@ -23,8 +23,8 @@ export interface NewTicket {
   priority: string;
   type: string;
   dateCreated: Date;
-  project: Project;
-  author: User;
+  project: string;
+  author: string;
 }
 
 export interface DeletedTicket {

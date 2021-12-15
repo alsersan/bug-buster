@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { Project } from 'src/app/models/project.model';
 import * as actions from './projects.actions';
+import * as ticketActions from '../tickets/tickets.actions';
 
 const initialState: ReadonlyArray<Project> = [];
 
@@ -22,5 +23,13 @@ export const projectsReducer = createReducer(
   // DELETE PROJECT
   on(actions.deleteProjectSuccess, (state, { project }) =>
     state.filter((el) => el._id !== project.deletedProjectId)
-  )
+  ),
+
+  // CREATE TICKET
+  on(ticketActions.createTicketSuccess, (state, { ticket }) => {
+    console.log('REDUCER', ticket);
+    const project = { ...state.find((el) => el._id === ticket.project._id)! };
+    project.tickets = [ticket, ...project.tickets];
+    return state.map((el) => (el._id === ticket.project._id ? project : el));
+  })
 );
