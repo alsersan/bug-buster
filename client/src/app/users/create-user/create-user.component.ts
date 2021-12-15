@@ -54,10 +54,10 @@ export class CreateUserComponent implements OnInit {
       this.uploadService.uploadImage(data).subscribe((res) => {
         const formResult = this.createUser.value;
         const user: NewUser = {
-          name: formResult.name,
-          surname: formResult.surname,
-          email: formResult.email,
-          password: formResult.password,
+          name: formResult.name.trim(),
+          surname: formResult.surname.trim(),
+          email: formResult.email.trim(),
+          password: formResult.password.trim(),
           role: formResult.role,
           seniority: formResult.seniority,
           avatarUrl: res.url,
