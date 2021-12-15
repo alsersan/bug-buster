@@ -6,7 +6,11 @@ import { UpdateTicketDto } from './dto/update-ticket.dto';
 import { Ticket, TicketDocument } from './schemas/ticket.schema';
 import { Project, ProjectDocument } from 'src/projects/schemas/project.schema';
 import { User, UserDocument } from 'src/users/schemas/user.schema';
-import { addItemToList, removeItemFromList } from 'src/utils/add-remove-items';
+import {
+  addItemToList,
+  addItemToListFromBeginning,
+  removeItemFromList,
+} from 'src/utils/add-remove-items';
 import { getChangedItems } from 'src/utils/get-changed-items';
 
 @Injectable()
@@ -19,7 +23,7 @@ export class TicketsService {
 
   async createTicket(createTicketDto: CreateTicketDto): Promise<Ticket> {
     const newTicket = await this.ticketModel.create(createTicketDto);
-    await addItemToList(
+    await addItemToListFromBeginning(
       newTicket.project,
       'tickets',
       newTicket._id,
