@@ -40,7 +40,7 @@
           formControlName="projectManager"
         >
           <option *ngFor="let manager of managers" value="{{ manager._id }}">
-            {{ manager.name }}
+            {{ manager.name }} {{ manager.surname }}
           </option>
         </select>
       </div>
