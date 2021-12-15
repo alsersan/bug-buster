@@ -13,6 +13,8 @@
   background-color: $main-background;
   display: flex;
   justify-content: space-between;
+  padding-right: 2rem;
+  padding-left: 1rem;
 }
 
 .logo {
@@ -73,7 +75,6 @@
   display: flex;
   align-items: center;
   height: 100%;
-  padding-right: 2rem;
 }
 
 .name-wrapper {
