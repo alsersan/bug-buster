@@ -38,7 +38,7 @@
 }
 
 .button-container {
-  width: 5rem;
+  gap: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,6 +49,14 @@
 
   &:hover {
     filter: $delete-color-svg;
+  }
+}
+
+.edit-icon {
+  height: 2rem;
+
+  &:hover {
+    filter: $primary-color-svg;
   }
 }
 

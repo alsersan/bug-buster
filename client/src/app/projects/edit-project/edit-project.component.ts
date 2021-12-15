@@ -25,7 +25,10 @@ export class EditProjectComponent implements OnInit {
   dropdownSettings: IDropdownSettings = {};
   dropdownSettingsSingleSelect: IDropdownSettings = {};
 
-  selectedItems: Array<any> = [];
+  selectedStatus: Array<any> = [];
+  selectedManager: Array<any> = [];
+  selectedDevelopers: Array<any> = [];
+  selectedQualityAssurance: Array<any> = [];
 
   constructor(
     private fb: FormBuilder,
@@ -34,6 +37,8 @@ export class EditProjectComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(getAllUsers());
+
+    console.log('onInit', this.project);
 
     this.dropdownSettings = {
       singleSelection: false,
@@ -57,22 +62,11 @@ export class EditProjectComponent implements OnInit {
     };
 
     this.editProject = this.fb.group({
-      status: ['', Validators.required],
+      status: [''],
       manager: ['', Validators.required],
       developers: [''],
       qualityAssurance: [''],
     });
-
-    this.statusOptions = [
-      {
-        item_id: 'active',
-        item_text: 'Active',
-      },
-      {
-        item_id: 'closed',
-        item_text: 'Closed',
-      },
-    ];
 
     this.store.select('users').subscribe((users) => {
       users.forEach((user) => {
@@ -82,15 +76,73 @@ export class EditProjectComponent implements OnInit {
         };
         if (user.role === 'project-manager') {
           this.managers.push(userObject);
+          if (this.project.members.projectManager._id === user._id) {
+            this.selectedManager.push(userObject);
+          }
         }
         if (user.role === 'developer') {
           this.developers.push(userObject);
         }
         if (user.role === 'quality-assurance') {
           this.qualityAssuranceMembers.push(userObject);
+          if (this.project.members.projectManager._id === user._id) {
+            this.selectedManager.push(userObject);
+          }
         }
       });
+      this.statusOptions = [
+        {
+          item_id: 'active',
+          item_text: 'Active',
+        },
+        {
+          item_id: 'closed',
+          item_text: 'Closed',
+        },
+      ];
+      this.selectedStatus = [
+        {
+          item_id: this.project.status,
+          item_text: this.project.status,
+        },
+      ];
+      this.selectedDevelopers = this.project.members.developers?.map((el) => ({
+        item_id: el._id as string,
+        item_text: `${el.name} ${el.surname} - ${el.seniority}`,
+      }))!;
+      this.selectedQualityAssurance =
+        this.project.members.qualityAssurance?.map((el) => ({
+          item_id: el._id as string,
+          item_text: `${el.name} ${el.surname} - ${el.seniority}`,
+        }))!;
+      this.editProject.controls['status'].setValue(this.selectedStatus);
+      this.editProject.controls['manager'].setValue(this.selectedManager);
+      this.editProject.controls['developers'].setValue(this.selectedDevelopers);
+      this.editProject.controls['qualityAssurance'].setValue(
+        this.selectedQualityAssurance
+      );
     });
+  }
+
+  initializeForm() {
+    /* this.selectedManager = [
+      {
+        item_id: 'active',
+        item_text: 'Active',
+      },
+    ]; */
+    /* this.editProject = this.fb.group({
+      status: [this.selectedItems],
+      manager: ['', Validators.required],
+      developers: [''],
+      qualityAssurance: [''],
+    }); */
+    /* this.editProject = this.fb.group({
+      status: ['active', Validators.required],
+      manager: [this.managers[0], Validators.required],
+      developers: [''],
+      qualityAssurance: [''],
+    }); */
   }
 
   onCancel() {
