@@ -1,6 +1,12 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { Exclude, Type } from 'class-transformer';
-import { IsDate, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import {
+  IsDate,
+  IsDateString,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { Ticket } from 'src/tickets/schemas/ticket.schema';
 import { Members } from '../schemas/members.schema';
 import { CreateProjectDto } from './create-project.dto';
@@ -31,7 +37,7 @@ export class UpdateProjectDto extends PartialType(CreateProjectDto) {
 
   @IsOptional()
   @IsNotEmpty()
-  @IsDate()
+  @IsDateString()
   dateClosed: Date;
 
   @Type(() => Ticket)
