@@ -13,15 +13,6 @@ import { getAllUsers } from 'src/app/store/users/users.actions';
   styleUrls: ['./create-project.component.scss'],
 })
 export class CreateProjectComponent implements OnInit, OnDestroy {
-  /* managers = [
-    { name: 'bla', _id: '2' },
-    { name: 'blu', _id: '3' },
-    {
-      name: '61aa5d8510c9e6570de7332e',
-      _id: '61aa5d8510c9e6570de7332e',
-      hidden: true,
-    },
-  ]; */
   createProject!: FormGroup;
   managers!: User[];
   subscription: Subscription = this.store

@@ -1,76 +1,80 @@
 <div class="create-ticket-container">
   <div class="form-container">
     <h2 class="title">Create Ticket</h2>
-    <form [formGroup]="newTicket">
-      <div class="input-container">
-        <label for="ticket-name">Name</label>
-        <input id="ticket-name" type="text" formControlName="name" />
-        <div
-          class="error-msg"
-          *ngIf="
-            newTicket.controls['name'].invalid &&
-            newTicket.controls['name'].touched
-          "
-        >
-          Name is required
-        </div>
-      </div>
-      <div class="input-container">
-        <label for="ticket-description">Description</label>
-        <input
-          id="ticket-description"
-          type="text"
-          formControlName="description"
-        />
-        <div
-          class="error-msg"
-          *ngIf="
-            newTicket.controls['description'].invalid &&
-            newTicket.controls['description'].touched
-          "
-        >
-          Description is required
-        </div>
-      </div>
-      <div class="input-container">
-        <label for="ticket-type">Ticket type</label>
-        <select name="ticket-type" id="ticket-type" formControlName="type">
-          <option *ngFor="let type of ticketTypes" value="{{ type.value }}">
-            {{ type.name }}
-          </option>
-        </select>
-        <div
-          class="error-msg"
-          *ngIf="
-            newTicket.controls['type'].invalid &&
-            newTicket.controls['type'].touched
-          "
-        >
-          Ticket type is required
-        </div>
-      </div>
-      <div class="input-container">
-        <label for="ticket-priority">Ticket priority</label>
-        <select
-          name="ticket-priority"
-          id="ticket-priority"
-          formControlName="priority"
-        >
-          <option
-            *ngFor="let priority of ticketPriorities"
-            value="{{ priority.value }}"
+    <form [formGroup]="newTicket" class="form">
+      <div class="flex-row">
+        <div class="input-container">
+          <label for="ticket-name">Name</label>
+          <input id="ticket-name" type="text" formControlName="name" />
+          <div
+            class="error-msg"
+            *ngIf="
+              newTicket.controls['name'].invalid &&
+              newTicket.controls['name'].touched
+            "
           >
-            {{ priority.name }}
-          </option>
-        </select>
-        <div
-          class="error-msg"
-          *ngIf="
-            newTicket.controls['priority'].invalid &&
-            newTicket.controls['priority'].touched
-          "
-        >
-          Ticket priority is required
+            Name is required
+          </div>
+        </div>
+        <div class="input-container">
+          <label for="ticket-description">Description</label>
+          <textarea
+            id="ticket-description"
+            type="text"
+            formControlName="description"
+          ></textarea>
+          <div
+            class="error-msg"
+            *ngIf="
+              newTicket.controls['description'].invalid &&
+              newTicket.controls['description'].touched
+            "
+          >
+            Description is required
+          </div>
+        </div>
+      </div>
+      <div class="flex-row">
+        <div class="input-container">
+          <label for="ticket-type">Ticket type</label>
+          <select name="ticket-type" id="ticket-type" formControlName="type">
+            <option *ngFor="let type of ticketTypes" value="{{ type.value }}">
+              {{ type.name }}
+            </option>
+          </select>
+          <div
+            class="error-msg"
+            *ngIf="
+              newTicket.controls['type'].invalid &&
+              newTicket.controls['type'].touched
+            "
+          >
+            Ticket type is required
+          </div>
+        </div>
+        <div class="input-container">
+          <label for="ticket-priority">Ticket priority</label>
+          <select
+            name="ticket-priority"
+            id="ticket-priority"
+            formControlName="priority"
+          >
+            <option
+              *ngFor="let priority of ticketPriorities"
+              value="{{ priority.value }}"
+            >
+              {{ priority.name }}
+            </option>
+          </select>
+          <div
+            class="error-msg"
+            *ngIf="
+              newTicket.controls['priority'].invalid &&
+              newTicket.controls['priority'].touched
+            "
+          >
+            Ticket priority is required
+          </div>
         </div>
       </div>
       <div class="button-container">
