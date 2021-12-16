@@ -23,6 +23,7 @@ describe('TicketMembersComponent', () => {
       _id: '',
       name: '',
       status: '',
+      comments: [],
       dateClosed: null,
       dateCreated: new Date(),
       description: '',

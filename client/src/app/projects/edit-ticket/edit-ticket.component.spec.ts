@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder } from '@angular/forms';
 
 import { EditTicketComponent } from './edit-ticket.component';
 
@@ -8,9 +9,9 @@ describe('EditTicketComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditTicketComponent ]
-    })
-    .compileComponents();
+      declarations: [EditTicketComponent],
+      providers: [FormBuilder],
+    }).compileComponents();
   });
 
   beforeEach(() => {

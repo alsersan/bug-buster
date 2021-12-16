@@ -1,14 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { TicketsComponent } from './tickets.component';
 
 describe('TicketsComponent', () => {
   let component: TicketsComponent;
   let fixture: ComponentFixture<TicketsComponent>;
+  let initialState = { projects: [], userState: { user: { role: '' } } };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TicketsComponent],
+      providers: [provideMockStore({ initialState })],
     }).compileComponents();
   });
 
