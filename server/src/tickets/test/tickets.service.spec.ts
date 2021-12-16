@@ -24,7 +24,6 @@ describe('Given the TicketsService', () => {
     project: '',
     author: '',
     assignedTo: ['', ''],
-    modifications: [],
   };
 
   beforeEach(async () => {

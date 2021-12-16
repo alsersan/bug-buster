@@ -7,13 +7,11 @@ import { UsersModule } from './users/users.module';
 import { ProjectsModule } from './projects/projects.module';
 import { LogsMiddleware } from './middlewares/logs.middleware';
 import { TicketsModule } from './tickets/tickets.module';
-import { ModificationsModule } from './modifications/modifications.module';
 import { LoginModule } from './login/login.module';
 import { VerifyJwtToken } from './middlewares/verify-token.middleware';
 import { ProjectsController } from './projects/projects.controller';
 import { UsersController } from './users/users.controller';
 import { TicketsController } from './tickets/tickets.controller';
-import { ModificationsController } from './modifications/modifications.controller';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthorizationGuard } from './guards/authorization.guard';
 
@@ -27,7 +25,6 @@ const ENV = process.env.NODE_ENV;
     UsersModule,
     ProjectsModule,
     TicketsModule,
-    ModificationsModule,
     LoginModule,
   ],
   controllers: [AppController],
@@ -44,11 +41,6 @@ export class AppModule implements NestModule {
     consumer.apply(LogsMiddleware).forRoutes('*');
     consumer
       .apply(VerifyJwtToken)
-      .forRoutes(
-        UsersController,
-        ProjectsController,
-        TicketsController,
-        ModificationsController,
-      );
+      .forRoutes(UsersController, ProjectsController, TicketsController);
   }
 }

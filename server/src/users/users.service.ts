@@ -54,6 +54,6 @@ export class UsersService {
     return queryResult
       .select('-__v -password')
       .populate('projects', '-__v -members._id')
-      .populate('tickets', '-__v -modifications -assignedTo -author');
+      .populate('tickets', '-__v -assignedTo -author');
   }
 }

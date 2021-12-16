@@ -28,5 +28,7 @@
       </div>
     </li>
   </ul>
-  <div class="no-members">No developers assigned</div>
+  <div *ngIf="!ticket.assignedTo.length" class="no-members">
+    No developers assigned
+  </div>
 </div>
