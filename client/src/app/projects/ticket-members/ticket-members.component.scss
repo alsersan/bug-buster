@@ -46,7 +46,6 @@
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
-  background-color: lightblue;
 }
 
 .name {
@@ -64,14 +63,6 @@
 
   &:hover {
     filter: $primary-color-svg;
-  }
-}
-
-.delete {
-  width: 2rem;
-
-  &:hover {
-    filter: $delete-color-svg;
   }
 }
 

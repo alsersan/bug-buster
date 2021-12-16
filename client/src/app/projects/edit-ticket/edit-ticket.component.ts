@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Ticket } from 'src/app/models/ticket.model';
 import { User } from 'src/app/models/user.model';
+import { updateTicket } from 'src/app/store/tickets/tickets.actions';
 import { getAllUsers } from 'src/app/store/users/users.actions';
 import { capitalize } from 'src/app/utils/capitalize';
 
@@ -144,6 +145,10 @@ export class EditTicketComponent implements OnInit {
         assignedTo: developersArray,
       };
       console.log(updatedTicket);
+      this.store.dispatch(
+        updateTicket({ ticketId: this.ticket._id!, update: updatedTicket })
+      );
+      this.isVisible.emit(false);
     }
   }
 

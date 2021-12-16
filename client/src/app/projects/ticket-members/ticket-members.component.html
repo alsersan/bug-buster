@@ -3,13 +3,17 @@
   <ul *ngIf="ticket.assignedTo.length" class="member-list">
     <li *ngFor="let member of ticket.assignedTo" class="member">
       <div class="details-container">
-        <div class="avatar"></div>
+        <img
+          class="avatar"
+          src="{{ member.avatarUrl }}"
+          alt="User profile picture"
+        />
         <div class="name-container">
           <p class="name">
             {{ member.name }}
             {{ member.surname }}
           </p>
-          <p>{{ roles[member.role] }} - {{ member.seniority | titlecase }}</p>
+          <p>{{ member.seniority | titlecase }}</p>
         </div>
       </div>
       <div class="icon-container">

@@ -33,9 +33,17 @@ export const projectsReducer = createReducer(
 
   // CREATE TICKET
   on(ticketActions.createTicketSuccess, (state, { ticket }) => {
-    console.log('REDUCER', ticket);
     const project = { ...state.find((el) => el._id === ticket.project._id)! };
     project.tickets = [ticket, ...project.tickets];
+    return state.map((el) => (el._id === ticket.project._id ? project : el));
+  }),
+
+  // UPDATE TICKET
+  on(ticketActions.updateTicketSuccess, (state, { ticket }) => {
+    const project = { ...state.find((el) => el._id === ticket.project._id)! };
+    project.tickets = project.tickets.map((el) =>
+      el._id === ticket._id ? ticket : el
+    );
     return state.map((el) => (el._id === ticket.project._id ? project : el));
   })
 );
