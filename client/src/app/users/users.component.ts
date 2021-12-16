@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User, UserState } from '../models/user.model';
 import { getAllUsers } from '../store/users/users.actions';
 import { capitalizedRoles } from '../utils/roles';
+import { deleteUser } from 'src/app/store/users/users.actions';
 
 @Component({
   selector: 'app-users',
@@ -26,5 +27,7 @@ export class UsersComponent implements OnInit {
       .subscribe((user) => (this.loguedInUser = user.user));
   }
 
-  delete(userId: string) {}
+  delete(userId: string) {
+    this.store.dispatch(deleteUser({ userId }));
+  }
 }
