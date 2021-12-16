@@ -16,7 +16,6 @@ export class ProjectsService {
   ) {}
 
   async createProject(createProjectDto: CreateProjectDto): Promise<Project> {
-    console.log(createProjectDto);
     const newProject = await this.projectModel.create(createProjectDto);
     await addItemToList(
       newProject.members.projectManager,
