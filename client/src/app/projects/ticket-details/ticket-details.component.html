@@ -1,13 +1,21 @@
 <div class="ticket-details-container">
-  <p class="ticket-title">{{ ticket.name }}</p>
-  <button
-    *ngIf="
-      loguedInUser.role === 'admin' || loguedInUser.role === 'project-manager'
-    "
-    (click)="onClick()"
-  >
-    EDIT TICKET
-  </button>
+  <div class="flex-row">
+    <p class="ticket-title">{{ ticket.name }}</p>
+    <button
+      *ngIf="
+        loguedInUser.role === 'admin' || loguedInUser.role === 'project-manager'
+      "
+      (click)="onClick()"
+    >
+      <img
+        class="edit-icon"
+        src="/assets/icons/edit.svg"
+        alt="Edit icon"
+        title="Edit user"
+      />
+    </button>
+  </div>
+
   <div class="info-section">
     <p class="section-title">Description</p>
     <p>{{ ticket.description }}</p>

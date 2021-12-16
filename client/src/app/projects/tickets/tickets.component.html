@@ -1,11 +1,19 @@
 <div class="ticket-container">
-  <p class="title">TICKETS</p>
-  <button
-    *ngIf="loguedInUser.role !== 'developer'"
-    (click)="onCreateBtnClick()"
-  >
-    Add ticket
-  </button>
+  <div class="flex-row">
+    <p class="title">TICKETS</p>
+    <button
+      *ngIf="loguedInUser.role !== 'developer'"
+      (click)="onCreateBtnClick()"
+    >
+      <img
+        class="add-ticket-icon"
+        src="/assets/icons/add-ticket.svg"
+        alt="Add ticket icon"
+        title="Add ticket"
+      />
+    </button>
+  </div>
+
   <ul *ngIf="project.tickets.length" class="ticket-list">
     <li class="ticket-list-element" *ngFor="let ticket of project.tickets">
       <a routerLink="tickets/{{ ticket._id }}" class="ticket">

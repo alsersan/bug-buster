@@ -1,3 +1,4 @@
+@import "src/styles/abstracts/variables";
 @import "src/styles/abstracts/mixins";
 
 .ticket-details-container {
@@ -8,9 +9,23 @@
   gap: 1rem;
 }
 
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .ticket-title {
   font-weight: bold;
   font-size: 2rem;
+}
+
+.edit-icon {
+  height: 2rem;
+
+  &:hover {
+    filter: $primary-color-svg;
+  }
 }
 
 .section-title {
