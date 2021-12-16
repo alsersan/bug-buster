@@ -61,7 +61,6 @@ export class CreateTicketComponent implements OnInit {
         project: this.project._id!,
         author: this.loguedInUser.user._id!,
       };
-      console.log(ticket);
       this.store.dispatch(createTicket({ ticket }));
       this.isVisible.emit(false);
     }
