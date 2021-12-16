@@ -19,6 +19,10 @@ lerna-debug.log*
 # OS
 .DS_Store
 
+# sonar-scanner
+/.scannerwork
+sonar-project.properties
+
 # Tests
 /coverage
 /.nyc_output
