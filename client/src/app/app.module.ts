@@ -11,6 +11,7 @@ import { AuthInterceptor } from './services/auth/auth.interceptor';
 import { checkLogin } from './store/auth/auth.actions';
 import { LoginEffects } from './store/auth/auth.effects';
 import { authReducer, clearState } from './store/auth/auth.reducers';
+import { CommentsEffects } from './store/comments/comments.effects';
 import { ProjectsEffects } from './store/projects/projects.effects';
 import { projectsReducer } from './store/projects/projects.reducer';
 import { TicketsEffects } from './store/tickets/tickets.effects';
@@ -37,6 +38,7 @@ import { usersReducer } from './store/users/users.reducer';
       UsersEffects,
       LoginEffects,
       TicketsEffects,
+      CommentsEffects,
     ]),
   ],
   providers: [

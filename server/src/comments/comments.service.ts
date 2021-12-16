@@ -27,6 +27,6 @@ export class CommentsService {
   processQuery(queryResult) {
     return queryResult
       .select('-__v')
-      .populate('author', '-__v -password -tickets -projects');
+      .populate('author ticket', '-__v -password -tickets -projects');
   }
 }

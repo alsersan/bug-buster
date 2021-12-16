@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { Project } from 'src/app/models/project.model';
 import { Ticket } from 'src/app/models/ticket.model';
 import { UserState } from 'src/app/models/user.model';
+import { createComment } from 'src/app/store/comments/comments.actions';
 import { capitalizedRoles } from 'src/app/utils/roles';
 
 @Component({
@@ -16,7 +18,9 @@ export class TicketCommentsComponent implements OnInit {
   addComment!: FormGroup;
   loguedInUser!: UserState;
 
-  constructor(private store: Store<{ loguedInUser: UserState }>) {}
+  constructor(
+    private store: Store<{ loguedInUser: UserState; projects: Project[] }>
+  ) {}
 
   ngOnInit(): void {
     this.addComment = new FormGroup({
@@ -30,15 +34,15 @@ export class TicketCommentsComponent implements OnInit {
 
   onSubmit() {
     if (this.addComment.valid) {
-      console.log(this.addComment.value);
       const formResult = this.addComment.value;
       const newComment = {
-        ticket: this.ticket._id,
+        ticket: this.ticket._id!,
         content: formResult.comment.trim(),
         dateCreated: new Date(),
-        author: this.loguedInUser.user._id,
+        author: this.loguedInUser.user._id!,
       };
-      console.log(newComment);
+      this.store.dispatch(createComment({ comment: newComment }));
+      this.addComment.reset();
     }
   }
 }

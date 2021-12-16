@@ -13,6 +13,6 @@ export interface newComment {
   _id?: string;
   dateCreated: Date;
   content: string;
-  ticket: Ticket;
-  author: User;
+  ticket: string;
+  author: string;
 }

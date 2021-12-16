@@ -54,6 +54,7 @@
   background-color: $primary-color;
   font-weight: bold;
   padding: 0 2rem;
+  cursor: pointer;
 
   &:hover {
     background-color: $primary-color-darker;
