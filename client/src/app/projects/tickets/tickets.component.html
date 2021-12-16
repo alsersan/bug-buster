@@ -1,6 +1,11 @@
 <div class="ticket-container">
   <p class="title">TICKETS</p>
-  <button (click)="onCreateBtnClick()">Add ticket</button>
+  <button
+    *ngIf="loguedInUser.role !== 'developer'"
+    (click)="onCreateBtnClick()"
+  >
+    Add ticket
+  </button>
   <ul *ngIf="project.tickets.length" class="ticket-list">
     <li class="ticket-list-element" *ngFor="let ticket of project.tickets">
       <a routerLink="tickets/{{ ticket._id }}" class="ticket">

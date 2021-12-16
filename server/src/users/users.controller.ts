@@ -25,7 +25,6 @@ export class UsersController {
   }
 
   @Get()
-  @Roles(roles.admin, roles.projectManager)
   async findAll() {
     return await this.usersService.getAllUsers();
   }

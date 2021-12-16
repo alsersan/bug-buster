@@ -1,5 +1,9 @@
 <section class="projects-container">
-  <a routerLink="/projects/create" class="add-project">
+  <a
+    *ngIf="loguedInUser.role === 'admin'"
+    routerLink="/projects/create"
+    class="add-project"
+  >
     <img
       class="add-project-logo"
       src="/assets/icons/add-project.svg"
@@ -40,7 +44,10 @@
               title="View project details"
             />
           </a>
-          <button (click)="delete(project._id!)">
+          <button
+            *ngIf="loguedInUser.role === 'admin'"
+            (click)="delete(project._id!)"
+          >
             <img
               class="delete"
               src="/assets/icons/delete.svg"

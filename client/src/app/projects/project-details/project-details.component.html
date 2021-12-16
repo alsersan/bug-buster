@@ -20,7 +20,13 @@
       </div>
     </div>
     <div class="button-container">
-      <button (click)="onClick()">
+      <button
+        *ngIf="
+          loguedInUser.role === 'admin' ||
+          loguedInUser.role === 'project-manager'
+        "
+        (click)="onClick()"
+      >
         <img
           class="edit-icon"
           src="/assets/icons/edit.svg"
@@ -28,7 +34,10 @@
           title="Edit user"
         />
       </button>
-      <button (click)="delete(project._id!)">
+      <button
+        *ngIf="loguedInUser.role === 'admin'"
+        (click)="delete(project._id!)"
+      >
         <img
           class="delete"
           src="/assets/icons/delete.svg"

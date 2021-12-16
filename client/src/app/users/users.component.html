@@ -1,5 +1,9 @@
 <section class="users">
-  <a routerLink="/users/create" class="add-user">
+  <a
+    *ngIf="loguedInUser.role === 'admin'"
+    routerLink="/users/create"
+    class="add-user"
+  >
     <img
       class="add-user-logo"
       src="/assets/icons/add-user.svg"
@@ -43,7 +47,10 @@
             title="View user details"
           />
         </a>
-        <button (click)="delete(user._id!)">
+        <button
+          *ngIf="loguedInUser.role === 'admin'"
+          (click)="delete(user._id!)"
+        >
           <img
             class="delete"
             src="/assets/icons/delete.svg"
