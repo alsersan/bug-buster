@@ -134,7 +134,6 @@ export class EditTicketComponent implements OnInit {
   onSubmit() {
     if (this.editTicket.valid) {
       const formResult = this.editTicket.value;
-      console.log(formResult);
       let developersArray = [];
       if (formResult.assignedTo.length) {
         developersArray = formResult.assignedTo.map((el: any) => el.item_id);
@@ -144,7 +143,6 @@ export class EditTicketComponent implements OnInit {
         priority: formResult.priority[0].item_id,
         assignedTo: developersArray,
       };
-      console.log(updatedTicket);
       this.store.dispatch(
         updateTicket({ ticketId: this.ticket._id!, update: updatedTicket })
       );
