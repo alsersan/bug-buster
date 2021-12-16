@@ -114,6 +114,18 @@ export class ProjectsService {
         },
       })
       .populate({
+        path: 'tickets',
+        select: '-__v',
+        populate: {
+          path: 'comments',
+          select: '-__v ',
+          populate: {
+            path: 'author',
+            select: '-__v -password -tickets -projects',
+          },
+        },
+      })
+      .populate({
         path: 'members',
         populate: {
           path: 'projectManager developers qualityAssurance',

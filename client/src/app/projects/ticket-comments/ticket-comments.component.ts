@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { Ticket } from 'src/app/models/ticket.model';
+import { UserState } from 'src/app/models/user.model';
 import { capitalizedRoles } from 'src/app/utils/roles';
 
 @Component({
@@ -12,92 +14,31 @@ export class TicketCommentsComponent implements OnInit {
   @Input() ticket!: Ticket;
   roles = capitalizedRoles;
   addComment!: FormGroup;
-  comments = [
-    {
-      author: {
-        name: 'Pepito',
-        surname: 'Fernandez',
-        role: 'developer',
-      },
-      content: 'blablab lablabla alblaba ablalbal albalb',
-      dateCreated: '2021-12-13T09:39:19.639+00:00',
-    },
-    {
-      author: {
-        name: 'Pepito',
-        surname: 'Fernandez',
-        role: 'developer',
-      },
-      content: 'blablab lablabla alblaba ablalbal albalb',
-      dateCreated: '2021-12-13T09:39:19.639+00:00',
-    },
-    {
-      author: {
-        name: 'Pepito',
-        surname: 'Fernandez',
-        role: 'developer',
-      },
-      content: 'blablab lablabla alblaba ablalbal albalb',
-      dateCreated: '2021-12-13T09:39:19.639+00:00',
-    },
-    {
-      author: {
-        name: 'Pepito',
-        surname: 'Fernandez',
-        role: 'developer',
-      },
-      content: 'blablab lablabla alblaba ablalbal albalb',
-      dateCreated: '2021-12-13T09:39:19.639+00:00',
-    },
-    {
-      author: {
-        name: 'Pepito',
-        surname: 'Fernandez',
-        role: 'developer',
-      },
-      content: 'blablab lablabla alblaba ablalbal albalb',
-      dateCreated: '2021-12-13T09:39:19.639+00:00',
-    },
-    {
-      author: {
-        name: 'Pepito',
-        surname: 'Fernandez',
-        role: 'developer',
-      },
-      content: 'blablab lablabla alblaba ablalbal albalb',
-      dateCreated: '2021-12-13T09:39:19.639+00:00',
-    },
-    {
-      author: {
-        name: 'Pepito',
-        surname: 'Fernandez',
-        role: 'developer',
-      },
-      content: 'blablab lablabla alblaba ablalbal albalb',
-      dateCreated: '2021-12-13T09:39:19.639+00:00',
-    },
-    {
-      author: {
-        name: 'Pepito',
-        surname: 'Fernandez',
-        role: 'developer',
-      },
-      content: 'blablab lablabla alblaba ablalbal albalb',
-      dateCreated: '2021-12-13T09:39:19.639+00:00',
-    },
-  ];
+  loguedInUser!: UserState;
 
-  constructor() {}
+  constructor(private store: Store<{ loguedInUser: UserState }>) {}
 
   ngOnInit(): void {
     this.addComment = new FormGroup({
       comment: new FormControl('', Validators.required),
     });
+
+    this.store
+      .select('loguedInUser')
+      .subscribe((user) => (this.loguedInUser = user));
   }
 
   onSubmit() {
     if (this.addComment.valid) {
       console.log(this.addComment.value);
+      const formResult = this.addComment.value;
+      const newComment = {
+        ticket: this.ticket._id,
+        content: formResult.comment.trim(),
+        dateCreated: new Date(),
+        author: this.loguedInUser.user._id,
+      };
+      console.log(newComment);
     }
   }
 }

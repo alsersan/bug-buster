@@ -1,3 +1,4 @@
+import { Comment } from './comment.model';
 import { Project } from './project.model';
 import { User } from './user.model';
 
@@ -13,6 +14,7 @@ export interface Ticket {
   project: Project;
   author: User;
   assignedTo: Array<User>;
+  comments: Array<Comment>;
 }
 
 export interface NewTicket {
