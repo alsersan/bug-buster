@@ -14,6 +14,7 @@ import { UsersController } from './users/users.controller';
 import { TicketsController } from './tickets/tickets.controller';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthorizationGuard } from './guards/authorization.guard';
+import { CommentsModule } from './comments/comments.module';
 
 const ENV = process.env.NODE_ENV;
 @Module({
@@ -26,6 +27,7 @@ const ENV = process.env.NODE_ENV;
     ProjectsModule,
     TicketsModule,
     LoginModule,
+    CommentsModule,
   ],
   controllers: [AppController],
   providers: [
