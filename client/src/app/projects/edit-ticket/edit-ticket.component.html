@@ -1,0 +1,44 @@
+<div class="edit-ticket-container">
+  <div class="form-container">
+    <h2 class="title">Edit Ticket</h2>
+    <form *ngIf="developers.length" [formGroup]="editTicket" class="form">
+      <div class="input-container">
+        <label class="label-required" for="status">Status</label>
+        <ng-multiselect-dropdown
+          *ngIf="status.length"
+          name="status"
+          [placeholder]="'Select Status'"
+          formControlName="status"
+          [settings]="dropdownSettingsSingleSelect"
+          [data]="status"
+        ></ng-multiselect-dropdown>
+      </div>
+      <div class="input-container">
+        <label class="label-required" for="status">Priority</label>
+        <ng-multiselect-dropdown
+          *ngIf="priority.length"
+          name="priority"
+          [placeholder]="'Select Priority'"
+          formControlName="priority"
+          [settings]="dropdownSettingsSingleSelect"
+          [data]="priority"
+        ></ng-multiselect-dropdown>
+      </div>
+      <div class="input-container">
+        <label for="developers">Developers</label>
+        <ng-multiselect-dropdown
+          *ngIf="developers.length"
+          name="developers"
+          [placeholder]="'Select Developers'"
+          formControlName="assignedTo"
+          [settings]="dropdownSettings"
+          [data]="developers"
+        ></ng-multiselect-dropdown>
+      </div>
+      <div class="button-container">
+        <button class="cancel-btn" (click)="onCancel()">Cancel</button>
+        <button class="edit-btn" (click)="onSubmit()">Update Ticket</button>
+      </div>
+    </form>
+  </div>
+</div>

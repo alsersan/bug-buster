@@ -37,9 +37,6 @@ export class EditProjectComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(getAllUsers());
-
-    console.log('onInit', this.project);
-
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'item_id',
@@ -60,14 +57,12 @@ export class EditProjectComponent implements OnInit {
       allowSearchFilter: false,
       enableCheckAll: false,
     };
-
     this.editProject = this.fb.group({
-      status: [''],
+      status: ['', Validators.required],
       manager: ['', Validators.required],
       developers: [''],
       qualityAssurance: [''],
     });
-
     this.store.select('users').subscribe((users) => {
       users.forEach((user) => {
         const userObject = {
@@ -85,9 +80,6 @@ export class EditProjectComponent implements OnInit {
         }
         if (user.role === 'quality-assurance') {
           this.qualityAssuranceMembers.push(userObject);
-          if (this.project.members.projectManager._id === user._id) {
-            this.selectedManager.push(userObject);
-          }
         }
       });
       this.statusOptions = [
@@ -124,27 +116,6 @@ export class EditProjectComponent implements OnInit {
     });
   }
 
-  initializeForm() {
-    /* this.selectedManager = [
-      {
-        item_id: 'active',
-        item_text: 'Active',
-      },
-    ]; */
-    /* this.editProject = this.fb.group({
-      status: [this.selectedItems],
-      manager: ['', Validators.required],
-      developers: [''],
-      qualityAssurance: [''],
-    }); */
-    /* this.editProject = this.fb.group({
-      status: ['active', Validators.required],
-      manager: [this.managers[0], Validators.required],
-      developers: [''],
-      qualityAssurance: [''],
-    }); */
-  }
-
   onCancel() {
     this.isVisible.emit(false);
   }
@@ -160,7 +131,6 @@ export class EditProjectComponent implements OnInit {
       if (formResult.qualityAssurance.length) {
         qualityArray = formResult.qualityAssurance.map((el: any) => el.item_id);
       }
-
       const updatedProject = {
         status: formResult.status[0].item_id,
         members: {

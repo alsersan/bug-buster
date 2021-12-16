@@ -1,11 +1,19 @@
 <section class="ticket-container">
-  <div *ngIf="ticket$ | async" class="content-wrapper">
+  <div *ngIf="ticket" class="content-wrapper">
     <div class="flex-wrapper">
-      <app-ticket-details [ticket]="(ticket$ | async)!"></app-ticket-details>
-      <app-ticket-members [ticket]="(ticket$ | async)!"></app-ticket-members>
+      <app-ticket-details
+        [ticket]="ticket"
+        (isVisible)="setEditTicketVisibility($event)"
+      ></app-ticket-details>
+      <app-ticket-members [ticket]="ticket"></app-ticket-members>
     </div>
     <div class="flex-wrapper">
-      <app-ticket-comments [ticket]="(ticket$ | async)!"></app-ticket-comments>
+      <app-ticket-comments [ticket]="ticket"></app-ticket-comments>
     </div>
   </div>
+  <app-edit-ticket
+    *ngIf="isEditTicketVisible"
+    (isVisible)="setEditTicketVisibility($event)"
+    [ticket]="ticket"
+  ></app-edit-ticket>
 </section>
