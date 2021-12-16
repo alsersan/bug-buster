@@ -44,7 +44,7 @@ export class LoginEffects {
             localStorage.setItem('jwtToken', jwtToken);
             return this.usersService.getUserWithToken().pipe(
               map((loguedInUser) => {
-                this.router.navigateByUrl('/dashboard');
+                this.router.navigateByUrl('/projects');
                 return actions.loginSuccess({ loguedInUser });
               })
             );

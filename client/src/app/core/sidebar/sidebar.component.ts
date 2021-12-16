@@ -8,7 +8,7 @@ import { UserState } from 'src/app/models/user.model';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
-  sections: string[] = ['dashboard', 'projects', 'users'];
+  sections: string[] = ['projects', 'users'];
   loguedInUser!: UserState;
 
   constructor(private store: Store<{ loguedInUser: UserState }>) {}
