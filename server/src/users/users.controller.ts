@@ -19,6 +19,7 @@ import { Request } from 'express';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Roles(roles.admin)
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
     return await this.usersService.createUser(createUserDto);
@@ -39,11 +40,13 @@ export class UsersController {
     return await this.usersService.getUserById(id);
   }
 
+  @Roles(roles.admin)
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return await this.usersService.updateUser(id, updateUserDto);
   }
 
+  @Roles(roles.admin)
   @Delete(':id')
   async delete(@Param('id') id: string) {
     return await this.usersService.deleteUser(id);
