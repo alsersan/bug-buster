@@ -4,7 +4,7 @@
     <form *ngIf="managers.length" [formGroup]="editProject" class="form">
       <div class="flex-row">
         <div class="input-container">
-          <label for="status">Status</label>
+          <label class="label-required" for="status">Status</label>
           <ng-multiselect-dropdown
             *ngIf="statusOptions.length"
             name="status"
@@ -15,7 +15,7 @@
           ></ng-multiselect-dropdown>
         </div>
         <div class="input-container">
-          <label for="manager">Project Manager</label>
+          <label class="label-required" for="manager">Project Manager</label>
           <ng-multiselect-dropdown
             *ngIf="managers.length"
             name="manager"

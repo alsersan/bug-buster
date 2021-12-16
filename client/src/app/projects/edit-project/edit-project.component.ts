@@ -6,6 +6,7 @@ import { User } from 'src/app/models/user.model';
 import { getAllUsers } from 'src/app/store/users/users.actions';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { updateProject } from 'src/app/store/projects/projects.actions';
+import { capitalize } from 'src/app/utils/capitalize';
 
 @Component({
   selector: 'app-edit-project',
@@ -67,7 +68,9 @@ export class EditProjectComponent implements OnInit {
       users.forEach((user) => {
         const userObject = {
           item_id: user._id as string,
-          item_text: `${user.name} ${user.surname} - ${user.seniority}`,
+          item_text: `${user.name} ${user.surname} - ${capitalize(
+            user.seniority
+          )}`,
         };
         if (user.role === 'project-manager') {
           this.managers.push(userObject);
@@ -95,17 +98,17 @@ export class EditProjectComponent implements OnInit {
       this.selectedStatus = [
         {
           item_id: this.project.status,
-          item_text: this.project.status,
+          item_text: capitalize(this.project.status),
         },
       ];
       this.selectedDevelopers = this.project.members.developers?.map((el) => ({
         item_id: el._id as string,
-        item_text: `${el.name} ${el.surname} - ${el.seniority}`,
+        item_text: `${el.name} ${el.surname} - ${capitalize(el.seniority)}`,
       }))!;
       this.selectedQualityAssurance =
         this.project.members.qualityAssurance?.map((el) => ({
           item_id: el._id as string,
-          item_text: `${el.name} ${el.surname} - ${el.seniority}`,
+          item_text: `${el.name} ${el.surname} - ${capitalize(el.seniority)}`,
         }))!;
       this.editProject.controls['status'].setValue(this.selectedStatus);
       this.editProject.controls['manager'].setValue(this.selectedManager);

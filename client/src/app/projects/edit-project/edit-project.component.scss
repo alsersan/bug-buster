@@ -46,6 +46,10 @@ label {
   @include label;
 }
 
+.label-required {
+  @include label-required;
+}
+
 .button-container {
   display: flex;
   gap: 2rem;

@@ -66,7 +66,9 @@ export class EditTicketComponent implements OnInit {
       users.forEach((user) => {
         const userObject = {
           item_id: user._id as string,
-          item_text: `${user.name} ${user.surname} - ${user.seniority}`,
+          item_text: `${user.name} ${user.surname} - ${capitalize(
+            user.seniority
+          )}`,
         };
         if (user.role === 'developer') {
           this.developers.push(userObject);
@@ -121,7 +123,7 @@ export class EditTicketComponent implements OnInit {
       this.editTicket.controls['priority'].setValue(this.selectedPriority);
       this.selectedDevelopers = this.ticket.assignedTo.map((el) => ({
         item_id: el._id as string,
-        item_text: `${el.name} ${el.surname} - ${el.seniority}`,
+        item_text: `${el.name} ${el.surname} - ${capitalize(el.seniority)}`,
       }))!;
 
       this.editTicket.controls['assignedTo'].setValue(this.selectedDevelopers);
