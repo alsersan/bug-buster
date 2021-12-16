@@ -3,6 +3,7 @@ import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
 import { Project } from 'src/projects/schemas/project.schema';
 import { User } from 'src/users/schemas/user.schema';
+import { Comment } from 'src/comments/schemas/comments.schema';
 
 export type TicketDocument = Ticket & Document;
 
@@ -37,6 +38,9 @@ export class Ticket {
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }] })
   assignedTo: User[];
+
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }] })
+  comments: Comment[];
 }
 
 export const TicketSchema = SchemaFactory.createForClass(Ticket);

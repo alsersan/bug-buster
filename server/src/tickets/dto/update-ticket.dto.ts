@@ -6,6 +6,7 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
+import { Comment } from 'src/comments/schemas/comments.schema';
 import { Project } from 'src/projects/schemas/project.schema';
 import { User } from 'src/users/schemas/user.schema';
 import { CreateTicketDto } from './create-ticket.dto';
@@ -63,4 +64,9 @@ export class UpdateTicketDto extends PartialType(CreateTicketDto) {
   @IsOptional()
   @IsNotEmpty()
   assignedTo: User[];
+
+  @Type(() => Comment)
+  @IsOptional()
+  @IsNotEmpty()
+  comments: Comment[];
 }
