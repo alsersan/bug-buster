@@ -1,1 +1,46 @@
-<p>login works!</p>
+<section class="login-container">
+  <div>
+    <img class="logo" src="/assets/img/logo-big.png" alt="Bugbuster logo" />
+    <div class="login-wrapper">
+      <h2 class="title">Login</h2>
+      <form [formGroup]="login" (submit)="onSubmit()">
+        <div class="input-container">
+          <label for="login-email">Email</label>
+          <input id="login-email" type="text" formControlName="email" />
+        </div>
+        <div class="input-container">
+          <label for="login-password">Password</label>
+          <div class="login-password-wrapper">
+            <input
+              class="login-password"
+              id="login-password"
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password"
+            />
+            <button
+              type="button"
+              class="toggle-password"
+              (click)="showPassword = !showPassword"
+            >
+              <img
+                class="toggle-password-icon"
+                src="/assets/icons/{{
+                  showPassword ? 'password-visible' : 'password-hidden'
+                }}.svg"
+                alt="{{
+                  showPassword
+                    ? 'Password visible icon'
+                    : 'Password Hidden icon'
+                }}"
+              />
+            </button>
+          </div>
+        </div>
+        <p class="login-error" *ngIf="showError">Incorrect email or password</p>
+        <button class="login-button">Login</button>
+      </form>
+    </div>
+  </div>
+  <div class="square left"></div>
+  <div class="square right"></div>
+</section>

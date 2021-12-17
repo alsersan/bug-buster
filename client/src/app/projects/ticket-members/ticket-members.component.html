@@ -1,0 +1,34 @@
+<div class="ticket-members-container">
+  <p class="title">ASSIGNED DEVELOPERS</p>
+  <ul *ngIf="ticket.assignedTo.length" class="member-list">
+    <li *ngFor="let member of ticket.assignedTo" class="member">
+      <div class="details-container">
+        <img
+          class="avatar"
+          src="{{ member.avatarUrl }}"
+          alt="User profile picture"
+        />
+        <div class="name-container">
+          <p class="name">
+            {{ member.name }}
+            {{ member.surname }}
+          </p>
+          <p>{{ member.seniority | titlecase }}</p>
+        </div>
+      </div>
+      <div class="icon-container">
+        <a>
+          <img
+            class="details"
+            src="/assets/icons/user-details.svg"
+            alt="User detail icons"
+            title="View user details"
+          />
+        </a>
+      </div>
+    </li>
+  </ul>
+  <div *ngIf="!ticket.assignedTo.length" class="no-members">
+    No developers assigned
+  </div>
+</div>

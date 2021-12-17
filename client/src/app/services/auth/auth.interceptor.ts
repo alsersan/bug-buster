@@ -6,6 +6,7 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -15,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const jwtToken = localStorage.getItem('jwtToken');
 
-    if (jwtToken) {
+    if (jwtToken && req.url !== environment.uploadImgUrl) {
       const cloned = req.clone({
         headers: req.headers.set('Authorization', `${jwtToken}`),
       });

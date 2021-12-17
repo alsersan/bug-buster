@@ -5,6 +5,8 @@ import * as bcrypt from 'bcrypt';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User, UserDocument } from './schemas/user.schema';
+import { Request } from 'express';
+import { JwtTokenPayload } from 'src/interfaces/jwt-payload.interface';
 
 @Injectable()
 export class UsersService {
@@ -28,6 +30,12 @@ export class UsersService {
     return this.processQuery(queryResult);
   }
 
+  async getUserWithToken(req: Request) {
+    const user: JwtTokenPayload = req['user'];
+    const queryResult = this.userModel.findById(user.userId);
+    return this.processQuery(queryResult);
+  }
+
   async updateUser(userId: string, updateUserDto: UpdateUserDto) {
     const queryResult = this.userModel.findByIdAndUpdate(
       userId,
@@ -46,6 +54,6 @@ export class UsersService {
     return queryResult
       .select('-__v -password')
       .populate('projects', '-__v -members._id')
-      .populate('tickets', '-__v -modifications -assignedTo -author');
+      .populate('tickets', '-__v -assignedTo -author');
   }
 }

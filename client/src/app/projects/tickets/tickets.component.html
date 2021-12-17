@@ -1,0 +1,42 @@
+<div class="ticket-container">
+  <div class="flex-row">
+    <p class="title">TICKETS</p>
+    <button
+      *ngIf="loguedInUser.role !== 'developer'"
+      (click)="onCreateBtnClick()"
+    >
+      <img
+        class="add-ticket-icon"
+        src="/assets/icons/add-ticket.svg"
+        alt="Add ticket icon"
+        title="Add ticket"
+      />
+    </button>
+  </div>
+
+  <ul *ngIf="project.tickets.length" class="ticket-list">
+    <li class="ticket-list-element" *ngFor="let ticket of project.tickets">
+      <a routerLink="tickets/{{ ticket._id }}" class="ticket">
+        <div class="top-row">
+          <p class="name">{{ ticket.name }}</p>
+          <p>#{{ ticket._id }}</p>
+        </div>
+        <p class="description">{{ ticket.description }}</p>
+        <div class="tag-container">
+          <div class="status-container">
+            <div ngClass="status-icon-{{ ticket.status }}"></div>
+            <p>{{ ticket.status | titlecase }}</p>
+          </div>
+          <div class="status-container">
+            <div ngClass="status-icon-{{ ticket.priority }}"></div>
+            <p>{{ ticket.priority | titlecase }} priority</p>
+          </div>
+          <div class="status-container">
+            <p>{{ ticket.type | titlecase }}</p>
+          </div>
+        </div>
+      </a>
+    </li>
+  </ul>
+  <div class="no-tickets" *ngIf="!project.tickets.length">No tickets</div>
+</div>

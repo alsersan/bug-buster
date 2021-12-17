@@ -3,12 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { Login } from 'src/app/models/login.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private loginUrl = 'http://localhost:3001/login';
+  private loginUrl = `${environment.baseUrl}/login`;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
@@ -21,5 +22,9 @@ export class AuthService {
       { email, password },
       this.httpOptions
     );
+  }
+
+  logout(): void {
+    localStorage.removeItem('jwtToken');
   }
 }

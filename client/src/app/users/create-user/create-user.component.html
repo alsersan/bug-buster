@@ -1,0 +1,122 @@
+<section class="create-user-container">
+  <div class="form-container">
+    <h2 class="title">Create User</h2>
+    <form [formGroup]="createUser">
+      <div class="row">
+        <div class="input-container">
+          <label for="user-name">Name</label>
+          <input id="user-name" type="text" formControlName="name" />
+          <div
+            class="error-msg"
+            *ngIf="
+              createUser.controls['name'].invalid &&
+              createUser.controls['name'].touched
+            "
+          >
+            Name is required
+          </div>
+        </div>
+        <div class="input-container">
+          <label for="user-surname">Surname</label>
+          <input id="user-surname" type="text" formControlName="surname" />
+          <div
+            class="error-msg"
+            *ngIf="
+              createUser.controls['surname'].invalid &&
+              createUser.controls['surname'].touched
+            "
+          >
+            Surname is required
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-container">
+          <label for="user-email">Email</label>
+          <input id="user-email" type="text" formControlName="email" />
+          <div
+            class="error-msg"
+            *ngIf="
+              createUser.controls['email'].invalid &&
+              createUser.controls['email'].touched
+            "
+          >
+            Email is required and must be valid
+          </div>
+          <div class="error-msg" *ngIf="isEmailInvalid">
+            Email is invalid or already in use
+          </div>
+        </div>
+        <div class="input-container">
+          <label for="user-password">Password</label>
+          <input id="user-password" type="text" formControlName="password" />
+          <div
+            class="error-msg"
+            *ngIf="
+              createUser.controls['password'].invalid &&
+              createUser.controls['password'].touched
+            "
+          >
+            Password is required
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-container">
+          <label for="user-role">Role</label>
+          <select name="user-role" id="user-role" formControlName="role">
+            <option *ngFor="let role of roles" value="{{ role.value }}">
+              {{ role.name }}
+            </option>
+          </select>
+          <div
+            class="error-msg"
+            *ngIf="
+              createUser.controls['role'].invalid &&
+              createUser.controls['role'].touched
+            "
+          >
+            Role is required
+          </div>
+        </div>
+        <div class="input-container">
+          <label for="user-seniority">Seniority</label>
+          <select
+            name="user-seniority"
+            id="user-seniority"
+            formControlName="seniority"
+          >
+            <option
+              *ngFor="let seniority of seniorities"
+              value="{{ seniority }}"
+            >
+              {{ seniority | titlecase }}
+            </option>
+          </select>
+          <div
+            class="error-msg"
+            *ngIf="
+              createUser.controls['seniority'].invalid &&
+              createUser.controls['seniority'].touched
+            "
+          >
+            Seniority is required
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-container">
+          <label for="user-avatar">Picture</label>
+          <input
+            type="file"
+            class="user-avatar"
+            id="user-avatar"
+            name="user-avatar"
+            formControlName="avatar"
+          />
+        </div>
+        <button class="create-btn" (click)="onSubmit()">Create User</button>
+      </div>
+    </form>
+  </div>
+</section>

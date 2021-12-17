@@ -1,0 +1,58 @@
+@import "src/styles/abstracts/variables";
+@import "src/styles/abstracts/mixins";
+
+.create-user-container {
+  background-color: $secondary-background;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container {
+  @include box-styles(3rem);
+  width: 80rem;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.error-msg {
+  color: red;
+  font-size: 1.4rem;
+}
+
+.row {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.input-container {
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 0;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+label {
+  @include label-required;
+}
+
+.user-avatar {
+  padding-top: 0.5rem;
+}
+
+.create-btn {
+  @include create-btn;
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 0;
+  align-items: center;
+  justify-content: center;
+}

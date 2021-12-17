@@ -13,14 +13,14 @@ export class Project {
   @Prop({ required: true })
   description: string;
 
-  @Prop({ default: 'active' })
+  @Prop({ default: 'active', enum: ['active', 'closed'] })
   status: string;
 
   @Prop()
-  dateCreated: string;
+  dateCreated: Date;
 
   @Prop({ default: null })
-  dateClosed: string | null;
+  dateClosed: Date | null;
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ticket' }] })
   tickets: Ticket[];

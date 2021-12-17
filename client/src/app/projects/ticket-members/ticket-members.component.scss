@@ -1,0 +1,71 @@
+@import "src/styles/abstracts/mixins";
+
+:host {
+  display: flex;
+  flex-grow: 1;
+}
+
+.ticket-members-container {
+  @include box-styles(2rem 0);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.8rem;
+  padding: 0 2rem;
+}
+
+.member-list {
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  overflow-y: auto;
+  height: 3rem;
+  flex-grow: 1;
+}
+
+.member {
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  justify-content: space-between;
+}
+
+.details-container {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.details {
+  height: 2rem;
+
+  &:hover {
+    filter: $primary-color-svg;
+  }
+}
+
+.no-members {
+  padding: 2rem;
+}

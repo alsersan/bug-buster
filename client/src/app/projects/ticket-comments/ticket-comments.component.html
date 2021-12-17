@@ -1,0 +1,34 @@
+<div class="ticket-comments-container">
+  <p class="title">COMMENTS</p>
+  <form (submit)="onSubmit()" [formGroup]="addComment" class="add-comment">
+    <label class="label" for="comment-input">Add comment</label>
+    <div class="input-container">
+      <input
+        placeholder="Write a comment"
+        class="comment-input"
+        id="comment-input"
+        formControlName="comment"
+      />
+      <button class="add-btn">Send</button>
+    </div>
+  </form>
+  <ul *ngIf="ticket.comments.length" class="comment-list">
+    <li class="comment" *ngFor="let comment of ticket.comments">
+      <div class="top-row">
+        <div class="author-container">
+          <p class="author">
+            {{ comment.author.name }} {{ comment.author.surname }}
+          </p>
+          <p class="small-text">
+            {{ roles[comment.author.role] }}
+          </p>
+        </div>
+        <p class="small-text">
+          {{ comment.dateCreated | date: "medium" }}
+        </p>
+      </div>
+      <p>{{ comment.content }}</p>
+    </li>
+  </ul>
+  <div class="no-comments" *ngIf="!ticket.comments.length">No Comments</div>
+</div>

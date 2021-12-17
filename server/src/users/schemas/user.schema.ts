@@ -17,17 +17,23 @@ export class User {
   @Prop({ required: true })
   avatarUrl: string;
 
-  @Prop({ required: true })
+  @Prop({
+    required: true,
+    enum: ['admin', 'project-manager', 'developer', 'quality-assurance'],
+  })
   role: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, enum: ['trainee', 'junior', 'middle', 'senior'] })
   seniority: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true })
   email: string;
 
   @Prop({ required: true })
   password: string;
+
+  @Prop({ required: true })
+  dateRegistered: Date;
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Project' }] })
   projects: Project[];

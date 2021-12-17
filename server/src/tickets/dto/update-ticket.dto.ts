@@ -1,7 +1,12 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { Exclude, Type } from 'class-transformer';
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { Modification } from 'src/modifications/schemas/modification.schema';
+import {
+  IsDateString,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
+import { Comment } from 'src/comments/schemas/comments.schema';
 import { Project } from 'src/projects/schemas/project.schema';
 import { User } from 'src/users/schemas/user.schema';
 import { CreateTicketDto } from './create-ticket.dto';
@@ -37,14 +42,13 @@ export class UpdateTicketDto extends PartialType(CreateTicketDto) {
   type: string;
 
   @IsOptional()
-  @IsNotEmpty()
-  @IsString()
-  dateCreated: string;
+  @Exclude()
+  dateRegistered: Date;
 
   @IsOptional()
   @IsNotEmpty()
-  @IsString()
-  dateClosed: string;
+  @IsDateString()
+  dateClosed: Date;
 
   @IsOptional()
   @Type(() => Project)
@@ -61,8 +65,8 @@ export class UpdateTicketDto extends PartialType(CreateTicketDto) {
   @IsNotEmpty()
   assignedTo: User[];
 
-  @Type(() => Modification)
+  @Type(() => Comment)
   @IsOptional()
   @IsNotEmpty()
-  modifications: Modification[];
+  comments: Comment[];
 }

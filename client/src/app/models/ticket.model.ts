@@ -1,3 +1,7 @@
+import { Comment } from './comment.model';
+import { Project } from './project.model';
+import { User } from './user.model';
+
 export interface Ticket {
   _id?: string;
   name: string;
@@ -5,10 +9,24 @@ export interface Ticket {
   status: string;
   priority: string;
   type: string;
-  dateCreated: string;
-  dateClosed: string | null;
-  project: any;
-  author: any;
-  assignedTo: Array<any>;
-  modifications: Array<any>;
+  dateCreated: Date;
+  dateClosed: Date | null;
+  project: Project;
+  author: User;
+  assignedTo: Array<User>;
+  comments: Array<Comment>;
+}
+
+export interface NewTicket {
+  name: string;
+  description: string;
+  priority: string;
+  type: string;
+  dateCreated: Date;
+  project: string;
+  author: string;
+}
+
+export interface DeletedTicket {
+  deletedTicketId: string;
 }

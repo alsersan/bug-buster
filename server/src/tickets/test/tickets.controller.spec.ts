@@ -20,7 +20,6 @@ describe('Given the TicketsController', () => {
     project: '',
     author: '',
     assignedTo: [],
-    modifications: [],
   };
 
   beforeEach(async () => {

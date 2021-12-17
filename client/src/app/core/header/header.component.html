@@ -1,6 +1,53 @@
 <nav class="navbar">
-  <div class="main-wrapper">
-    <div class="logo">here goes the logo</div>
-    <div class="user-wrapper">here goes the user</div>
+  <img
+    class="main-logo"
+    src="/assets/img/logo-small.png"
+    alt="Bugbuster logo"
+  />
+  <div class="menu-wrapper">
+    <div *ngIf="loguedInUser.user.name" class="user-wrapper">
+      <div class="name-wrapper">
+        <p class="name">
+          {{ loguedInUser.user.name }} {{ loguedInUser.user.surname }}
+        </p>
+        <p class="role">{{ roles[loguedInUser.user.role] }}</p>
+      </div>
+      <img
+        class="avatar"
+        src="{{ loguedInUser.user.avatarUrl }}"
+        alt="User profile picture"
+      />
+      <img class="arrow" src="/assets/icons/arrow.svg" alt="Down arrow icon" />
+    </div>
+    <ul class="menu">
+      <li>
+        <a class="menu-item" routerLink="profile"
+          ><div class="menu-logo-wrapper">
+            <img
+              class="menu-logo"
+              src="/assets/icons/profile.svg"
+              alt="Profile icon"
+            />
+          </div>
+          Profile</a
+        >
+      </li>
+      <li>
+        <button
+          (click)="logoutUser()"
+          class="menu-item menu-button"
+          routerLink="profile"
+        >
+          <div class="menu-logo-wrapper">
+            <img
+              class="menu-logo"
+              src="/assets/icons/logout.svg"
+              alt="Logout icon"
+            />
+          </div>
+          Logout
+        </button>
+      </li>
+    </ul>
   </div>
 </nav>

@@ -22,6 +22,10 @@ chrome-profiler-events*.json
 .settings/
 *.sublime-workspace
 
+# sonar-scanner
+/.scannerwork
+sonar-project.properties
+
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json

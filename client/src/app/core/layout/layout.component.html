@@ -1,6 +1,6 @@
-<app-header></app-header>
+<app-header *ngIf="loguedInUser.user.name"></app-header>
 <div class="content-container">
-  <app-sidebar></app-sidebar>
+  <app-sidebar *ngIf="loguedInUser.user.name"></app-sidebar>
   <main>
     <ng-content></ng-content>
   </main>

@@ -7,6 +7,7 @@ import { Project, ProjectDocument } from './schemas/project.schema';
 import { User, UserDocument } from 'src/users/schemas/user.schema';
 import { addItemToList, removeItemFromList } from 'src/utils/add-remove-items';
 import { getChangedItems } from 'src/utils/get-changed-items';
+
 @Injectable()
 export class ProjectsService {
   constructor(
@@ -16,14 +17,12 @@ export class ProjectsService {
 
   async createProject(createProjectDto: CreateProjectDto): Promise<Project> {
     const newProject = await this.projectModel.create(createProjectDto);
-    if (newProject.members?.projectManager) {
-      await addItemToList(
-        newProject.members.projectManager,
-        'projects',
-        newProject._id,
-        this.userModel,
-      );
-    }
+    await addItemToList(
+      newProject.members.projectManager,
+      'projects',
+      newProject._id,
+      this.userModel,
+    );
     const queryResult = this.projectModel.findById(newProject._id);
     return this.processQuery(queryResult);
   }
@@ -42,6 +41,7 @@ export class ProjectsService {
     projectId: string,
     updateProjectDto: UpdateProjectDto,
   ): Promise<Project> {
+    console.log('UPDATE', updateProjectDto);
     if (updateProjectDto.hasOwnProperty('members')) {
       const previousState = await this.projectModel.findById(projectId);
       const previousMembers = previousState.members;
@@ -83,18 +83,53 @@ export class ProjectsService {
   }
 
   async deleteProject(projectId: string) {
-    return this.projectModel.findByIdAndDelete(projectId);
+    const deletedProject = await this.projectModel.findByIdAndDelete(projectId);
+
+    // DELETE FROM USERS
+    const membersArray = [
+      deletedProject.members.projectManager,
+      ...deletedProject.members.developers,
+      ...deletedProject.members.qualityAssurance,
+    ];
+    for (let i = 0; i < membersArray.length; i++) {
+      await removeItemFromList(
+        membersArray[i],
+        'projects',
+        deletedProject._id,
+        this.userModel,
+      );
+    }
+    return { deletedProjectId: deletedProject._id };
   }
 
   processQuery(queryResult) {
     return queryResult
-      .select('-__v -members._id')
-      .populate('tickets', '-__v -modifications -assignedTo -author')
+      .select('-members._id')
+      .populate({
+        path: 'tickets',
+        select: '-__v',
+        populate: {
+          path: 'assignedTo author',
+          select: '-__v -password -tickets -projects',
+        },
+      })
+      .populate({
+        path: 'tickets',
+        select: '-__v',
+        populate: {
+          path: 'comments',
+          select: '-__v ',
+          populate: {
+            path: 'author',
+            select: '-__v -password -tickets -projects',
+          },
+        },
+      })
       .populate({
         path: 'members',
         populate: {
           path: 'projectManager developers qualityAssurance',
-          select: '-__v -password -tickets -projects -role',
+          select: '-__v -password -tickets -projects',
         },
       });
   }

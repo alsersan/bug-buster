@@ -4,13 +4,13 @@
   min-height: 100%;
   display: block;
   position: relative;
-  z-index: 1;
+  z-index: 10;
 }
 
 .sidebar {
   width: 20rem;
   height: 100%;
-  background-color: transparent;
+  background-color: $main-background;
   box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1);
   padding: 2rem 0.5rem;
 }
@@ -40,8 +40,13 @@
   width: 2.5rem;
 }
 
+.is-logo-active {
+  filter: $white-color-svg;
+}
+
 .is-active {
   background-color: $primary-color;
+  color: white;
   &:hover {
     background-color: $primary-color;
   }

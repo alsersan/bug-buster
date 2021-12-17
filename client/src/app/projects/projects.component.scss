@@ -1,8 +1,110 @@
 @import "src/styles/abstracts/variables";
+@import "src/styles/abstracts/mixins";
 
-.projects {
-  background-color: $main-background;
-  padding: 1rem;
+.projects-container {
+  background-color: $secondary-background;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.add-project {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 2rem;
+  left: 2rem;
+  background-color: $main-background;
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+  &:hover .add-project-logo {
+    filter: $primary-color-svg;
+  }
+}
+
+.add-project-logo {
+  height: 2.5rem;
+}
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem;
+  gap: 2rem;
+}
+
+.project {
+  @include box-styles;
+  width: 100%;
+  max-width: 80rem;
+  min-height: 15rem;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.name-wrapper {
+  display: flex;
+  gap: 3rem;
+}
+
+.name {
+  font-size: 1.8rem;
+}
+
+.status-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.details-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.description {
+  margin-bottom: 1rem;
+}
+
+.bolder {
+  font-weight: 600;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+.details {
+  height: 2rem;
+  &:hover {
+    filter: $primary-color-svg;
+  }
+}
+
+.delete {
+  width: 2rem;
+
+  &:hover {
+    filter: $delete-color-svg;
+  }
+}
+
+.status-icon-active {
+  @include status-icon("green");
+}
+
+.status-icon-closed {
+  @include status-icon("red");
 }

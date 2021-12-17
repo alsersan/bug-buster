@@ -1,0 +1,50 @@
+<section class="create-project-container">
+  <div class="form-container">
+    <h2 class="title">Create Project</h2>
+    <form [formGroup]="createProject">
+      <div class="input-container">
+        <label for="project-name">Name</label>
+        <input id="project-name" type="text" formControlName="name" />
+        <div
+          class="error-msg"
+          *ngIf="
+            createProject.controls['name'].invalid &&
+            createProject.controls['name'].touched
+          "
+        >
+          Name is required
+        </div>
+      </div>
+      <div class="input-container">
+        <label for="project-description">Description</label>
+        <textarea
+          id="project-description"
+          class="project-description"
+          formControlName="description"
+        ></textarea>
+        <div
+          class="error-msg"
+          *ngIf="
+            createProject.controls['description'].invalid &&
+            createProject.controls['description'].touched
+          "
+        >
+          Description is required
+        </div>
+      </div>
+      <div class="input-container">
+        <label for="project-manager">Project Manager</label>
+        <select
+          name="project-manager"
+          id="project-manager"
+          formControlName="projectManager"
+        >
+          <option *ngFor="let manager of managers" value="{{ manager._id }}">
+            {{ manager.name }} {{ manager.surname }}
+          </option>
+        </select>
+      </div>
+      <button class="create-btn" (click)="onSubmit()">Create Project</button>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+<section class="project-container">
+  <div *ngIf="project$ | async" class="content-wrapper">
+    <app-project-details
+      [project]="(project$ | async)!"
+      (isVisible)="setEditProjectVisibility($event)"
+    ></app-project-details>
+    <div class="flex-wrapper">
+      <app-members [project]="(project$ | async)!"></app-members>
+      <app-tickets
+        (isVisible)="setCreateTicketVisibility($event)"
+        [project]="(project$ | async)!"
+      ></app-tickets>
+    </div>
+  </div>
+  <app-create-ticket
+    *ngIf="isCreateTicketVisible"
+    (isVisible)="setCreateTicketVisibility($event)"
+    [project]="(project$ | async)!"
+  ></app-create-ticket>
+  <app-edit-project
+    *ngIf="isEditProjectVisible"
+    (isVisible)="setEditProjectVisibility($event)"
+    [project]="(project$ | async)!"
+  ></app-edit-project>
+</section>

@@ -1,13 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Ticket } from 'src/app/models/ticket.model';
+import { DeletedTicket, NewTicket, Ticket } from 'src/app/models/ticket.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TicketsService {
-  private ticketsUrl = 'http://localhost:3001/projects';
+  private ticketsUrl = `${environment.baseUrl}/tickets`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -15,25 +16,25 @@ export class TicketsService {
 
   constructor(private http: HttpClient) {}
 
-  createTicket(ticket: Ticket): Observable<Ticket> {
+  createTicket(ticket: NewTicket): Observable<Ticket> {
     return this.http.post<Ticket>(this.ticketsUrl, ticket, this.httpOptions);
   }
 
-  getTicketById(id: string): Observable<Ticket> {
-    return this.http.get<Ticket>(`${this.ticketsUrl}/${id}`);
+  getTicketById(ticketId: string): Observable<Ticket> {
+    return this.http.get<Ticket>(`${this.ticketsUrl}/${ticketId}`);
   }
 
-  updateTicket(id: string, update: Partial<Ticket>): Observable<Ticket> {
+  updateTicket(ticketId: string, update: Partial<Ticket>): Observable<Ticket> {
     return this.http.patch<Ticket>(
-      `${this.ticketsUrl}/${id}`,
+      `${this.ticketsUrl}/${ticketId}`,
       update,
       this.httpOptions
     );
   }
 
-  deleteTicket(id: string): Observable<Ticket> {
-    return this.http.delete<Ticket>(
-      `${this.ticketsUrl}/${id}`,
+  deleteTicket(ticketId: string): Observable<DeletedTicket> {
+    return this.http.delete<DeletedTicket>(
+      `${this.ticketsUrl}/${ticketId}`,
       this.httpOptions
     );
   }

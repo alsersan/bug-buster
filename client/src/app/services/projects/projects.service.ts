@@ -1,7 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Project } from 'src/app/models/project.model';
+import {
+  DeletedProject,
+  NewProject,
+  Project,
+} from 'src/app/models/project.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -16,29 +20,32 @@ export class ProjectsService {
 
   constructor(private http: HttpClient) {}
 
-  createProject(project: Project): Observable<Project> {
+  createProject(project: NewProject): Observable<Project> {
     return this.http.post<Project>(this.projectsUrl, project, this.httpOptions);
   }
 
-  getProjects(): Observable<Project[]> {
+  getAllProjects(): Observable<Project[]> {
     return this.http.get<Project[]>(this.projectsUrl);
   }
 
-  getProjectById(id: string): Observable<Project> {
-    return this.http.get<Project>(`${this.projectsUrl}/${id}`);
+  getProjectById(projectId: string): Observable<Project> {
+    return this.http.get<Project>(`${this.projectsUrl}/${projectId}`);
   }
 
-  updateProject(id: string, update: Partial<Project>): Observable<Project> {
+  updateProject(
+    projectId: string,
+    update: Partial<Project>
+  ): Observable<Project> {
     return this.http.patch<Project>(
-      `${this.projectsUrl}/${id}`,
+      `${this.projectsUrl}/${projectId}`,
       update,
       this.httpOptions
     );
   }
 
-  deleteProject(id: string): Observable<Project> {
-    return this.http.delete<Project>(
-      `${this.projectsUrl}/${id}`,
+  deleteProject(projectId: string): Observable<DeletedProject> {
+    return this.http.delete<DeletedProject>(
+      `${this.projectsUrl}/${projectId}`,
       this.httpOptions
     );
   }

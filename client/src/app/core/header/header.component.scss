@@ -1,33 +1,99 @@
 @import "src/styles/abstracts/variables";
+
 :host {
   display: block;
   position: relative;
-  z-index: 2;
+  z-index: 10;
   width: 100%;
 }
 
 .navbar {
   height: 5rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  background-color: $navigation-background;
-  padding: 0.5rem;
-}
-
-.main-wrapper {
-  width: 100%;
-  height: 100%;
+  background-color: $main-background;
   display: flex;
   justify-content: space-between;
 }
 
-.logo {
-  height: 100%;
-  width: 19.5rem;
-  background-color: lightskyblue;
+.main-logo {
+  margin-left: 1rem;
+}
+
+.menu-wrapper {
+  position: relative;
+
+  &:hover .menu {
+    display: block;
+  }
+}
+
+.menu {
+  width: 17.5rem;
+  position: absolute;
+  display: none;
+  right: 2rem;
+  background-color: $main-background;
+  z-index: 2;
+  border-radius: 0 0 $border-radius $border-radius;
+  padding: 0.5rem;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  transition: opacity 1s;
+}
+
+.menu-item {
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  border-radius: $border-radius;
+
+  &:hover {
+    background-color: $hover-menu-color;
+  }
+}
+
+.menu-button {
+  font-size: 1.6rem;
+}
+
+.menu-logo-wrapper {
+  width: 4rem;
+  text-align: left;
+}
+
+.menu-logo {
+  height: 2.2rem;
 }
 
 .user-wrapper {
+  display: flex;
+  align-items: center;
   height: 100%;
-  width: 30rem;
-  background-color: lightskyblue;
+  padding-right: 2rem;
+}
+
+.name-wrapper {
+  text-align: right;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.role {
+  font-size: 1.4rem;
+}
+
+.avatar {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  margin-left: 1.5rem;
+  margin-right: 1rem;
+}
+
+.arrow {
+  height: 0.6rem;
 }
