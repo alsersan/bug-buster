@@ -16,6 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const jwtToken = localStorage.getItem('jwtToken');
 
+    // Cloudinary (cloud image hosting) expects no headers
     if (jwtToken && req.url !== environment.uploadImgUrl) {
       const cloned = req.clone({
         headers: req.headers.set('Authorization', `${jwtToken}`),
