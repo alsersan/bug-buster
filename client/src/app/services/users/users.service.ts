@@ -1,7 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DeletedUser, NewUser, User } from 'src/app/models/user.model';
+import {
+  DeletedUser,
+  NewUser,
+  PasswordUpdate,
+  User,
+} from 'src/app/models/user.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -35,6 +40,14 @@ export class UsersService {
   updateUser(userId: string, update: Partial<User>): Observable<User> {
     return this.http.patch<User>(
       `${this.usersUrl}/${userId}`,
+      update,
+      this.httpOptions
+    );
+  }
+
+  updatePasswordWithToken(update: PasswordUpdate): Observable<User> {
+    return this.http.patch<User>(
+      `${this.usersUrl}/token`,
       update,
       this.httpOptions
     );

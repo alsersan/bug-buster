@@ -34,3 +34,8 @@ export interface UserState {
   user: User;
   loginFailed: boolean;
 }
+
+export interface PasswordUpdate {
+  currentPassword: string;
+  newPassword: string;
+}

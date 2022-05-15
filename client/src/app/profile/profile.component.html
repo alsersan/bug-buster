@@ -20,6 +20,7 @@
         *ngIf="isPasswordEditActive"
         [formGroup]="editPassword"
         class="edit-password"
+        (ngSubmit)="onSubmit()"
       >
         <label for="current-password">Current password</label>
         <input

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { User, UserState } from '../models/user.model';
+import { PasswordUpdate, User, UserState } from '../models/user.model';
+import { UsersService } from '../services/users/users.service';
 import { capitalizedRoles } from '../utils/roles';
 
 @Component({
@@ -14,7 +15,10 @@ export class ProfileComponent implements OnInit {
   isPasswordEditActive: boolean = false;
   editPassword!: FormGroup;
   user!: User;
-  constructor(private store: Store<{ loguedInUser: UserState }>) {}
+  constructor(
+    private store: Store<{ loguedInUser: UserState }>,
+    private usersService: UsersService
+  ) {}
 
   ngOnInit() {
     this.store
@@ -32,5 +36,21 @@ export class ProfileComponent implements OnInit {
     this.isPasswordEditActive = !this.isPasswordEditActive;
   }
 
-  onSubmit() {}
+  onSubmit() {
+    if (this.editPassword.valid) {
+      const formResult = this.editPassword.value;
+      const update: PasswordUpdate = {
+        currentPassword: formResult.currentPassword,
+        newPassword: formResult.newPassword,
+      };
+      this.usersService.updatePasswordWithToken(update).subscribe({
+        next: () => {
+          console.log('pasword changed');
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+    }
+  }
 }
