@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
@@ -40,6 +40,26 @@ export class UsersService {
     const queryResult = this.userModel.findByIdAndUpdate(
       userId,
       updateUserDto,
+      { new: true },
+    );
+    return this.processQuery(queryResult);
+  }
+
+  async updatePasswordWithToken(req: Request) {
+    const user: JwtTokenPayload = req['user'];
+    const userDB = await this.userModel.findById(user.userId);
+    const body = req.body as { currentPassword: string; newPassword: string };
+    const isCorrectCurrentPassword = await bcrypt.compare(
+      body.currentPassword,
+      userDB.password,
+    );
+    if (!isCorrectCurrentPassword) {
+      throw new UnauthorizedException('The current password is incorrect');
+    }
+    const newHashedPassword = await bcrypt.hash(body.newPassword, 10);
+    const queryResult = this.userModel.findByIdAndUpdate(
+      user.userId,
+      { password: newHashedPassword },
       { new: true },
     );
     return this.processQuery(queryResult);

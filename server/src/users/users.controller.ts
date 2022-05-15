@@ -40,6 +40,11 @@ export class UsersController {
     return await this.usersService.getUserById(id);
   }
 
+  @Patch('token')
+  async updateWithToken(@Req() req: Request) {
+    return await this.usersService.updatePasswordWithToken(req);
+  }
+
   @Roles(roles.admin)
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
